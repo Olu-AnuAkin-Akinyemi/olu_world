@@ -1,0 +1,41 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+npm-debug.log*
+
+# Vite
+.vite/
+
+# Test coverage
+coverage/
+
+# Large / raw assets — keep originals local, commit only optimized WebP
+*.psd
+*.ai
+*.mp4
+src/assets/**/*.jpg
+src/assets/**/*.jpeg
+src/assets/**/*.png
+!src/assets/**/*.webp
+!src/assets/**/Olu logo_*.png
