@@ -204,10 +204,19 @@ Several sections still have `<!-- ASSET SWAP: ... -->` comments awaiting final i
 - Optimize images (WebP with PNG fallback)
 - Canvas flow field performance tuning
 
-**Phase 3: Deep World-Building**
+**Phase 3: Industry Pages & Deep World-Building**
+- `/sync` page — dedicated sync licensing page for music supervisors. Stream-only (no downloads), clear licensing inquiry CTA. Clean, professional, stripped-down. This is the link you send to supervisors.
+- `/epk` page — Electronic Press Kit for bookers, press, playlist curators, labels. Bio, press photos, streaming stats, notable placements, press quotes. Include downloadable PDF/zip of press assets.
 - Notes section as CMS-driven feed
 - Native audio previews in track items
 - Email form integration (Mailchimp/ConvertKit)
+
+**Site Architecture (target):**
+```
+/       → immersive world (fans, listeners)
+/sync   → music supervisors (tracks, licensing contact)
+/epk    → industry (bio, stats, downloadable press assets)
+```
 
 ---
 
