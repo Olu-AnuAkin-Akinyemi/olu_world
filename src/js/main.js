@@ -229,6 +229,10 @@ document.querySelectorAll('.world-item').forEach(item => {
     if (!img || !overlay) return;
     overlay.querySelector('.gallery-overlay-img').src = img.src;
     overlay.querySelector('.gallery-overlay-img').alt = img.alt;
+    const infoTitle = overlay.querySelector('.gallery-overlay-info-title');
+    const infoArtist = overlay.querySelector('.gallery-overlay-info-artist');
+    if (infoTitle) infoTitle.textContent = item.dataset.title || '';
+    if (infoArtist) infoArtist.textContent = item.dataset.artist || '';
     overlay.hidden = false;
     document.body.classList.add('cursor-hidden');
     overlay.querySelector('.gallery-overlay-close')?.focus();

@@ -248,6 +248,10 @@
     .gallery-overlay-img{max-width:90vw;max-height:85vh;object-fit:contain;border-radius:2px}
     .overlay-bottom-close{display:none;position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:none;border:.5px solid var(--border-mid);color:var(--text-muted);font-family:var(--mono);font-size:8px;letter-spacing:.12em;text-transform:uppercase;padding:10px 24px;border-radius:20px;cursor:pointer;transition:color .2s,border-color .2s}
     .overlay-bottom-close:hover{color:var(--text);border-color:var(--text)}
+    .overlay-bottom-close--always{display:block}
+    .gallery-overlay-info{position:absolute;bottom:72px;left:50%;transform:translateX(-50%);text-align:center;display:flex;flex-direction:column;gap:4px}
+    .gallery-overlay-info-title{font-family:var(--serif);font-size:15px;color:var(--text);letter-spacing:.02em}
+    .gallery-overlay-info-artist{font-size:8px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-muted)}
 
     /* --- Notes Overlay --- */
     .notes-overlay{position:fixed;inset:0;z-index:9999;background:rgba(7,7,13,.95);display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s var(--ease)}
@@ -400,6 +404,7 @@
     .footer-links{display:flex;gap:22px;flex-wrap:wrap}
     .footer-link{font-size:8px;letter-spacing:.12em;color:var(--text-faint);text-transform:uppercase;transition:color .2s}
     .footer-link:hover{color:var(--text-muted)}
+    .footer-link--soon{opacity:.35;cursor:default}
     .footer-copy{font-size:8px;letter-spacing:.06em;color:var(--text-faint)}
 
     /* ============================================================
@@ -458,4 +463,5 @@
       .gallery-overlay-close,.notes-overlay-close{top:12px;right:12px;width:56px;height:56px;font-size:40px}
       .overlay-bottom-close{display:block}
       .catalog-cover--video{min-height:200px}
+      .catalog-cover--video-vertical{max-height:480px;aspect-ratio:9/16;width:auto}
     }

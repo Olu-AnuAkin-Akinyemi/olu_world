@@ -282,6 +282,10 @@ export function initGalleryCarousel() {
     const img = overlay.querySelector('.gallery-overlay-img');
     img.src = item.src;
     img.alt = item.alt;
+    const infoTitle = overlay.querySelector('.gallery-overlay-info-title');
+    const infoArtist = overlay.querySelector('.gallery-overlay-info-artist');
+    if (infoTitle) infoTitle.textContent = item.title || '';
+    if (infoArtist) infoArtist.textContent = item.artist || '';
     overlay.hidden = false;
     document.body.classList.add('cursor-hidden');
     previousFocus = document.activeElement;
@@ -362,6 +366,8 @@ function extractImageData(section) {
       src: img ? img.src.trim() : '',
       alt: img ? img.alt : '',
       type: el.dataset.type || 'photo',
+      title: el.dataset.title || '',
+      artist: el.dataset.artist || '',
       img: null,
       visible: true,
     };

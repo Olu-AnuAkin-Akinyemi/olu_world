@@ -117,10 +117,10 @@
           <div class="stream-row">
             <span class="stream-label">Listen on</span>
             <div class="stream-links">
-              <a href="https://oluanuakin.bandcamp.com/album/afterglow" class="stream-link bc" target="_blank">Bandcamp</a>
-              <a href="https://open.spotify.com/artist/6HlPxqjDQ8lM8iJiHqegxm?si=EDpye1ZeSs66dWj7SJ1XfQ" class="stream-link" target="_blank">Spotify</a>
-              <a href="https://music.apple.com/ci/artist/%C3%B8lu-anuakin/1627657285" class="stream-link" target="_blank">Apple</a>
-              <a href="https://tidal.com/artist/32492322/u" class="stream-link" target="_blank">Tidal</a>
+              <a href="https://oluanuakin.bandcamp.com/album/afterglow" class="stream-link bc" target="_blank" rel="noopener">Bandcamp</a>
+              <a href="https://open.spotify.com/artist/6HlPxqjDQ8lM8iJiHqegxm?si=EDpye1ZeSs66dWj7SJ1XfQ" class="stream-link" target="_blank" rel="noopener">Spotify</a>
+              <a href="https://music.apple.com/ci/artist/%C3%B8lu-anuakin/1627657285" class="stream-link" target="_blank" rel="noopener">Apple</a>
+              <a href="https://tidal.com/artist/32492322/u" class="stream-link" target="_blank" rel="noopener">Tidal</a>
             </div>
           </div>
         </div>
@@ -305,13 +305,13 @@
       </div>
 
       <!-- All notes link — grows into its own page over time -->
-      <a href="#" class="notes-all-link reveal reveal-d3">
+      <button type="button" class="notes-all-link reveal reveal-d3">
         All notes
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
           <line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/>
           <polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/>
         </svg>
-      </a>
+      </button>
     </div>
   </section>
 
@@ -341,14 +341,14 @@
           </div>
           <h3 class="catalog-title">PWR</h3>
           <p class="catalog-scene">Personal transformation — stepping into power, resilience, arrival</p>
-          <div class="catalog-links"><a href="https://oluanuakin.bandcamp.com/track/pwr-2" class="catalog-link bc" target="_blank">Bandcamp</a></div>
+          <div class="catalog-links"><a href="https://oluanuakin.bandcamp.com/track/pwr-2" class="catalog-link bc" target="_blank" rel="noopener">Bandcamp</a></div>
         </div>
         <div class="catalog-card">
           <div class="catalog-cover catalog-cover--video-vertical">
             <iframe
               data-src="https://iframe.videodelivery.net/09fb971b4e071768f4611c348da7dd71?autoplay=true&loop=true&muted=true&controls=true"
               title="Sacred by øLu AnuAkin"
-              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture"
+              allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
               allowfullscreen
             ></iframe>
           </div>
@@ -451,7 +451,7 @@
         <p class="private-title">Private Access</p>
         <p class="private-desc">Press, music supervisors, and sync A&amp;R contacts can request access to unreleased work, alternate versions, and pre-release material via [untitled].</p>
       </div>
-      <a href="https://untitled.stream" target="_blank" class="private-btn">
+      <a href="https://untitled.stream" target="_blank" rel="noopener" class="private-btn">
         Request access
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg>
       </a>
@@ -489,12 +489,12 @@
         <span class="footer-wordmark">øLu AnuAkin</span>
       </div>
       <div class="footer-links">
-        <a href="https://www.instagram.com/olu_anuakin/" class="footer-link" target="_blank">Instagram</a>
-        <a href="#" class="footer-link" target="_blank">TikTok</a>
-        <a href="https://oluanuakin.bandcamp.com" class="footer-link" target="_blank">Bandcamp</a>
-        <a href="https://open.spotify.com/artist/6HlPxqjDQ8lM8iJiHqegxm?si=EDpye1ZeSs66dWj7SJ1XfQ" class="footer-link" target="_blank">Spotify</a>
-        <a href="https://music.apple.com/ci/artist/%C3%B8lu-anuakin/1627657285" class="footer-link" target="_blank">Apple Music</a>
-        <a href="https://untitled.stream" class="footer-link" target="_blank">[untitled]</a>
+        <a href="https://www.instagram.com/olu_anuakin/" class="footer-link" target="_blank" rel="noopener">Instagram</a>
+        <span class="footer-link footer-link--soon" aria-label="TikTok — coming soon">TikTok</span>
+        <a href="https://oluanuakin.bandcamp.com" class="footer-link" target="_blank" rel="noopener">Bandcamp</a>
+        <a href="https://open.spotify.com/artist/6HlPxqjDQ8lM8iJiHqegxm?si=EDpye1ZeSs66dWj7SJ1XfQ" class="footer-link" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://music.apple.com/ci/artist/%C3%B8lu-anuakin/1627657285" class="footer-link" target="_blank" rel="noopener">Apple Music</a>
+        <a href="https://untitled.stream" class="footer-link" target="_blank" rel="noopener">[untitled]</a>
         <a href="mailto:rotaa9@gmail.com" class="footer-link">Contact</a>
       </div>
       <p class="footer-copy">&copy; 2025 øLu AnuAkin. All rights reserved.</p>
@@ -508,7 +508,11 @@
   <div id="galleryOverlay" class="gallery-overlay" role="dialog" aria-modal="true" aria-label="Full-size image" hidden>
     <button type="button" class="gallery-overlay-close" aria-label="Close image viewer">&times;</button>
     <img class="gallery-overlay-img" src="" alt="" />
-    <button type="button" class="overlay-bottom-close" aria-label="Close">Tap to close</button>
+    <div class="gallery-overlay-info">
+      <span class="gallery-overlay-info-title"></span>
+      <span class="gallery-overlay-info-artist"></span>
+    </div>
+    <button type="button" class="overlay-bottom-close overlay-bottom-close--always" aria-label="Close">Tap to close</button>
   </div>
 
   <!-- ============================================================ NOTES OVERLAY -->
