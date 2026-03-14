@@ -221,7 +221,8 @@ export function initGalleryCarousel() {
     const x1 = front.x - drawW / 2;
     const y1 = front.y - drawH / 2;
 
-    if (px >= x1 && px <= x1 + drawW && py >= y1 && py <= y1 + drawH) {
+    const tolerance = 20;
+    if (px >= x1 - tolerance && px <= x1 + drawW + tolerance && py >= y1 - tolerance && py <= y1 + drawH + tolerance) {
       openOverlay(front.item);
     }
   }
@@ -282,6 +283,7 @@ export function initGalleryCarousel() {
     img.src = item.src;
     img.alt = item.alt;
     overlay.hidden = false;
+    document.body.classList.add('cursor-hidden');
     previousFocus = document.activeElement;
     const closeBtn = overlay.querySelector('.gallery-overlay-close');
     if (closeBtn) closeBtn.focus();
@@ -293,6 +295,7 @@ export function initGalleryCarousel() {
     const overlay = document.getElementById('galleryOverlay');
     if (!overlay) return;
     overlay.hidden = true;
+    document.body.classList.remove('cursor-hidden');
     overlay.querySelector('.gallery-overlay-img').src = '';
     document.removeEventListener('keydown', overlayKeydown);
     overlay.removeEventListener('keydown', trapFocus);

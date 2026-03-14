@@ -22,9 +22,13 @@ document.addEventListener('mousemove', e => {
   requestAnimationFrame(animRing); 
 })();
 
-document.querySelectorAll('a, button, .track-item, .catalog-card, .world-item, .sync-card, .note-item').forEach(el => {
+document.querySelectorAll('a, button, .track-item, .catalog-card, .sync-card, .note-item').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
   el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+});
+document.querySelectorAll('.world-item').forEach(el => {
+  el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover', 'cursor-gallery-hover'));
+  el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover', 'cursor-gallery-hover'));
 });
 
 /* --- Sticky nav --- */
@@ -160,6 +164,108 @@ document.querySelectorAll('.notes-filter-btn').forEach(btn => {
   });
 });
 
+/* --- Notes overlay --- */
+const notesOverlay = document.getElementById('notesOverlay');
+
+function openNoteOverlay(noteItem) {
+  if (!notesOverlay) return;
+  const date = noteItem.querySelector('.note-date')?.textContent || '';
+  const title = noteItem.querySelector('.note-title')?.textContent || '';
+  const type = noteItem.dataset.noteType || 'written';
+  const fullContent = noteItem.querySelector('.note-full-content');
+
+  notesOverlay.querySelector('.notes-overlay-date').textContent = date;
+  notesOverlay.querySelector('.notes-overlay-title').textContent = title;
+
+  const pill = notesOverlay.querySelector('.notes-overlay-pill');
+  pill.className = 'notes-overlay-pill ' + type;
+  pill.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+
+  const body = notesOverlay.querySelector('.notes-overlay-body');
+  body.innerHTML = fullContent ? fullContent.innerHTML : (noteItem.querySelector('.note-desc')?.textContent || '');
+
+  body.querySelectorAll('iframe[data-src]').forEach(iframe => {
+    iframe.src = iframe.dataset.src;
+  });
+
+  notesOverlay.hidden = false;
+  document.body.classList.add('cursor-hidden');
+  notesOverlay.querySelector('.notes-overlay-close')?.focus();
+}
+
+function closeNoteOverlay() {
+  if (!notesOverlay) return;
+  notesOverlay.hidden = true;
+  document.body.classList.remove('cursor-hidden');
+  notesOverlay.querySelectorAll('iframe').forEach(iframe => { iframe.src = ''; });
+}
+
+document.querySelectorAll('.note-item').forEach(item => {
+  item.addEventListener('click', () => openNoteOverlay(item));
+  item.setAttribute('role', 'button');
+  item.setAttribute('tabindex', '0');
+  item.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      openNoteOverlay(item);
+    }
+  });
+});
+
+if (notesOverlay) {
+  notesOverlay.querySelector('.notes-overlay-close')?.addEventListener('click', closeNoteOverlay);
+  notesOverlay.addEventListener('click', e => {
+    if (e.target === notesOverlay) closeNoteOverlay();
+  });
+}
+
+/* --- Gallery grid click-to-overlay (fallback when 3D not active) --- */
+document.querySelectorAll('.world-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const section = document.getElementById('gallery');
+    if (section?.classList.contains('gallery-3d-active')) return;
+    const img = item.querySelector('img');
+    const overlay = document.getElementById('galleryOverlay');
+    if (!img || !overlay) return;
+    overlay.querySelector('.gallery-overlay-img').src = img.src;
+    overlay.querySelector('.gallery-overlay-img').alt = img.alt;
+    overlay.hidden = false;
+    document.body.classList.add('cursor-hidden');
+    overlay.querySelector('.gallery-overlay-close')?.focus();
+  });
+});
+
+/* --- Gallery overlay cursor sync via MutationObserver --- */
+const galleryOverlay = document.getElementById('galleryOverlay');
+if (galleryOverlay) {
+  new MutationObserver(() => {
+    if (galleryOverlay.hidden) {
+      document.body.classList.remove('cursor-hidden');
+    } else {
+      document.body.classList.add('cursor-hidden');
+    }
+  }).observe(galleryOverlay, { attributes: true, attributeFilter: ['hidden'] });
+}
+
+/* --- Bottom close buttons for overlays (mobile) --- */
+document.querySelectorAll('.overlay-bottom-close').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const overlay = btn.closest('.gallery-overlay, .notes-overlay');
+    if (overlay?.id === 'notesOverlay') closeNoteOverlay();
+    else if (overlay?.id === 'galleryOverlay') {
+      overlay.hidden = true;
+      overlay.querySelector('.gallery-overlay-img').src = '';
+    }
+  });
+});
+
+/* --- Global Escape key for overlays --- */
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    if (notesOverlay && !notesOverlay.hidden) closeNoteOverlay();
+  }
+});
+
 /* --- Catalog carousel --- */
 const carouselTrack = document.querySelector('.catalog-track');
 const prevBtn = document.querySelector('.carousel-btn--prev');
@@ -214,31 +320,6 @@ if (heroAudioBtn && heroAudio) {
     heroPlayIcon.style.display = 'block';
     heroPauseIcon.style.display = 'none';
     if (heroAudioLabel) heroAudioLabel.textContent = 'Listen';
-  });
-}
-
-/* --- Video Mute Toggle (Sacred) --- */
-const sacredVideo = document.getElementById('sacredVideo');
-const sacredMuteBtn = document.getElementById('sacredMuteBtn');
-const sacredMutedIcon = sacredMuteBtn?.querySelector('.mute-icon.muted');
-const sacredUnmutedIcon = sacredMuteBtn?.querySelector('.mute-icon.unmuted');
-
-if (sacredVideo && sacredMuteBtn) {
-  sacredMuteBtn.addEventListener('click', () => {
-    if (sacredVideo.muted) {
-      sacredVideo.muted = false;
-      sacredVideo.volume = 0.65;
-      sacredMuteBtn.classList.add('unmuted');
-      sacredMuteBtn.setAttribute('aria-label', 'Mute video');
-      sacredMutedIcon.style.display = 'none';
-      sacredUnmutedIcon.style.display = 'block';
-    } else {
-      sacredVideo.muted = true;
-      sacredMuteBtn.classList.remove('unmuted');
-      sacredMuteBtn.setAttribute('aria-label', 'Unmute video');
-      sacredMutedIcon.style.display = 'block';
-      sacredUnmutedIcon.style.display = 'none';
-    }
   });
 }
 
