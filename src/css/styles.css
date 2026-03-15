@@ -112,8 +112,7 @@
     .hero-cover{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;animation:heroCoverIn 1s var(--ease-out) 1.4s forwards}
     .hero-cover{perspective:800px}
     .hero-cover-layers{position:relative;width:100%;max-width:520px;aspect-ratio:1;border-radius:3px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.3);transition:transform .4s cubic-bezier(.23,1,.32,1),box-shadow .4s cubic-bezier(.23,1,.32,1)}
-    .hero-cover-img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:3px}
-    .hero-cover-base{display:block;-webkit-touch-callout:none}
+    .hero-cover-base{position:absolute;inset:0;background:url('/src/assets/PWR_Cover-Art_No-words.webp') center/cover no-repeat;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none}
     .hero-cover-words{position:absolute;inset:0;background:url('/src/assets/PWR_Cover-Art_Just-words.webp') center/cover no-repeat;transition:filter .4s cubic-bezier(.23,1,.32,1),opacity .4s cubic-bezier(.23,1,.32,1)}
     .hero-cover-layers.tilt-active{box-shadow:0 32px 100px rgba(0,0,0,.5),0 12px 32px rgba(0,0,0,.35),0 0 40px var(--rust-glow)}
     .hero-cover-layers.tilt-active .hero-cover-base{filter:brightness(1.05)}

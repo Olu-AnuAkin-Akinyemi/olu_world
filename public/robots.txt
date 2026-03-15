@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://olu.world/sitemap.xml

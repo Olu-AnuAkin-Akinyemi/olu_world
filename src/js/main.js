@@ -1,4 +1,3 @@
-import { initFlowField } from './canvas.js';
 
 /* --- Cursor --- */
 const dot = document.getElementById('cursorDot');
@@ -468,9 +467,4 @@ document.querySelectorAll('form[data-form]').forEach(form => {
       submitBtn.disabled = false;
     }
   });
-});
-
-// Initialize canvas flow field
-document.addEventListener('DOMContentLoaded', () => {
-  initFlowField();
 });
