@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>øLu AnuAkin — Alternative Soul / Indie R&B</title>
-  <meta name="description" content="øLu AnuAkin — Alternative Soul / Indie R&B. Emotionally layered, cinematic music built around a world. PWR out now." />
+  <title>øLu AnuAkin — Multidisciplinary Artist</title>
+  <meta name="description" content="øLu AnuAkin — Multidisciplinary Artist. Alternative Soul / Indie R&B. Emotionally layered, cinematic music, visual art, and world-building. PWR out now." />
+  <meta name="keywords" content="øLu AnuAkin, Olu AnuAkin, alternative soul, indie R&B, cinematic music, multidisciplinary artist, PWR, Afterglow, sync licensing, visual art, world-building" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://bandcamp.com" />
@@ -70,11 +71,12 @@
 
       <!-- PWR HERO (active) -->
       <div class="hero-content">
-        <p class="hero-eyebrow">Alternative Soul / Indie R&amp;B</p>
+        <p class="hero-eyebrow">Multidisciplinary Artist · Modern Griot</p>
         <h1 class="hero-headline" aria-label="I just had to go get in touch">
           <span class="word">I</span> <span class="word">just</span> <span class="word">had</span> <span class="word">to</span> <span class="word">go</span><br>
           <span class="word">get</span> <span class="word">in</span> <span class="word"><em>touch</em></span>
         </h1>
+        <!-- PWR audio player (uncomment when snippet is ready)
         <div class="hero-audio-wrap">
           <button class="hero-audio-btn" id="heroAudioBtn" aria-label="Play PWR preview">
             <svg class="hero-audio-icon play" viewBox="0 0 24 24" fill="none">
@@ -90,19 +92,27 @@
             <source src="/src/assets/Pwr_audio.mp3" type="audio/mpeg">
           </audio>
         </div>
+        -->
         <div class="hero-actions">
-          <a href="https://oluanuakin.bandcamp.com/track/pwr-2" target="_blank" rel="noopener" class="hero-cta hero-cta--primary">Listen to PWR <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg></a>
+          <a href="https://oluanuakin.bandcamp.com/track/pwr-2" target="_blank" rel="noopener" class="hero-cta hero-cta--primary">
+            <span class="hero-cta-text">Listen to PWR</span>
+            <span class="hero-cta-circle"></span>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+          </a>
           <a href="#music" class="hero-cta">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg></a>
         </div>
       </div>
       <div class="hero-cover">
-        <img src="/src/assets/PWR_Cover-Art.webp" alt="PWR — øLu AnuAkin" class="hero-cover-img" />
+        <div class="hero-cover-layers">
+          <img src="/src/assets/PWR_Cover-Art_No-words.webp" alt="PWR — øLu AnuAkin" class="hero-cover-img hero-cover-base" />
+          <img src="/src/assets/PWR_Cover-Art_Just-words.webp" alt="" class="hero-cover-img hero-cover-words" aria-hidden="true" />
+        </div>
         <p class="hero-cover-label">PWR — Single</p>
       </div>
 
       <!-- AFTERGLOW HERO (preserved for release day — uncomment and remove PWR block above)
       <div class="hero-content">
-        <p class="hero-eyebrow">Alternative Soul / Indie R&amp;B</p>
+        <p class="hero-eyebrow">Multidisciplinary Artist · Modern Griot</p>
         <h1 class="hero-headline" aria-label="If you could see yourself from my eyes">
           <span class="word">If</span> <span class="word">you</span> <span class="word">could</span> <span class="word">see</span> <span class="word">yourself</span><br>
           <span class="word">from</span> <span class="word"><em>my</em></span> <span class="word">eyes</span>
@@ -149,6 +159,14 @@
           <h2 class="tracks-title">øLu AnuAkin</h2>
           <p class="tracks-meta">EP · 2026 · Alternative Soul / Indie R&amp;B</p>
           <p class="afterglow-teaser-line">Join the list to hear it first.</p>
+          <form class="email-form email-form--teaser" data-form="mailing-list">
+            <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" title="Do not fill this field" />
+            <input type="hidden" name="access_key" value="420227aa-f379-4d58-af1e-59c5159b0930" />
+            <input type="hidden" name="subject" value="New mailing list signup (Afterglow teaser)" />
+            <input class="email-input" type="email" name="email" placeholder="your@email.com" aria-label="Email address" required />
+            <button class="email-submit" type="submit">Join</button>
+          </form>
+          <p class="form-feedback" hidden></p>
         </div>
       </div>
     </div>
@@ -336,11 +354,12 @@
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="10,3 5,8 10,13" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
         </button>
         <div class="catalog-track">
+
+        <!-- PWR ARCHIVE CARD (uncomment on May 15 wide release — add Spotify/Apple/Tidal links)
         <div class="catalog-card">
-         
           <div class="catalog-cover">
-            <iframe 
-              data-src="https://bandcamp.com/EmbeddedPlayer/track=4226434042/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/" 
+            <iframe
+              data-src="https://bandcamp.com/EmbeddedPlayer/track=4226434042/size=large/bgcol=ffffff/linkcol=0687f5/minimal=true/transparent=true/"
               title="PWR by øLu AnuAkin"
               allow="autoplay"
             ></iframe>
@@ -349,6 +368,8 @@
           <p class="catalog-scene">Personal transformation — stepping into power, resilience, arrival</p>
           <div class="catalog-links"><a href="https://oluanuakin.bandcamp.com/track/pwr-2" class="catalog-link bc" target="_blank" rel="noopener">Bandcamp</a></div>
         </div>
+        END PWR ARCHIVE CARD -->
+
         <div class="catalog-card">
           <div class="catalog-cover catalog-cover--video-vertical">
             <iframe
@@ -362,7 +383,7 @@
           </div>
           <h3 class="catalog-title">Sacred</h3>
           <p class="catalog-scene">Raw demos and sketches — songs stripped to their earliest form</p>
-          <div class="catalog-links"><a href="https://on.soundcloud.com/iXN0umk0hC1gCcczV8" class="catalog-link sc" target="_blank" rel="noopener">SoundCloud</a></div>
+          <div class="catalog-links"><a href="https://on.soundcloud.com/MNc51SuFu9tpZVHQLK" class="catalog-link sc" target="_blank" rel="noopener">SoundCloud</a></div>
         </div>
         <div class="catalog-card">
           <div class="catalog-cover catalog-cover--video">
@@ -444,10 +465,10 @@
           <p class="sec-eyebrow reveal">The Artist</p>
           <p class="about-statement reveal reveal-d1">"Not just an artist.<br>A world that music<br>is one entry point into."</p>
           <p class="about-body reveal reveal-d2">Yoruba father from Nigeria. American mother from Mississippi. Raised in Minnesota. øLu navigates the space between — a tension, and a gift.</p>
-          <a href="mailto:rotaa9@gmail.com" class="sync-cta reveal reveal-d3" id="contact">
-            Get in touch
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg>
-          </a>
+          <a href="https://galoriousexpression.com/" target="_blank" rel="noopener" class="about-byline reveal reveal-d2">Visioneer™ & Founder at Galorious Expression®</a>
+          <button type="button" class="contact-trigger reveal reveal-d3" id="contact" aria-label="Open contact form" data-tooltip="Get in touch">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
+          </button>
         </div>
       </div>
     </div>
@@ -468,24 +489,24 @@
     </div>
   </div>
 
-  <!-- ============================================================ EMAIL CAPTURE -->
+  <!-- EMAIL CAPTURE (commented out — uncomment when Afterglow launches and teaser email form is removed) -->
+  <!--
   <div class="email-capture">
     <div class="email-capture-bg"></div>
     <div class="email-capture-inner reveal">
-      <!--
-        NOTE FOR øLu: Replace this line with something that could only come from you.
-        It should be oblique, world-specific, not a generic newsletter CTA.
-        Current placeholder — swap it for your own line.
-      -->
       <p class="email-oblique">Stay in the<br>afterglow<br>a little longer.</p>
-      <form class="email-form" onsubmit="return false;">
-        <input class="email-input" type="email" placeholder="your@email.com" aria-label="Email address" />
-        <!-- ASSET SWAP: Connect to Mailchimp / ConvertKit / Buttondown -->
+      <form class="email-form" data-form="mailing-list">
+        <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" title="Do not fill this field" />
+        <input type="hidden" name="access_key" value="420227aa-f379-4d58-af1e-59c5159b0930" />
+        <input type="hidden" name="subject" value="New mailing list signup" />
+        <input class="email-input" type="email" name="email" placeholder="your@email.com" aria-label="Email address" required />
         <button class="email-submit" type="submit">Enter</button>
       </form>
+      <p class="form-feedback" hidden></p>
       <p class="email-note">No noise. Just the world, when something moves.</p>
     </div>
   </div>
+  -->
 
   <!-- ============================================================ FOOTER -->
   <footer>
@@ -508,7 +529,8 @@
         <a href="https://untitled.stream" class="footer-link footer-link--icon" target="_blank" rel="noopener" aria-label="[untitled]">
           <img src="/src/assets/untitled-logo.webp" alt="[untitled]" class="footer-icon-img" />
         </a>
-        <a href="mailto:rotaa9@gmail.com" class="footer-link">Contact</a>
+        <a href="#contact" class="footer-link">Contact</a>
+        <a href="https://galoriousexpression.com/" class="footer-link" target="_blank" rel="noopener">Galorious Expression®</a>
       </div>
       <p class="footer-copy">&copy; 2025 øLu AnuAkin. All rights reserved.</p>
     </div>
@@ -538,6 +560,25 @@
       <div class="notes-overlay-body"></div>
     </div>
     <button type="button" class="overlay-bottom-close" aria-label="Close">Tap to close</button>
+  </div>
+
+  <!-- ============================================================ CONTACT OVERLAY -->
+  <div id="contactOverlay" class="contact-overlay" role="dialog" aria-modal="true" aria-label="Contact form" hidden>
+    <button type="button" class="contact-overlay-close" aria-label="Close contact form">&times;</button>
+    <div class="contact-overlay-content">
+      <p class="contact-overlay-eyebrow">Get in touch</p>
+      <h2 class="contact-overlay-title">Send a message</h2>
+      <form class="contact-form" data-form="inquiry">
+        <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" title="Do not fill this field" />
+        <input type="hidden" name="access_key" value="18154b24-c19f-4f9c-a8aa-d6d93ae261bf" />
+        <input type="hidden" name="subject" value="New inquiry from oluanuakin.com" />
+        <input class="contact-input" type="text" name="name" placeholder="Name" aria-label="Your name" required />
+        <input class="contact-input" type="email" name="email" placeholder="Email" aria-label="Email address" required />
+        <textarea class="contact-textarea" name="message" placeholder="Message" aria-label="Message" rows="4" required></textarea>
+        <button class="contact-submit" type="submit">Send <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg></button>
+      </form>
+      <p class="form-feedback" hidden></p>
+    </div>
   </div>
 
   <!-- ============================================================ SCROLL TO TOP -->

@@ -116,6 +116,23 @@ const iframeObs = new IntersectionObserver((entries, observer) => {
 }, { rootMargin: '200px' });
 document.querySelectorAll('.catalog-cover iframe[data-src]').forEach(iframe => iframeObs.observe(iframe));
 
+/* --- Hero cover tilt on mousemove --- */
+const heroCoverLayers = document.querySelector('.hero-cover-layers');
+const heroCover = document.querySelector('.hero-cover');
+if (heroCoverLayers && heroCover) {
+  heroCover.addEventListener('mousemove', e => {
+    const rect = heroCoverLayers.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    heroCoverLayers.style.transform = `scale(1.03) rotateY(${x * 8}deg) rotateX(${y * -8}deg)`;
+    heroCoverLayers.classList.add('tilt-active');
+  });
+  heroCover.addEventListener('mouseleave', () => {
+    heroCoverLayers.style.transform = '';
+    heroCoverLayers.classList.remove('tilt-active');
+  });
+}
+
 /* --- Parallax on atmo breaks --- */
 const atmoBgs = document.querySelectorAll('.atmo-break-bg');
 window.addEventListener('scroll', () => {
@@ -263,10 +280,47 @@ document.querySelectorAll('.overlay-bottom-close').forEach(btn => {
   });
 });
 
+/* --- Contact overlay --- */
+const contactOverlay = document.getElementById('contactOverlay');
+const contactTrigger = document.querySelector('.contact-trigger');
+
+function openContactOverlay() {
+  if (!contactOverlay) return;
+  contactOverlay.hidden = false;
+  document.body.classList.add('cursor-hidden');
+  contactOverlay.querySelector('.contact-overlay-close')?.focus();
+}
+
+function closeContactOverlay() {
+  if (!contactOverlay) return;
+  contactOverlay.hidden = true;
+  document.body.classList.remove('cursor-hidden');
+}
+
+if (contactTrigger) {
+  contactTrigger.addEventListener('click', openContactOverlay);
+}
+
+if (contactOverlay) {
+  contactOverlay.querySelector('.contact-overlay-close')?.addEventListener('click', closeContactOverlay);
+  contactOverlay.addEventListener('click', e => {
+    if (e.target === contactOverlay) closeContactOverlay();
+  });
+}
+
+// Footer contact link also opens the overlay
+document.querySelectorAll('a[href="#contact"]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    openContactOverlay();
+  });
+});
+
 /* --- Global Escape key for overlays --- */
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     if (notesOverlay && !notesOverlay.hidden) closeNoteOverlay();
+    if (contactOverlay && !contactOverlay.hidden) closeContactOverlay();
   }
 });
 
@@ -337,6 +391,84 @@ if (scrollTopBtn) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
+/* --- Web3Forms handler --- */
+const RATE_LIMIT_MS = 60000;
+const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+function isRateLimited(formType) {
+  const last = localStorage.getItem('lastSubmit_' + formType);
+  return last && (Date.now() - parseInt(last)) < RATE_LIMIT_MS;
+}
+
+document.querySelectorAll('form[data-form]').forEach(form => {
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const feedback = form.parentElement.querySelector('.form-feedback');
+    const originalText = submitBtn.innerHTML;
+    const formType = form.dataset.form;
+
+    // Rate limit check
+    if (isRateLimited(formType)) {
+      if (feedback) {
+        feedback.hidden = false;
+        feedback.textContent = 'Please wait a moment before submitting again.';
+        feedback.className = 'form-feedback error';
+      }
+      return;
+    }
+
+    // Email validation
+    const emailInput = form.querySelector('input[type="email"]');
+    if (emailInput && !isValidEmail(emailInput.value.trim())) {
+      if (feedback) {
+        feedback.hidden = false;
+        feedback.textContent = 'Please enter a valid email address.';
+        feedback.className = 'form-feedback error';
+      }
+      return;
+    }
+
+    submitBtn.innerHTML = 'Sending...';
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: new FormData(form)
+      });
+      const data = await response.json();
+
+      if (feedback) {
+        feedback.hidden = false;
+        if (response.ok) {
+          feedback.textContent = formType === 'mailing-list'
+            ? "You're in. We'll be in touch."
+            : 'Message sent. We\'ll get back to you.';
+          feedback.className = 'form-feedback success';
+          localStorage.setItem('lastSubmit_' + formType, Date.now().toString());
+          form.reset();
+          if (formType === 'inquiry') {
+            setTimeout(() => { if (contactOverlay) closeContactOverlay(); }, 2000);
+          }
+        } else {
+          feedback.textContent = data.message || 'Something went wrong. Try again.';
+          feedback.className = 'form-feedback error';
+        }
+      }
+    } catch {
+      if (feedback) {
+        feedback.hidden = false;
+        feedback.textContent = 'Connection error. Please try again.';
+        feedback.className = 'form-feedback error';
+      }
+    } finally {
+      submitBtn.innerHTML = originalText;
+      submitBtn.disabled = false;
+    }
+  });
+});
 
 // Initialize canvas flow field
 document.addEventListener('DOMContentLoaded', () => {

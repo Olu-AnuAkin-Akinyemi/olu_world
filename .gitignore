@@ -44,3 +44,4 @@ src/assets/**/*.png
 !src/assets/AFTERGLOW_thoughts.mp3
 !src/assets/AFTERGLOW_cover-art.svg
 !src/assets/Pwr_audio.mp3
+# ^ uncomment whitelist above when PWR audio snippet is added back
