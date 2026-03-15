@@ -13,6 +13,12 @@
   <link rel="preconnect" href="https://www.youtube.com" />
   <link rel="dns-prefetch" href="https://www.youtube.com" />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="icon" type="image/png" href="/favicon/favicon-96x96.png" sizes="96x96" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+  <link rel="shortcut icon" href="/favicon/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <meta name="apple-mobile-web-app-title" content="øLu AnuAkin" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
   <link rel="stylesheet" href="/src/css/styles.css" />
 </head>
 <body>
@@ -71,7 +77,7 @@
 
       <!-- PWR HERO (active) -->
       <div class="hero-content">
-        <p class="hero-eyebrow">Multidisciplinary Artist · Modern Griot</p>
+        <p class="hero-eyebrow">Multidisciplinary Artist · Griot</p>
         <h1 class="hero-headline" aria-label="I just had to go get in touch">
           <span class="word">I</span> <span class="word">just</span> <span class="word">had</span> <span class="word">to</span> <span class="word">go</span><br>
           <span class="word">get</span> <span class="word">in</span> <span class="word"><em>touch</em></span>
@@ -103,9 +109,9 @@
         </div>
       </div>
       <div class="hero-cover">
-        <div class="hero-cover-layers">
-          <img src="/src/assets/PWR_Cover-Art_No-words.webp" alt="PWR — øLu AnuAkin" class="hero-cover-img hero-cover-base" />
-          <img src="/src/assets/PWR_Cover-Art_Just-words.webp" alt="" class="hero-cover-img hero-cover-words" aria-hidden="true" />
+        <div class="hero-cover-layers" role="img" aria-label="PWR — øLu AnuAkin">
+          <img src="/src/assets/PWR_Cover-Art_No-words.webp" alt="PWR — øLu AnuAkin" class="hero-cover-img hero-cover-base" draggable="false" />
+          <div class="hero-cover-words" aria-hidden="true"></div>
         </div>
         <p class="hero-cover-label">PWR — Single</p>
       </div>
@@ -401,6 +407,19 @@
           <p class="catalog-scene">Lineage, love, where it all started — warmth and weight in equal measure</p>
           <div class="catalog-links"><a href="https://oluanuakin.bandcamp.com/album/mamas-boy" class="catalog-link bc" target="_blank" rel="noopener">Bandcamp</a></div>
         </div>
+        <div class="catalog-card">
+          <div class="catalog-cover catalog-cover--video-square">
+            <iframe
+              data-src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1237623322&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
+              title="CLMB MTNS : v1 by øLu AnuAkin"
+              allow="autoplay"
+              scrolling="no"
+            ></iframe>
+          </div>
+          <h3 class="catalog-title">CLMB MTNS : v1</h3>
+          <p class="catalog-scene">Ascension, grit, forward motion — a raw climb toward something greater</p>
+          <div class="catalog-links"><a href="https://soundcloud.com/oluanuakin/clmb-mtns-v1" class="catalog-link sc" target="_blank" rel="noopener">SoundCloud</a></div>
+        </div>
         </div>
         <button class="carousel-btn carousel-btn--next" aria-label="Next">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="6,3 11,8 6,13" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
@@ -465,7 +484,7 @@
           <p class="sec-eyebrow reveal">The Artist</p>
           <p class="about-statement reveal reveal-d1">"Not just an artist.<br>A world that music<br>is one entry point into."</p>
           <p class="about-body reveal reveal-d2">Yoruba father from Nigeria. American mother from Mississippi. Raised in Minnesota. øLu navigates the space between — a tension, and a gift.</p>
-          <a href="https://galoriousexpression.com/" target="_blank" rel="noopener" class="about-byline reveal reveal-d2">Visioneer™ & Founder at Galorious Expression®</a>
+          <a href="https://galoriousexpression.com/" target="_blank" rel="noopener" class="about-byline reveal reveal-d2">Visioneer™ & Founder at <img src="/src/assets/GE_logo.webp" alt="Galorious Expression®" class="about-byline-logo" /> Galorious Expression®</a>
           <button type="button" class="contact-trigger reveal reveal-d3" id="contact" aria-label="Open contact form" data-tooltip="Get in touch">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
           </button>
@@ -475,18 +494,13 @@
   </section>
 
   <!-- ============================================================ PRIVATE ACCESS -->
-  <div class="private-wrap">
-    <div class="private-inner reveal">
-      <div>
-        <p class="private-label">For Closer Listening</p>
-        <p class="private-title">Private Access</p>
-        <p class="private-desc">Press, music supervisors, and sync A&amp;R contacts can request access to unreleased work, alternate versions, and pre-release material via [untitled].</p>
-      </div>
-      <a href="https://untitled.stream" target="_blank" rel="noopener" class="private-btn">
-        Request access
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg>
-      </a>
-    </div>
+  <div class="private-strip reveal">
+    <a href="https://untitled.stream" target="_blank" rel="noopener" class="private-logo-cta" data-tooltip="Enter [untitled]">
+      <img src="/src/assets/untitled-logo.webp" alt="[untitled]" class="private-logo-img private-logo-frame" />
+      <img src="/src/assets/CD_untitled.webp" alt="" class="private-logo-cd" aria-hidden="true" />
+    </a>
+    <span class="private-dot">·</span>
+    <p class="private-tagline">A sacred place for your work-in-progress music.</p>
   </div>
 
   <!-- EMAIL CAPTURE (commented out — uncomment when Afterglow launches and teaser email form is removed) -->
@@ -511,28 +525,15 @@
   <!-- ============================================================ FOOTER -->
   <footer>
     <div class="footer-inner">
-      <div class="footer-logo">
-        <svg viewBox="0 0 40 28" fill="none">
-          <polygon points="20,2 38,26 2,26" stroke="var(--text-faint)" stroke-width="1.5" fill="none"/>
-          <circle cx="20" cy="18" r="3" stroke="var(--text-faint)" stroke-width="1.2" fill="none"/>
-          <circle cx="20" cy="18" r="0.8" fill="var(--text-faint)"/>
-        </svg>
-        <span class="footer-wordmark">øLu AnuAkin</span>
-      </div>
-      <div class="footer-links">
+<div class="footer-links">
         <a href="https://www.instagram.com/olu_anuakin/" class="footer-link footer-link--icon" target="_blank" rel="noopener" aria-label="Instagram">
           <img src="/src/assets/instagram-logo.webp" alt="Instagram" class="footer-icon-img" />
         </a>
         <a href="https://oluanuakin.bandcamp.com" class="footer-link footer-link--icon" target="_blank" rel="noopener" aria-label="Bandcamp">
           <img src="/src/assets/bandcamp-logo.webp" alt="Bandcamp" class="footer-icon-img" />
         </a>
-        <a href="https://untitled.stream" class="footer-link footer-link--icon" target="_blank" rel="noopener" aria-label="[untitled]">
-          <img src="/src/assets/untitled-logo.webp" alt="[untitled]" class="footer-icon-img" />
-        </a>
-        <a href="#contact" class="footer-link">Contact</a>
-        <a href="https://galoriousexpression.com/" class="footer-link" target="_blank" rel="noopener">Galorious Expression®</a>
       </div>
-      <p class="footer-copy">&copy; 2025 øLu AnuAkin. All rights reserved.</p>
+      <p class="footer-copy">&copy; 2026 øLu AnuAkin. All rights reserved.</p>
     </div>
   </footer>
 
