@@ -51,7 +51,8 @@
 Frontend: Vanilla HTML5 + CSS3 (CSS Variables for Theming) + ES6 JavaScript
 Build Tool: Vite
 Testing: Vitest
-Visuals: HTML5 Canvas (Flow Field background), CSS Keyframes
+Image Optimization: sharp (via scripts/optimize-images.mjs)
+Visuals: CSS Keyframes, 3D Gallery Canvas
 ```
 
 ### Project Structure 
@@ -62,12 +63,15 @@ Visuals: HTML5 Canvas (Flow Field background), CSS Keyframes
   CLAUDE.md               # Project overview
   .github/
     copilot-instructions.md # Architecture & coding guidelines
-  public/                 # Uncompiled static assets
+  public/                 # Static assets copied to build root (robots.txt, sitemap.xml, OG image)
+  scripts/
+    optimize-images.mjs   # sharp-based image optimizer — run after adding new assets
   src/
     css/
       styles.css          # Global styles
     js/
       main.js             # Theme toggle, custom cursor, scroll reveals
+      gallery3d.js        # 3D card carousel for gallery section
 ```
 
 ---
@@ -95,7 +99,7 @@ Visuals: HTML5 Canvas (Flow Field background), CSS Keyframes
 
 - **Theming:** Use CSS variables heavily. All colors must be routed through the `:root` tokens so `[data-theme="light"]` overrides apply instantly across the UI.
 - **Interactions:** Use `IntersectionObserver` for the `.reveal` class animations rather than scroll event listeners to maintain performance.
-- **Media:** Images and canvas art should be lazy-loaded or appropriately compressed to prevent heavy page weights.
+- **Media:** All images must be optimized with `sharp` before committing. Run `node scripts/optimize-images.mjs` after adding new assets. Gallery images resize to 800px (2x retina), logos to 80px. Never use `cwebp` directly — sharp produces 40-50% smaller files at the same visual quality. All below-fold images must have `loading="lazy"`.
 
 ---
 
