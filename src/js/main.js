@@ -327,6 +327,17 @@ if (heroAudioBtn && heroAudio) {
   });
 }
 
+/* --- Scroll to top --- */
+const scrollTopBtn = document.getElementById('scrollTop');
+if (scrollTopBtn) {
+  window.addEventListener('scroll', () => {
+    scrollTopBtn.classList.toggle('visible', window.scrollY > 400);
+  }, { passive: true });
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
 // Initialize canvas flow field
 document.addEventListener('DOMContentLoaded', () => {
   initFlowField();

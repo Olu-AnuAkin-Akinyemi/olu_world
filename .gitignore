@@ -43,3 +43,4 @@ src/assets/**/*.png
 # Allow specific assets needed for deploy
 !src/assets/AFTERGLOW_thoughts.mp3
 !src/assets/AFTERGLOW_cover-art.svg
+!src/assets/Pwr_audio.mp3

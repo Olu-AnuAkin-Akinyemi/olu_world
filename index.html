@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>øLu AnuAkin — Alternative Soul / Indie R&B</title>
-  <meta name="description" content="øLu AnuAkin — Alternative Soul / Indie R&B. Emotionally layered, cinematic music built around a world. Afterglow out now." />
+  <meta name="description" content="øLu AnuAkin — Alternative Soul / Indie R&B. Emotionally layered, cinematic music built around a world. PWR out now." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="preconnect" href="https://bandcamp.com" />
@@ -29,7 +29,8 @@
     <div class="nav-right">
       <a href="#music"  class="nav-link">Music</a>
       <a href="#gallery"  class="nav-link">Gallery</a>
-      <a href="#notes"  class="nav-link">Notes</a>
+      <a href="#log"  class="nav-link">Log</a>
+      <a href="#archive" class="nav-link">Archive</a>
       <!-- <a href="#sync"   class="nav-link">Sync</a> -->
       <a href="#about"  class="nav-link">About</a>
       <a href="#contact" class="nav-link">Contact</a>
@@ -56,7 +57,8 @@
     <div class="mobile-menu-inner">
       <a href="#music" class="mobile-menu-link">Music</a>
       <a href="#gallery" class="mobile-menu-link">Gallery</a>
-      <a href="#notes" class="mobile-menu-link">Notes</a>
+      <a href="#log" class="mobile-menu-link">Log</a>
+      <a href="#archive" class="mobile-menu-link">Archive</a>
       <a href="#about" class="mobile-menu-link">About</a>
       <a href="#contact" class="mobile-menu-link">Contact</a>
     </div>
@@ -65,13 +67,46 @@
   <!-- ============================================================ HERO -->
   <section class="hero" id="home">
     <div class="hero-split">
+
+      <!-- PWR HERO (active) -->
+      <div class="hero-content">
+        <p class="hero-eyebrow">Alternative Soul / Indie R&amp;B</p>
+        <h1 class="hero-headline" aria-label="I just had to go get in touch">
+          <span class="word">I</span> <span class="word">just</span> <span class="word">had</span> <span class="word">to</span> <span class="word">go</span><br>
+          <span class="word">get</span> <span class="word">in</span> <span class="word"><em>touch</em></span>
+        </h1>
+        <div class="hero-audio-wrap">
+          <button class="hero-audio-btn" id="heroAudioBtn" aria-label="Play PWR preview">
+            <svg class="hero-audio-icon play" viewBox="0 0 24 24" fill="none">
+              <polygon points="8,5 19,12 8,19" fill="currentColor"/>
+            </svg>
+            <svg class="hero-audio-icon pause" viewBox="0 0 24 24" fill="none" style="display:none;">
+              <rect x="6" y="5" width="4" height="14" fill="currentColor"/>
+              <rect x="14" y="5" width="4" height="14" fill="currentColor"/>
+            </svg>
+          </button>
+          <span class="hero-audio-label">Listen</span>
+          <audio id="heroAudio" preload="metadata">
+            <source src="/src/assets/Pwr_audio.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+        <div class="hero-actions">
+          <a href="https://oluanuakin.bandcamp.com/track/pwr-2" target="_blank" rel="noopener" class="hero-cta hero-cta--primary">Listen to PWR <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg></a>
+          <a href="#music" class="hero-cta">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg></a>
+        </div>
+      </div>
+      <div class="hero-cover">
+        <img src="/src/assets/PWR_Cover-Art.webp" alt="PWR — øLu AnuAkin" class="hero-cover-img" />
+        <p class="hero-cover-label">PWR — Single</p>
+      </div>
+
+      <!-- AFTERGLOW HERO (preserved for release day — uncomment and remove PWR block above)
       <div class="hero-content">
         <p class="hero-eyebrow">Alternative Soul / Indie R&amp;B</p>
         <h1 class="hero-headline" aria-label="If you could see yourself from my eyes">
           <span class="word">If</span> <span class="word">you</span> <span class="word">could</span> <span class="word">see</span> <span class="word">yourself</span><br>
           <span class="word">from</span> <span class="word"><em>my</em></span> <span class="word">eyes</span>
         </h1>
-        <!-- Hero Audio Player -->
         <div class="hero-audio-wrap">
           <button class="hero-audio-btn" id="heroAudioBtn" aria-label="Play Afterglow thoughts">
             <svg class="hero-audio-icon play" viewBox="0 0 24 24" fill="none">
@@ -96,6 +131,8 @@
         <img src="/src/assets/AFTERGLOW_cover-art.webp" alt="Afterglow — øLu AnuAkin" class="hero-cover-img" />
         <p class="hero-cover-label">Afterglow — Coming Soon</p>
       </div>
+      END AFTERGLOW HERO -->
+
     </div>
     <div class="scroll-hint">Scroll</div>
   </section>
@@ -103,8 +140,20 @@
   <!-- ============================================================ AFTERGLOW -->
   <section class="afterglow-section" id="music">
     <div class="section-inner" style="padding-bottom:0;">
-      <p class="sec-eyebrow reveal">Featured Project</p>
+      <p class="sec-eyebrow reveal">Coming Soon</p>
     </div>
+    <div class="afterglow-layout afterglow-layout--teaser" style="margin-top:20px;">
+      <div class="afterglow-tracks reveal reveal-d1">
+        <div class="tracks-header">
+          <p class="tracks-project-tag">Afterglow</p>
+          <h2 class="tracks-title">øLu AnuAkin</h2>
+          <p class="tracks-meta">EP · 2026 · Alternative Soul / Indie R&amp;B</p>
+          <p class="afterglow-teaser-line">Join the list to hear it first.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AFTERGLOW FULL CONTENT (preserved for release day — uncomment and remove teaser above)
     <div class="afterglow-layout" style="margin-top:20px;">
       <div class="afterglow-cover reveal">
         <img src="/src/assets/AFTERGLOW_cover-art.svg" alt="Afterglow — øLu AnuAkin" class="afterglow-cover-img" />
@@ -113,7 +162,7 @@
         <div class="tracks-header">
           <p class="tracks-project-tag">Afterglow</p>
           <h2 class="tracks-title">øLu AnuAkin</h2>
-          <p class="tracks-meta">EP · 2026 · Alternative Soul / Indie R&amp;B · One-stop cleared</p>
+          <p class="tracks-meta">EP · 2026 · Alternative Soul / Indie R&amp;B</p>
           <div class="stream-row">
             <span class="stream-label">Listen on</span>
             <div class="stream-links">
@@ -138,7 +187,6 @@
         </div>
         <div class="track-item">
           <span class="track-num">03</span>
-          <!-- ASSET SWAP: <img src="assets/Akinyemi_052022_1_flat.jpg" style="width:100%;height:100%;object-fit:cover;" /> -->
           <div class="track-thumb" style="background:linear-gradient(135deg,#C8A080,#E89070);"></div>
           <div class="track-info"><p class="track-title">ALWYS LØVE(D)</p><p class="track-scene">Dreamy, devotional — quiet intimacy, warm light, unspoken</p></div>
           <span class="track-dur">4:11</span>
@@ -151,6 +199,7 @@
         </div>
       </div>
     </div>
+    END AFTERGLOW FULL CONTENT -->
   </section>
 
   <div class="mark-divider" style="margin-top:80px;">
@@ -222,91 +271,48 @@
     <img src="/src/assets/Olu logo_Light_no_bkrgd.png" alt="" class="mark-logo mark-logo-light" />
   </div>
 
-  <!-- ============================================================ NOTES -->
-  <section class="notes-section" id="notes">
+  <!-- ============================================================ LOG -->
+  <section class="notes-section" id="log">
     <div class="section-inner">
-      <p class="sec-eyebrow reveal">Notes</p>
-      <h2 class="sec-title reveal reveal-d1" style="margin-top:12px;margin-bottom:36px;">From inside<br>the practice.</h2>
+      <p class="sec-eyebrow reveal">Log</p>
 
       <div class="notes-filter-strip reveal reveal-d2">
         <button class="notes-filter-btn active" data-filter="all">All</button>
         <button class="notes-filter-btn" data-filter="written">Written</button>
         <button class="notes-filter-btn" data-filter="audio">Audio</button>
         <button class="notes-filter-btn" data-filter="video">Video</button>
+        <button class="notes-filter-btn" data-filter="press">Press</button>
       </div>
 
-      <!-- Note 1 — Handwritten / photo -->
-      <div class="note-item reveal" data-note-type="written">
-        <span class="note-date">Mar 2025</span>
+      <!-- Note — Press / Wavy Magazine -->
+      <div class="note-item reveal" data-note-type="press">
+        <span class="note-date">Apr 2025</span>
         <div class="note-media-icon">
           <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="1" width="10" height="12" rx="1" stroke="var(--text-muted)" stroke-width="0.8"/>
-            <line x1="4.5" y1="4.5" x2="9.5" y2="4.5" stroke="var(--text-muted)" stroke-width="0.7"/>
-            <line x1="4.5" y1="7" x2="9.5" y2="7" stroke="var(--text-muted)" stroke-width="0.7"/>
-            <line x1="4.5" y1="9.5" x2="7.5" y2="9.5" stroke="var(--text-muted)" stroke-width="0.7"/>
+            <rect x="1.5" y="2" width="11" height="10" rx="1" stroke="#5A9EBF" stroke-width="0.8"/>
+            <line x1="3.5" y1="5" x2="10.5" y2="5" stroke="#5A9EBF" stroke-width="0.7"/>
+            <line x1="3.5" y1="7" x2="8" y2="7" stroke="#5A9EBF" stroke-width="0.7"/>
+            <line x1="3.5" y1="9" x2="6.5" y2="9" stroke="#5A9EBF" stroke-width="0.7"/>
           </svg>
         </div>
         <div class="note-body">
-          <p class="note-title">What AFTERGLOW actually means</p>
-          <p class="note-desc">A photo of the page where I first wrote the word down. Before it was a project title — before it was anything except something I kept circling back to.</p>
+          <p class="note-title">Channeling Sound and Spirit Across Borders</p>
+          <p class="note-desc">Featured in Wavy Magazine — on self-expression over validation, creative process, and the vision beyond music.</p>
         </div>
-        <span class="note-media-pill written">Handwritten</span>
+        <span class="note-media-pill press">Press</span>
         <div class="note-full-content" hidden>
-          <p>A photo of the page where I first wrote the word down. Before it was a project title — before it was anything except something I kept circling back to.</p>
-          <p>The word kept showing up. In margins. In voice memos I made while driving. I didn't know what it meant yet — just that it felt like something I needed to sit with. That's how most of the work starts. Not with a concept. With a feeling that won't leave.</p>
+          <p>Featured in <strong>Wavy Magazine</strong>, April 2025.</p>
+          <blockquote class="note-press-quote">
+            "I prioritize self-expression, empowerment, and inspiration rather than pursuing validation. My sound is a rainbow — addressing themes of self-love, memory, and human connection."
+          </blockquote>
+          <p>The interview covers the journey from Saint Paul, Minnesota to Guatemala, creative philosophy rooted in spiritual practice, and a vision expanding into film, anime, and television scoring.</p>
+          <p class="note-press-link-wrap"><a href="https://www.wavymagazine.com/olu-anuakin-channeling-sound-and-spirit-across-borders" target="_blank" rel="noopener" class="note-press-link">Read full article on Wavy Magazine &rarr;</a></p>
         </div>
       </div>
 
-      <!-- Note 2 — Video -->
-      <div class="note-item reveal reveal-d1" data-note-type="video">
-        <span class="note-date">Feb 2025</span>
-        <div class="note-media-icon">
-          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="7" cy="7" r="5.5" stroke="var(--violet)" stroke-width="0.8"/>
-            <polygon points="5.5,4.5 10,7 5.5,9.5" fill="var(--violet)"/>
-          </svg>
-        </div>
-        <div class="note-body">
-          <p class="note-title">Collage — using your hands, not a screen</p>
-          <p class="note-desc">The process. Cutting, placing, the sounds of it. No talking. Just the act of making something with physical materials and what that changes in the thinking.</p>
-        </div>
-        <span class="note-media-pill video">Video</span>
-        <div class="note-full-content" hidden>
-          <p>The process. Cutting, placing, the sounds of it. No talking. Just the act of making something with physical materials and what that changes in the thinking.</p>
-          <!-- ASSET SWAP: Replace with actual collage process video embed -->
-          <iframe data-src="https://www.youtube.com/embed/PLACEHOLDER" title="Collage process video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen webkitallowfullscreen playsinline></iframe>
-        </div>
-      </div>
-
-      <!-- Note 3 — Audio -->
-      <div class="note-item reveal reveal-d2" data-note-type="audio">
-        <span class="note-date">Jan 2025</span>
-        <div class="note-media-icon">
-          <svg viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <line x1="2"  y1="7"  x2="2"  y2="7"  stroke="var(--rust)" stroke-width="1.2" stroke-linecap="round"/>
-            <line x1="4"  y1="5"  x2="4"  y2="9"  stroke="var(--rust)" stroke-width="1.2" stroke-linecap="round"/>
-            <line x1="6"  y1="3"  x2="6"  y2="11" stroke="var(--rust)" stroke-width="1.2" stroke-linecap="round"/>
-            <line x1="8"  y1="5"  x2="8"  y2="9"  stroke="var(--rust)" stroke-width="1.2" stroke-linecap="round"/>
-            <line x1="10" y1="4"  x2="10" y2="10" stroke="var(--rust)" stroke-width="1.2" stroke-linecap="round"/>
-            <line x1="12" y1="6"  x2="12" y2="8"  stroke="var(--rust)" stroke-width="1.2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="note-body">
-          <p class="note-title">WTFYA — why it even exists</p>
-          <p class="note-desc">A voice memo. Unscripted. The actual reason this track got made — which has nothing to do with music and everything to do with a specific kind of exhaustion I was done performing.</p>
-        </div>
-        <span class="note-media-pill audio">Audio</span>
-        <div class="note-full-content" hidden>
-          <p>A voice memo. Unscripted. The actual reason this track got made — which has nothing to do with music and everything to do with a specific kind of exhaustion I was done performing.</p>
-          <audio controls preload="metadata">
-            <source src="/src/assets/AFTERGLOW_thoughts.mp3" type="audio/mpeg">
-          </audio>
-        </div>
-      </div>
-
-      <!-- All notes link — grows into its own page over time -->
+      <!-- All log entries link — grows into its own page over time -->
       <button type="button" class="notes-all-link reveal reveal-d3">
-        All notes
+        All entries
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
           <line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/>
           <polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/>
@@ -493,12 +499,15 @@
         <span class="footer-wordmark">øLu AnuAkin</span>
       </div>
       <div class="footer-links">
-        <a href="https://www.instagram.com/olu_anuakin/" class="footer-link" target="_blank" rel="noopener">Instagram</a>
-        <span class="footer-link footer-link--soon" aria-label="TikTok — coming soon">TikTok</span>
-        <a href="https://oluanuakin.bandcamp.com" class="footer-link" target="_blank" rel="noopener">Bandcamp</a>
-        <a href="https://open.spotify.com/artist/6HlPxqjDQ8lM8iJiHqegxm?si=EDpye1ZeSs66dWj7SJ1XfQ" class="footer-link" target="_blank" rel="noopener">Spotify</a>
-        <a href="https://music.apple.com/ci/artist/%C3%B8lu-anuakin/1627657285" class="footer-link" target="_blank" rel="noopener">Apple Music</a>
-        <a href="https://untitled.stream" class="footer-link" target="_blank" rel="noopener">[untitled]</a>
+        <a href="https://www.instagram.com/olu_anuakin/" class="footer-link footer-link--icon" target="_blank" rel="noopener" aria-label="Instagram">
+          <img src="/src/assets/instagram-logo.webp" alt="Instagram" class="footer-icon-img" />
+        </a>
+        <a href="https://oluanuakin.bandcamp.com" class="footer-link footer-link--icon" target="_blank" rel="noopener" aria-label="Bandcamp">
+          <img src="/src/assets/bandcamp-logo.webp" alt="Bandcamp" class="footer-icon-img" />
+        </a>
+        <a href="https://untitled.stream" class="footer-link footer-link--icon" target="_blank" rel="noopener" aria-label="[untitled]">
+          <img src="/src/assets/untitled-logo.webp" alt="[untitled]" class="footer-icon-img" />
+        </a>
         <a href="mailto:rotaa9@gmail.com" class="footer-link">Contact</a>
       </div>
       <p class="footer-copy">&copy; 2025 øLu AnuAkin. All rights reserved.</p>
@@ -519,9 +528,9 @@
     <button type="button" class="overlay-bottom-close overlay-bottom-close--always" aria-label="Close">Tap to close</button>
   </div>
 
-  <!-- ============================================================ NOTES OVERLAY -->
-  <div id="notesOverlay" class="notes-overlay" role="dialog" aria-modal="true" aria-label="Note detail" hidden>
-    <button type="button" class="notes-overlay-close" aria-label="Close note">&times;</button>
+  <!-- ============================================================ LOG OVERLAY -->
+  <div id="notesOverlay" class="notes-overlay" role="dialog" aria-modal="true" aria-label="Log entry detail" hidden>
+    <button type="button" class="notes-overlay-close" aria-label="Close entry">&times;</button>
     <div class="notes-overlay-content">
       <p class="notes-overlay-date"></p>
       <h2 class="notes-overlay-title"></h2>
@@ -530,6 +539,13 @@
     </div>
     <button type="button" class="overlay-bottom-close" aria-label="Close">Tap to close</button>
   </div>
+
+  <!-- ============================================================ SCROLL TO TOP -->
+  <button type="button" class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+      <polyline points="3,9 7,4 11,9" stroke="currentColor" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
 
 </body>
 </html>
