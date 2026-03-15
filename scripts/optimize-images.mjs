@@ -5,9 +5,9 @@ import { join, extname } from 'path';
 const ROOT = 'src/assets';
 
 const configs = [
-  // Gallery images — displayed at ~200-400px in grid, 2x retina = 800px
-  { glob: 'modeling/', maxWidth: 800, quality: 75, format: 'webp' },
-  { glob: 'collage/', maxWidth: 800, quality: 75, format: 'webp' },
+  // Gallery images — displayed at ~202px in grid, overlay up to 90vw. 600px covers both well.
+  { glob: 'modeling/', maxWidth: 600, quality: 75, format: 'webp' },
+  { glob: 'collage/', maxWidth: 600, quality: 75, format: 'webp' },
 
   // Small logos/icons — displayed at 30-40px, 2x retina = 80px
   { files: ['CD_untitled.webp', 'GE_logo.webp', 'untitled-logo.webp'], maxWidth: 80, quality: 80, format: 'webp' },
