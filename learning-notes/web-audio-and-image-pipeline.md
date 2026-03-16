@@ -161,7 +161,7 @@ Not all images deserve the same compression:
 | Type | Quality | Why |
 |------|---------|-----|
 | Professional photography | q80 | Preserve detail, skin tones |
-| Digital art / collages | q75 | Already stylized, tolerates more compression |
+| Digital art / collages | q80 | Bumped from q75 — art deserves higher fidelity |
 | Logos / icons | q80 | Small files anyway, keep sharp edges |
 | OG / social images | q85 | Shared externally, no control over re-compression |
 

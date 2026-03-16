@@ -77,7 +77,7 @@ Full spec: `image-optimization-spec.md`. Follow these rules when working with im
 - **Non-destructive**: Generate sized variants (`-400`, `-800`, `-1200`) alongside originals. Never overwrite source files.
 - **No generation loss**: Always compress from the original, never re-compress an already-compressed image.
 - **Responsive delivery**: Use `srcset` + `sizes` on `<img>` tags. Gallery overlay JS should swap to the `-1200` variant.
-- **Quality**: q75 for collages/art, q80 for professional photography.
+- **Quality**: q80 for collages/art and professional photography.
 - **Lazy loading**: All below-fold images must have `loading="lazy"`.
 - **Formats**: WebP now; AVIF + `<picture>` fallback planned (Phase 2).
 - **Transparency**: When converting PNGs with alpha channels, verify output has `channels: 4`. Use `alphaQuality: 100` for WebP.

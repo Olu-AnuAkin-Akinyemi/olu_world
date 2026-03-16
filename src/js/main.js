@@ -121,7 +121,7 @@ document.querySelectorAll('.catalog-cover iframe[data-src]').forEach(iframe => i
 const heroCoverLayers = document.querySelector('.hero-cover-layers');
 const heroCover = document.querySelector('.hero-cover');
 if (heroCoverLayers && heroCover) {
-  const audioUrl = new URL('../assets/PWR_audio snip.mp3', import.meta.url).href;
+  const audioUrl = new URL('../assets/PWR_audio-snip.mp3', import.meta.url).href;
   let hoverAudio = null;
 
   import('./hoverAudio.js').then(({ createHoverAudio }) => {

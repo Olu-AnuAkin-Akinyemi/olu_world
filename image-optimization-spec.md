@@ -38,7 +38,7 @@ src/assets/collage/Triumph_collage-1200.webp     ← large (desktop overlay, ret
 | Large | 1200px | Desktop overlay (90vw on 1440px = ~1296px) |
 
 **Quality settings:**
-- WebP: q75, effort 6
+- Collages: q80, effort 6 (art deserves higher fidelity)
 - Modeling photos: q80 (preserve detail on professional photography)
 
 ### HTML Pattern
@@ -76,7 +76,7 @@ src/assets/collage/Triumph_collage-800.webp
 src/assets/collage/Triumph_collage-800.avif
 ```
 
-**AVIF settings:** q60 (AVIF at q60 ≈ WebP at q75 visually, 30-50% smaller files)
+**AVIF settings:** q65 (AVIF at q65 ≈ WebP at q80 visually, 30-50% smaller files)
 
 ### HTML Pattern
 ```html

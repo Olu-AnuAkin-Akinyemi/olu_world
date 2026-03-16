@@ -11,8 +11,8 @@ const ROOT = 'src/assets';
 const SIZES = [400, 800, 1200];
 
 const configs = [
-  // Gallery collages — transparent PNGs, q75 WebP with alpha
-  { glob: 'collage/', quality: 75, sizes: SIZES },
+  // Gallery collages — transparent PNGs, q80 WebP with alpha
+  { glob: 'collage/', quality: 80, sizes: SIZES },
 
   // Modeling photos (future) — professional photography, q80
   { glob: 'modeling/', quality: 80, sizes: SIZES },

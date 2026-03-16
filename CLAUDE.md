@@ -107,7 +107,7 @@ Visuals: CSS Keyframes, 3D Gallery Canvas
   - **Never re-compress compressed images** — always start from the original source file.
   - Use `srcset` + `sizes` for responsive delivery; swap to largest variant in overlay JS.
   - All below-fold images must have `loading="lazy"`.
-  - Modeling/professional photos: q80. Collages and general art: q75.
+  - Modeling/professional photos: q80. Collages and general art: q80.
 
 ---
 
@@ -130,3 +130,4 @@ Visuals: CSS Keyframes, 3D Gallery Canvas
 - Blur-up image placeholders (Phase 3 of image spec)
 - Headless CMS for Notes, gallery, and catalog (Phase 4 of image spec)
 - Audio preview snippets in `.track-item` or `.catalog-card`
+- **2k17 Exhibitions / Zine:** Add "From the Archive" subsection near Gallery — 3-5 curated event photos (run through image pipeline) + downloadable zine PDF. Consider gating PDF behind Private Access email signup for conversion.

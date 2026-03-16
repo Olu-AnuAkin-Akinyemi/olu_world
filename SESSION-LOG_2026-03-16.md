@@ -42,6 +42,47 @@
 - **Fix:** Added "Sync" to mobile menu (was desktop-only). Removed `PWR — Single` label from pre-release hero. Added `margin-top: 20px` spacing between hero eyebrow and action buttons.
 - **Files:** `index.html`, `src/css/styles.css`
 
+### 7. Mobile Hover / Double-Tap Audit
+- **Problem:** iOS Safari requires two taps on elements with `:hover` styles — first tap triggers hover, second tap navigates.
+- **Fix:** Wrapped all navigation hover styles in `@media(hover: hover)` so they only fire on devices with a real pointer. Added `@media(hover: none)` block to always reveal content (track scenes, note descriptions) that was hidden behind hover on desktop.
+- **Files:** `src/css/styles.css`
+
+### 8. Console Error Cleanup
+- **Problem:** Browser console showed `srcset` parsing errors, deprecated attribute warnings, and preload mismatch.
+- **Fixes:**
+  - Renamed 4 collage files with spaces in filenames → hyphens (spaces break `srcset` parsing)
+  - Removed deprecated `allowfullscreen` / `webkitallowfullscreen` from iframes (replaced by `allow="fullscreen"`)
+  - Simplified hero preload to only hint the 640px variant (mobile-first — don't preload what won't load)
+- **Files:** `index.html`, `src/assets/collage/` (file renames)
+
+### 9. Collage Quality Bump (q75 → q80)
+- **Problem:** Collages at q75 looked slightly soft, especially in the overlay/fullscreen view.
+- **Fix:** Bumped WebP quality from q75 to q80 in `optimize-images.mjs`. Regenerated all 21 variants (7 collages x 3 sizes). File size increase is modest (~20% on largest variants).
+- **Files:** `scripts/optimize-images.mjs`, all `src/assets/collage/*.webp`
+
+### 10. Lucky-charm-prince Missing -1200 Variant
+- **Problem:** Source PNG is only 1148px wide — the script skipped the 1200 variant (`1200 > 1148`). Overlay JS tried to load `-1200.webp` and got a 404.
+- **Fix:** Generated variant at native width (1148px), named it `-1200.webp` for overlay JS compatibility. HTML srcset uses accurate `1148w` descriptor.
+- **Files:** `index.html`, `src/assets/collage/Lucky-charm-prince_collage-1200.webp`
+
+### 11. CLS Prevention — Image Dimensions
+- **Problem:** 5 images had CSS dimensions but no HTML `width`/`height` attributes. Browsers can't reserve layout space until CSS loads, causing layout shifts (CLS).
+- **Fix:** Added `width`/`height` to: GE logo (22x22), private logos (52x52, 38x38), footer icons (34x34).
+- **File:** `index.html`
+
+### 12. Audio Filename Space
+- **Problem:** `PWR_audio snip.mp3` contained a space — same class of bug that broke collage srcsets.
+- **Fix:** Renamed to `PWR_audio-snip.mp3`, updated JS reference.
+- **Files:** `src/assets/PWR_audio-snip.mp3`, `src/js/main.js`
+
+### 13. Skip-to-Content Link (Accessibility)
+- **Fix:** Added keyboard-accessible skip link before nav — visually hidden, appears on Tab focus, jumps to `#music`. Satisfies WCAG 2.1 AA.
+- **Files:** `index.html`, `src/css/styles.css`
+
+### 14. Google Search Console Verification
+- **Fix:** Added `<meta name="google-site-verification">` tag to `<head>` for GSC HTML tag verification.
+- **File:** `index.html`
+
 ---
 
 ## Key Learnings
@@ -67,16 +108,34 @@ Every place that references the site URL must match the actual live domain. Mism
 ### `min()` for Responsive Containers
 `max-width: min(380px, 100%)` is cleaner than media queries for capping container width. It says "be 380px or the screen width, whichever is smaller" in one line.
 
+### CLS: Always Add `width`/`height` to Images
+Even if CSS sets dimensions, browsers can't reserve layout space until CSS loads. Adding `width` and `height` HTML attributes lets the browser calculate aspect ratio immediately and prevents layout shifts. Direct Lighthouse CLS improvement.
+
+### Spaces in Filenames Break Things
+Spaces in asset filenames break `srcset` parsing (browser treats spaces as descriptor delimiters). Also a risk in CDN URLs and shell commands. Rule: always use hyphens, never spaces, in any asset filename.
+
+### Skip-to-Content for Accessibility
+A hidden `<a>` before the nav that appears on Tab focus and jumps past navigation. One element, ~3 lines of CSS, checks the WCAG 2.1 AA box. No visual impact.
+
+### Image Source Width Limits Variants
+The sharp script skips variants wider than the source (`withoutEnlargement: true`). If a source is 1148px, it won't generate a 1200px variant. Fix: generate at native width, name the file `-1200.webp` for overlay JS compatibility, use the accurate `1148w` descriptor in `srcset`.
+
 ---
 
 ## Files Modified This Session
 | File | Changes |
 |------|---------|
-| `index.html` | Timestamp fields, metadata overhaul, domain fix, nav + hero cleanup |
-| `src/js/main.js` | Local time injection before form submit |
-| `src/css/styles.css` | Input font-size 16px, form max-width, hero spacing |
+| `index.html` | Timestamp fields, metadata overhaul, domain fix, nav + hero cleanup, hover audit, srcset fixes, image width/height, skip-to-content, GSC verification |
+| `src/js/main.js` | Local time injection, audio file rename reference |
+| `src/css/styles.css` | Input font-size 16px, form max-width, hero spacing, `@media(hover:hover)` wrappers, `@media(hover:none)` touch fallback, skip-to-content styles |
+| `scripts/optimize-images.mjs` | Collage quality q75 → q80 |
+| `src/assets/collage/*.webp` | All 21 variants regenerated at q80, Lucky-charm-prince -1200 added |
+| `src/assets/PWR_audio-snip.mp3` | Renamed from `PWR_audio snip.mp3` |
 | `public/robots.txt` | Domain → oluanuakin.me |
 | `public/sitemap.xml` | Domain → oluanuakin.me, lastmod → 2026-03-16 |
-| `image-optimization-spec.md` | Domain references updated |
+| `image-optimization-spec.md` | Domain fix, quality q75 → q80, AVIF equivalent updated |
+| `CLAUDE.md` | Quality reference updated, 2k17 Zine added to Future roadmap |
+| `.github/copilot-instructions.md` | Quality reference updated |
+| `learning-notes/web-audio-and-image-pipeline.md` | Quality reference updated |
 | `SEO-COPY-IMPROVEMENTS.md` | Domain references updated |
 | `EPK-PLAN.md` | Domain reference updated |
