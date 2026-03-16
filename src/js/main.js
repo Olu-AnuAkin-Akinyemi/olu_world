@@ -481,6 +481,10 @@ document.querySelectorAll('form[data-form]').forEach(form => {
       return;
     }
 
+    // Stamp local time so Web3Forms receives the user's timezone
+    const timeField = form.querySelector('.local-time');
+    if (timeField) timeField.value = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' });
+
     submitBtn.innerHTML = 'Sending...';
     submitBtn.disabled = true;
 
