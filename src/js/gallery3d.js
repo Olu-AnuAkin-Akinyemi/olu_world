@@ -280,7 +280,7 @@ export function initGalleryCarousel() {
     const overlay = document.getElementById('galleryOverlay');
     if (!overlay) return;
     const img = overlay.querySelector('.gallery-overlay-img');
-    img.src = item.src;
+    img.src = item.src.replace(/-\d+\.webp$/, '-1200.webp');
     img.alt = item.alt;
     const infoTitle = overlay.querySelector('.gallery-overlay-info-title');
     const infoArtist = overlay.querySelector('.gallery-overlay-info-artist');

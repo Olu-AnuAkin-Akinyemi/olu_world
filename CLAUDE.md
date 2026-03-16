@@ -16,7 +16,7 @@
 2. **Secondary:** Streaming conversions (routing users to Bandcamp/Spotify).
 3. **Tertiary:** Direct inquiries for Sync licensing.
 
-**User Journey**: Enter atmospheric threshold → Listen to featured project (Afterglow) → Explore visual/audio world-building → Subscribe for private access.
+**User Journey**: Enter atmospheric threshold → Listen to featured project (PWR) → Explore visual/audio world-building → Subscribe for private access.
 
 ---
 ### Non-Negotiable Constraints
@@ -24,7 +24,7 @@
 **Performance:**
 - Lighthouse score: 90+ (all categories)
 - LCP: <2.5s on 3G throttled
-- Mobile-first responsive design (target older demographic)
+- Mobile-first responsive design (target demographic: 28+)
 
 **Accessibility:**
 - WCAG 2.1 AA compliance
@@ -121,6 +121,7 @@ Visuals: CSS Keyframes, 3D Gallery Canvas
 
 ### Active
 
+- **Pre-release hero (full-bleed photo layout):** See [`PRE-RELEASE-HERO.md`](PRE-RELEASE-HERO.md) for implementation plan, CSS/HTML structure, and May 15 swap checklist. **Delete that file after the May 15 PWR wide release swap.**
 - Responsive image pipeline: multi-resolution `srcset` + AVIF (see [`image-optimization-spec.md`](image-optimization-spec.md))
 - Gallery content curation (collage + modeling photo selection)
 

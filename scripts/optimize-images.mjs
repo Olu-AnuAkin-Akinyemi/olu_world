@@ -1,66 +1,84 @@
 import sharp from 'sharp';
 import { readdir, stat } from 'fs/promises';
-import { join, extname } from 'path';
+import { join, basename, extname } from 'path';
 
 const ROOT = 'src/assets';
 
+// Phase 1: Multi-resolution srcset pipeline
+// Generates -400, -800, -1200 WebP variants alongside untouched originals.
+// Never overwrites source files. Always compress from the original.
+
+const SIZES = [400, 800, 1200];
+
 const configs = [
-  // Gallery images — displayed at ~202px in grid, overlay up to 90vw. 600px covers both well.
-  { glob: 'modeling/', maxWidth: 600, quality: 75, format: 'webp' },
-  { glob: 'collage/', maxWidth: 600, quality: 75, format: 'webp' },
+  // Gallery collages — transparent PNGs, q75 WebP with alpha
+  { glob: 'collage/', quality: 75, sizes: SIZES },
 
-  // Small logos/icons — displayed at 30-40px, 2x retina = 80px
-  { files: ['CD_untitled.webp', 'GE_logo.webp', 'untitled-logo.webp'], maxWidth: 80, quality: 80, format: 'webp' },
-
-  // Nav/mark logos — displayed at 37px, 2x retina = 80px
-  { files: ['Olu logo_Dark_no_bkrgd.png', 'Olu logo_Light_no_bkrgd.png'], maxWidth: 80, quality: 80, format: 'png' },
+  // Modeling photos (future) — professional photography, q80
+  { glob: 'modeling/', quality: 80, sizes: SIZES },
 ];
 
-async function getFiles(dir) {
+async function getSourceFiles(dir) {
   const entries = await readdir(dir);
-  return entries.filter(f => /\.(webp|png|jpg|jpeg)$/i.test(f)).map(f => join(dir, f));
+  // Only process original source files — skip already-generated variants (-400, -800, -1200)
+  return entries
+    .filter(f => /\.(png|jpg|jpeg)$/i.test(f) && !/-\d+\.webp$/i.test(f))
+    .map(f => join(dir, f));
 }
 
-async function optimizeFile(filePath, { maxWidth, quality, format }) {
-  const before = (await stat(filePath)).size;
-  let img = sharp(filePath);
-  const meta = await img.metadata();
+async function generateVariants(filePath, { quality, sizes }) {
+  const meta = await sharp(filePath).metadata();
+  const name = basename(filePath, extname(filePath));
+  const dir = join(filePath, '..');
+  const hasAlpha = meta.channels === 4;
 
-  if (meta.width > maxWidth) {
-    img = img.resize(maxWidth, null, { withoutEnlargement: true });
+  console.log(`\n  ${name} (${meta.width}x${meta.height}, ch:${meta.channels})`);
+
+  for (const width of sizes) {
+    if (width > meta.width) {
+      console.log(`    ${width}w — SKIP (source only ${meta.width}px wide)`);
+      continue;
+    }
+
+    const outPath = join(dir, `${name}-${width}.webp`);
+    const webpOpts = { quality, effort: 6 };
+    if (hasAlpha) webpOpts.alphaQuality = 100;
+
+    await sharp(filePath)
+      .resize(width, null, { withoutEnlargement: true })
+      .webp(webpOpts)
+      .toFile(outPath);
+
+    const outSize = (await stat(outPath)).size;
+    console.log(`    ${width}w → ${(outSize / 1024).toFixed(0)}KB  ${outPath}`);
   }
-
-  let buffer;
-  if (format === 'png') {
-    buffer = await img.png({ quality, compressionLevel: 9 }).toBuffer();
-  } else {
-    buffer = await img.webp({ quality, effort: 6 }).toBuffer();
-  }
-
-  // Write back via sharp to preserve format
-  await sharp(buffer).toFile(filePath);
-
-  const after = (await stat(filePath)).size;
-  const savings = ((1 - after / before) * 100).toFixed(0);
-  console.log(`  ${(before / 1024).toFixed(0)}KB → ${(after / 1024).toFixed(0)}KB  (${savings}% saved)  ${filePath}`);
 }
 
-console.log('Optimizing images with sharp...\n');
+console.log('Generating responsive image variants with sharp...');
+console.log('Originals are preserved — only WebP variants are created.\n');
 
 for (const config of configs) {
+  const dir = join(ROOT, config.glob);
   let files;
-  if (config.glob) {
-    const dir = join(ROOT, config.glob);
-    files = await getFiles(dir);
-  } else {
-    files = config.files.map(f => join(ROOT, f));
+  try {
+    files = await getSourceFiles(dir);
+  } catch {
+    console.log(`  SKIP ${dir} (directory not found)`);
+    continue;
   }
+
+  if (files.length === 0) {
+    console.log(`  SKIP ${dir} (no source files)`);
+    continue;
+  }
+
+  console.log(`${dir} (${files.length} sources, q${config.quality}):`);
 
   for (const f of files) {
     try {
-      await optimizeFile(f, config);
+      await generateVariants(f, config);
     } catch (err) {
-      console.error(`  SKIP ${f}: ${err.message}`);
+      console.error(`  ERROR ${f}: ${err.message}`);
     }
   }
 }

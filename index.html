@@ -147,6 +147,8 @@
       <!-- <a href="#sync"   class="nav-link">Sync</a> -->
       <a href="#about"  class="nav-link">About</a>
       <a href="#contact" class="nav-link">Contact</a>
+      <!-- LIGHT/DARK TOGGLE (commented out for pre-release — dark mode only.
+           Uncomment when light mode is polished. Also uncomment theme toggle JS in main.js)
       <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark mode">
         <svg id="iconDark" viewBox="0 0 16 16" fill="none">
           <circle cx="8" cy="8" r="6.5" stroke="var(--text-muted)" stroke-width="1.2"/>
@@ -157,6 +159,7 @@
           <path d="M8 1.5 A6.5 6.5 0 0 0 8 14.5 Z" fill="var(--text-muted)"/>
         </svg>
       </button>
+      END LIGHT/DARK TOGGLE -->
       <button class="nav-hamburger" id="navHamburger" aria-expanded="false" aria-controls="mobileMenu" aria-label="Toggle navigation menu">
         <span class="hamburger-line"></span>
         <span class="hamburger-line"></span>
@@ -178,32 +181,36 @@
   </div>
 
   <!-- ============================================================ HERO -->
-  <section class="hero" id="home">
-    <div class="hero-split">
+  <section class="hero hero--fullbleed" id="home">
 
-      <!-- PRE-RELEASE HERO (active — site launch through May 14) -->
-      <div class="hero-content">
-        <p class="hero-eyebrow">Multidisciplinary Artist · Griot</p>
-        <h1 class="hero-headline" aria-label="I just had to go get in touch">
-          <span class="word">I</span> <span class="word">just</span> <span class="word">had</span> <span class="word">to</span> <span class="word">go</span><br>
-          <span class="word">get</span> <span class="word">in</span> <span class="word"><em>touch</em></span>
-        </h1>
-        <div class="hero-actions">
-          <a href="https://oluanuakin.bandcamp.com/track/pwr-2" target="_blank" rel="noopener" class="hero-cta hero-cta--primary">
-            <span class="hero-cta-text">Listen to PWR</span>
-            <span class="hero-cta-circle"></span>
-            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg>
-          </a>
-          <a href="#music" class="hero-cta">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg></a>
-        </div>
+    <!-- PRE-RELEASE HERO (active — site launch through May 14)
+         To swap to PWR Cover Art Hero:
+         1. Remove "hero--fullbleed" from <section> above
+         2. Delete this <img> and the hero-content--bottom <div> below
+         3. Uncomment PWR COVER ART HERO inside hero-split
+         See PRE-RELEASE-HERO.md for full swap checklist -->
+    <img src="/src/assets/hero_photo.webp" alt="" class="hero-bg" aria-hidden="true" />
+    <div class="hero-content hero-content--bottom">
+      <h1 class="hero-eyebrow">Multidisciplinary Artist · Griot</h1>
+      <!-- PRE-RELEASE HEADLINE (commented out — restore for May 15 as <h1>, demote eyebrow back to <p>)
+      <h1 class="hero-headline" aria-label="I just had to go get in touch">
+        <span class="word">I</span> <span class="word">just</span> <span class="word">had</span> <span class="word">to</span> <span class="word">go</span><br>
+        <span class="word">get</span> <span class="word">in</span> <span class="word"><em>touch</em></span>
+      </h1>
+      END PRE-RELEASE HEADLINE -->
+      <p class="hero-cover-label">PWR — Single</p>
+      <div class="hero-actions">
+        <a href="https://oluanuakin.bandcamp.com/track/pwr-2" target="_blank" rel="noopener" class="hero-cta hero-cta--primary">
+          <span class="hero-cta-text">Listen</span>
+          <span class="hero-cta-circle"></span>
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+        </a>
+        <a href="#music" class="hero-cta">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg></a>
       </div>
-      <div class="hero-cover">
-        <div class="hero-cover-typo" role="img" aria-label="PWR — øLu AnuAkin">
-          <span class="hero-cover-typo-text">PWR</span>
-        </div>
-        <p class="hero-cover-label">PWR — Single</p>
-      </div>
-      <!-- END PRE-RELEASE HERO -->
+    </div>
+    <!-- END PRE-RELEASE HERO -->
+
+    <div class="hero-split">
 
       <!-- PWR COVER ART HERO (uncomment on May 15 wide release — remove pre-release hero above)
       <div class="hero-content">
@@ -386,7 +393,13 @@
       </div>
       <div class="world-grid reveal reveal-d1">
         <div class="world-item" data-type="collage" data-title="Acknowledgement" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Acknowledgement_collage.png" alt="Collage — Acknowledgement" loading="lazy" />
+          <img
+            srcset="/src/assets/collage/Acknowledgement_collage-400.webp 400w,
+                    /src/assets/collage/Acknowledgement_collage-800.webp 800w,
+                    /src/assets/collage/Acknowledgement_collage-1200.webp 1200w"
+            sizes="(max-width:640px) 50vw, 202px"
+            src="/src/assets/collage/Acknowledgement_collage-800.webp"
+            alt="Collage — Acknowledgement" loading="lazy" />
           <div class="world-item-info"><span class="world-item-info-title">Acknowledgement</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
         <!-- Portrait I (Connor James) — hold for Afterglow release
@@ -402,7 +415,13 @@
         </div>
         -->
         <div class="world-item" data-type="collage" data-title="Dreams of Our Ancestors" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Dreams of our Ancestors_collage.png" alt="Collage — Dreams of Our Ancestors" loading="lazy" />
+          <img
+            srcset="/src/assets/collage/Dreams of our Ancestors_collage-400.webp 400w,
+                    /src/assets/collage/Dreams of our Ancestors_collage-800.webp 800w,
+                    /src/assets/collage/Dreams of our Ancestors_collage-1200.webp 1200w"
+            sizes="(max-width:640px) 50vw, 202px"
+            src="/src/assets/collage/Dreams of our Ancestors_collage-800.webp"
+            alt="Collage — Dreams of Our Ancestors" loading="lazy" />
           <div class="world-item-info"><span class="world-item-info-title">Dreams of Our Ancestors</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
         <!-- Portrait II (Connor James) — hold for Afterglow release
@@ -412,11 +431,23 @@
         </div>
         -->
         <div class="world-item" data-type="collage" data-title="Granny" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Granny_collage.png" alt="Collage — Granny" loading="lazy" />
+          <img
+            srcset="/src/assets/collage/Granny_collage-400.webp 400w,
+                    /src/assets/collage/Granny_collage-800.webp 800w,
+                    /src/assets/collage/Granny_collage-1200.webp 1200w"
+            sizes="(max-width:640px) 50vw, 202px"
+            src="/src/assets/collage/Granny_collage-800.webp"
+            alt="Collage — Granny" loading="lazy" />
           <div class="world-item-info"><span class="world-item-info-title">Granny</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
         <div class="world-item" data-type="collage" data-title="Issal Luv Bruh" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Issal luv bruh_collage.png" alt="Collage — Issal Luv Bruh" loading="lazy" />
+          <img
+            srcset="/src/assets/collage/Issal luv bruh_collage-400.webp 400w,
+                    /src/assets/collage/Issal luv bruh_collage-800.webp 800w,
+                    /src/assets/collage/Issal luv bruh_collage-1200.webp 1200w"
+            sizes="(max-width:640px) 50vw, 202px"
+            src="/src/assets/collage/Issal luv bruh_collage-800.webp"
+            alt="Collage — Issal Luv Bruh" loading="lazy" />
           <div class="world-item-info"><span class="world-item-info-title">Issal Luv Bruh</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
         <!-- Portrait III (Connor James) — hold for Afterglow release
@@ -426,15 +457,32 @@
         </div>
         -->
         <div class="world-item" data-type="collage" data-title="Lucky Charm Prince" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Lucky charm prince_collage.png" alt="Collage — Lucky Charm Prince" loading="lazy" />
+          <img
+            srcset="/src/assets/collage/Lucky charm prince_collage-400.webp 400w,
+                    /src/assets/collage/Lucky charm prince_collage-800.webp 800w"
+            sizes="(max-width:640px) 50vw, 202px"
+            src="/src/assets/collage/Lucky charm prince_collage-800.webp"
+            alt="Collage — Lucky Charm Prince" loading="lazy" />
           <div class="world-item-info"><span class="world-item-info-title">Lucky Charm Prince</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
         <div class="world-item" data-type="collage" data-title="Triumph" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Triumph_collage.png" alt="Collage — Triumph" loading="lazy" />
+          <img
+            srcset="/src/assets/collage/Triumph_collage-400.webp 400w,
+                    /src/assets/collage/Triumph_collage-800.webp 800w,
+                    /src/assets/collage/Triumph_collage-1200.webp 1200w"
+            sizes="(max-width:640px) 50vw, 202px"
+            src="/src/assets/collage/Triumph_collage-800.webp"
+            alt="Collage — Triumph" loading="lazy" />
           <div class="world-item-info"><span class="world-item-info-title">Triumph</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
         <div class="world-item" data-type="collage" data-title="Warriors of Love" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Warriors of love_collage.png" alt="Collage — Warriors of Love" loading="lazy" />
+          <img
+            srcset="/src/assets/collage/Warriors of love_collage-400.webp 400w,
+                    /src/assets/collage/Warriors of love_collage-800.webp 800w,
+                    /src/assets/collage/Warriors of love_collage-1200.webp 1200w"
+            sizes="(max-width:640px) 50vw, 202px"
+            src="/src/assets/collage/Warriors of love_collage-800.webp"
+            alt="Collage — Warriors of Love" loading="lazy" />
           <div class="world-item-info"><span class="world-item-info-title">Warriors of Love</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
       </div>

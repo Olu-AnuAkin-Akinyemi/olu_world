@@ -36,7 +36,8 @@ window.addEventListener('scroll', () => {
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 60);
 }, { passive: true });
 
-/* --- Theme toggle --- */
+/* --- Theme toggle (commented out for pre-release — dark mode only.
+       Uncomment when light mode is polished. Also uncomment toggle button in index.html) ---
 const toggle = document.getElementById('themeToggle');
 const iD = document.getElementById('iconDark');
 const iL = document.getElementById('iconLight');
@@ -56,6 +57,7 @@ if (toggle) {
     if (iL) iL.style.display = dark ? 'block' : 'none';
   });
 }
+--- END Theme toggle */
 
 /* --- Mobile menu --- */
 const hamburger = document.getElementById('navHamburger');
@@ -270,7 +272,7 @@ document.querySelectorAll('.world-item').forEach(item => {
     const img = item.querySelector('img');
     const overlay = document.getElementById('galleryOverlay');
     if (!img || !overlay) return;
-    overlay.querySelector('.gallery-overlay-img').src = img.src;
+    overlay.querySelector('.gallery-overlay-img').src = img.src.replace(/-\d+\.webp$/, '-1200.webp');
     overlay.querySelector('.gallery-overlay-img').alt = img.alt;
     const infoTitle = overlay.querySelector('.gallery-overlay-info-title');
     const infoArtist = overlay.querySelector('.gallery-overlay-info-artist');
