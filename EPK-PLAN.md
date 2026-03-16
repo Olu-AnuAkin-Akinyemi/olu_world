@@ -41,7 +41,7 @@ A dedicated `/epk` page and downloadable PDF/Doc for music supervisors, press, a
 - Genre tags (Alternative Soul, Indie R&B, Cinematic, Conscious Hip-Hop)
 - Sync availability note (one-stop cleared, stems available)
 - Contact: rotaa9@gmail.com
-- Links: olu.world, Bandcamp, Spotify, Instagram
+- Links: oluanuakin.me, Bandcamp, Spotify, Instagram
 
 ### Generation
 - Could build with HTML/CSS and export to PDF (Puppeteer, or Canva)

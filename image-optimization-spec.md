@@ -1,4 +1,4 @@
-# Image Optimization Spec — olu.world
+# Image Optimization Spec — oluanuakin.me
 
 ## Current State (Phase 1 complete)
 - Non-destructive script generates `-400`, `-800`, `-1200` WebP variants alongside untouched originals

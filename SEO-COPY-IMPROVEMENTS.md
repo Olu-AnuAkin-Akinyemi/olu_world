@@ -1,7 +1,7 @@
 
 # SEO Copy Improvement Strategy — øLu AnuAkin
 
-> **Project:** øLu AnuAkin — https://olu.world/
+> **Project:** øLu AnuAkin — https://oluanuakin.me/
 > **Stack:** Vite 5.x · Vanilla JS/CSS · Custom Audio/Video · Bandcamp/Spotify/Apple/Tidal
 > **Why:** Improve visibility, citation, and conversion for a multidisciplinary artist, griot, and founder. Optimize for both traditional SEO and GEO (AI search engines).
 > **Last updated:** 2026-03-15
@@ -17,7 +17,7 @@
 | Open Graph | ✅ Done | `og:title`, `og:description`, `og:image` (PWR cover), `og:type`, `og:url` |
 | Twitter Card | ✅ Done | `summary_large_image` with PWR art |
 | JSON-LD structured data | ✅ Done | `MusicGroup` + 3 albums (PWR, Afterglow, Mama's Boy) |
-| Canonical URL | ✅ Done | `https://olu.world/` |
+| Canonical URL | ✅ Done | `https://oluanuakin.me/` |
 | `sitemap.xml` | ✅ Done | In `public/` — single URL entry |
 | `robots.txt` | ✅ Done | In `public/` — allows all crawlers |
 | Favicon | ✅ Done | SVG + PNG + ICO + Apple Touch + Web Manifest |
@@ -53,10 +53,10 @@
   "@context": "https://schema.org",
   "@type": "MusicGroup",
   "name": "øLu AnuAkin",
-  "url": "https://olu.world/",
+  "url": "https://oluanuakin.me/",
   "genre": ["Alternative Soul", "Indie R&B", "Conscious Hip Hop"],
   "description": "Multidisciplinary Artist, Griot, and Founder. Yoruba and American roots. Based in Minnesota.",
-  "image": "https://olu.world/PWR_Cover-Art.webp",
+  "image": "https://oluanuakin.me/PWR_Cover-Art.webp",
   "foundingLocation": {
     "@type": "Place",
     "name": "Minnesota",
@@ -160,15 +160,15 @@
 <!-- Open Graph -->
 <meta property="og:title" content="øLu AnuAkin — PWR • 2026" />
 <meta property="og:description" content="Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. PWR out now." />
-<meta property="og:image" content="https://olu.world/PWR_Cover-Art.webp" />
+<meta property="og:image" content="https://oluanuakin.me/PWR_Cover-Art.webp" />
 <meta property="og:type" content="music.musician" />
-<meta property="og:url" content="https://olu.world/" />
+<meta property="og:url" content="https://oluanuakin.me/" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="øLu AnuAkin — PWR • 2026" />
 <meta name="twitter:description" content="Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. PWR out now." />
-<meta name="twitter:image" content="https://olu.world/PWR_Cover-Art.webp" />
+<meta name="twitter:image" content="https://oluanuakin.me/PWR_Cover-Art.webp" />
 ```
 
 **Swap template for Afterglow:**
@@ -176,12 +176,12 @@
 <!-- Open Graph -->
 <meta property="og:title" content="øLu AnuAkin — Afterglow EP • 2026" />
 <meta property="og:description" content="Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. Afterglow EP out now." />
-<meta property="og:image" content="https://olu.world/AFTERGLOW_cover-art.webp" />
+<meta property="og:image" content="https://oluanuakin.me/AFTERGLOW_cover-art.webp" />
 
 <!-- Twitter Card -->
 <meta name="twitter:title" content="øLu AnuAkin — Afterglow EP • 2026" />
 <meta name="twitter:description" content="Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Afterglow EP out now." />
-<meta name="twitter:image" content="https://olu.world/AFTERGLOW_cover-art.webp" />
+<meta name="twitter:image" content="https://oluanuakin.me/AFTERGLOW_cover-art.webp" />
 ```
 
 ---
