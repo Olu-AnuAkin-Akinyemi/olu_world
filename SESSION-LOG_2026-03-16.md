@@ -83,6 +83,30 @@
 - **Fix:** Added `<meta name="google-site-verification">` tag to `<head>` for GSC HTML tag verification.
 - **File:** `index.html`
 
+### 15. Notes Overlay X Button (Mobile)
+- **Problem:** The X close button on Log entry overlays was hard to tap on mobile — the scrollable content div layered on top of it.
+- **Root cause:** `.notes-overlay-close` was `position:absolute` but had no `z-index`, so `.notes-overlay-content` (with `position:relative`) sat above it in stacking order.
+- **Fix:** Added `z-index:1` to `.notes-overlay-close`.
+- **File:** `src/css/styles.css`
+
+### 16. Gallery 3D Carousel Vertical Jitter (Mobile)
+- **Problem:** Fast horizontal swipes on the gallery carousel caused the page to bounce vertically.
+- **Root cause:** `pointermove` handler never called `preventDefault()`, so the browser simultaneously interpreted horizontal drag as vertical scroll.
+- **Fix:** Two changes:
+  1. CSS: Added `touch-action:pan-y` to `#galleryCanvas` — tells the browser to only handle vertical scrolling, JS handles horizontal.
+  2. JS: Added `e.preventDefault()` inside `pointermove` handler (only fires during active drag, so normal scrolling is unaffected).
+- **Files:** `src/css/styles.css`, `src/js/gallery3d.js`
+
+---
+
+## Lighthouse Scores (Post-Deploy)
+| Metric | Score |
+|--------|-------|
+| Performance | 94 |
+| Accessibility | 97 |
+| Best Practices | 96 |
+| SEO | 100 |
+
 ---
 
 ## Key Learnings
