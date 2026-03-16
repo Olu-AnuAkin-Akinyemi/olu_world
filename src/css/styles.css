@@ -128,7 +128,7 @@
     .hero-content--bottom{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;justify-content:flex-end;min-height:100vh;padding:0 48px 100px;width:100%;max-width:100%}
     .hero-content--bottom .hero-eyebrow{justify-content:center}
     .hero-content--bottom .hero-eyebrow::before{display:none}
-    .hero-content--bottom .hero-actions{justify-content:center}
+    .hero-content--bottom .hero-actions{justify-content:center;margin-top:20px}
     .hero-content--bottom .hero-cover-label{margin:0 0 20px;opacity:0;animation:fadeUp .7s var(--ease) 2.9s forwards}
     .hero--fullbleed .hero-split{display:none}
     /* END PRE-RELEASE */
