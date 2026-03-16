@@ -181,14 +181,37 @@
   <section class="hero" id="home">
     <div class="hero-split">
 
-      <!-- PWR HERO (active) -->
+      <!-- PRE-RELEASE HERO (active — site launch through May 14) -->
       <div class="hero-content">
         <p class="hero-eyebrow">Multidisciplinary Artist · Griot</p>
         <h1 class="hero-headline" aria-label="I just had to go get in touch">
           <span class="word">I</span> <span class="word">just</span> <span class="word">had</span> <span class="word">to</span> <span class="word">go</span><br>
           <span class="word">get</span> <span class="word">in</span> <span class="word"><em>touch</em></span>
         </h1>
-        <!-- PWR audio player (uncomment when snippet is ready)
+        <div class="hero-actions">
+          <a href="https://oluanuakin.bandcamp.com/track/pwr-2" target="_blank" rel="noopener" class="hero-cta hero-cta--primary">
+            <span class="hero-cta-text">Listen to PWR</span>
+            <span class="hero-cta-circle"></span>
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg>
+          </a>
+          <a href="#music" class="hero-cta">Explore <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="1" y1="5" x2="9" y2="5" stroke="currentColor" stroke-width="1"/><polyline points="6,2 9,5 6,8" stroke="currentColor" stroke-width="1" fill="none"/></svg></a>
+        </div>
+      </div>
+      <div class="hero-cover">
+        <div class="hero-cover-typo" role="img" aria-label="PWR — øLu AnuAkin">
+          <span class="hero-cover-typo-text">PWR</span>
+        </div>
+        <p class="hero-cover-label">PWR — Single</p>
+      </div>
+      <!-- END PRE-RELEASE HERO -->
+
+      <!-- PWR COVER ART HERO (uncomment on May 15 wide release — remove pre-release hero above)
+      <div class="hero-content">
+        <p class="hero-eyebrow">Multidisciplinary Artist · Griot</p>
+        <h1 class="hero-headline" aria-label="I just had to go get in touch">
+          <span class="word">I</span> <span class="word">just</span> <span class="word">had</span> <span class="word">to</span> <span class="word">go</span><br>
+          <span class="word">get</span> <span class="word">in</span> <span class="word"><em>touch</em></span>
+        </h1>
         <div class="hero-audio-wrap">
           <button class="hero-audio-btn" id="heroAudioBtn" aria-label="Play PWR preview">
             <svg class="hero-audio-icon play" viewBox="0 0 24 24" fill="none">
@@ -204,7 +227,6 @@
             <source src="/src/assets/Pwr_audio.mp3" type="audio/mpeg">
           </audio>
         </div>
-        -->
         <div class="hero-actions">
           <a href="https://oluanuakin.bandcamp.com/track/pwr-2" target="_blank" rel="noopener" class="hero-cta hero-cta--primary">
             <span class="hero-cta-text">Listen to PWR</span>
@@ -221,6 +243,7 @@
         </div>
         <p class="hero-cover-label">PWR — Single</p>
       </div>
+      END PWR COVER ART HERO -->
 
       <!-- AFTERGLOW HERO (preserved for release day — uncomment and remove PWR block above)
       <div class="hero-content">
@@ -353,44 +376,66 @@
           <p class="sec-eyebrow" style="margin-bottom:6px;">The Gallery</p>
           <p style="font-size:11px;color:var(--text-muted);max-width:360px;line-height:1.7;letter-spacing:.02em;">Handmade collage, modeling, and visual work.</p>
         </div>
+        <!-- Filter buttons — commented out while gallery is collage-only. Restore when modeling photos are added.
         <div class="world-filter">
           <button class="world-filter-btn active" data-filter="all">All</button>
           <button class="world-filter-btn" data-filter="collage">Collage</button>
           <button class="world-filter-btn" data-filter="photo">Photo</button>
         </div>
+        -->
       </div>
       <div class="world-grid reveal reveal-d1">
-        <div class="world-item" data-type="photo" data-title="Studio Portrait" data-artist="Photographer TBD">
-          <img src="/src/assets/modeling/SSP_1174 copy.webp" alt="øLu AnuAkin — studio portrait" loading="lazy" />
-          <div class="world-item-info"><span class="world-item-info-title">Studio Portrait</span><span class="world-item-info-artist">Photographer TBD</span><span class="world-item-info-cue">View</span></div>
+        <div class="world-item" data-type="collage" data-title="Acknowledgement" data-artist="øLu AnuAkin">
+          <img src="/src/assets/collage/Acknowledgement_collage.png" alt="Collage — Acknowledgement" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Acknowledgement</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
-        <div class="world-item" data-type="collage" data-title="Forbidden Fruit" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Akinyemi_022024_8_flat.webp" alt="Collage — Forbidden Fruit" loading="lazy" />
-          <div class="world-item-info"><span class="world-item-info-title">Forbidden Fruit</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
+        <!-- Portrait I (Connor James) — hold for Afterglow release
+        <div class="world-item" data-type="photo" data-title="Portrait I" data-artist="Connor James">
+          <img src="/src/assets/modeling/Connor James x Olu_photo (8).png" alt="øLu AnuAkin — portrait by Connor James" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Portrait I</span><span class="world-item-info-artist">Connor James</span><span class="world-item-info-cue">View</span></div>
         </div>
-        <div class="world-item" data-type="photo" data-title="Mask Portrait" data-artist="Photographer TBD">
-          <img src="/src/assets/modeling/olu_bw_mask.webp" alt="øLu AnuAkin — mask portrait" loading="lazy" />
-          <div class="world-item-info"><span class="world-item-info-title">Mask Portrait</span><span class="world-item-info-artist">Photographer TBD</span><span class="world-item-info-cue">View</span></div>
+        -->
+        <!-- Ancestors Watching — non-transparent background, doesn't match current collage set
+        <div class="world-item" data-type="collage" data-title="Ancestors Watching" data-artist="øLu AnuAkin">
+          <img src="/src/assets/collage/Ancestors watching_collage.png" alt="Collage — Ancestors Watching" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Ancestors Watching</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
-        <div class="world-item" data-type="collage" data-title="Dreams of our Ancestors" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Akinyemi_042024_flat.webp" alt="Collage — Dreams of our Ancestors" loading="lazy" />
-          <div class="world-item-info"><span class="world-item-info-title">Dreams of our Ancestors</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
+        -->
+        <div class="world-item" data-type="collage" data-title="Dreams of Our Ancestors" data-artist="øLu AnuAkin">
+          <img src="/src/assets/collage/Dreams of our Ancestors_collage.png" alt="Collage — Dreams of Our Ancestors" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Dreams of Our Ancestors</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
-        <div class="world-item" data-type="photo" data-title="Urban Landscape" data-artist="Photographer TBD">
-          <img src="/src/assets/modeling/olu_bw_milesPhoto.webp" alt="øLu AnuAkin — urban landscape" loading="lazy" />
-          <div class="world-item-info"><span class="world-item-info-title">Urban Landscape</span><span class="world-item-info-artist">Photographer TBD</span><span class="world-item-info-cue">View</span></div>
+        <!-- Portrait II (Connor James) — hold for Afterglow release
+        <div class="world-item" data-type="photo" data-title="Portrait II" data-artist="Connor James">
+          <img src="/src/assets/modeling/Connor James x Olu_photo (9).png" alt="øLu AnuAkin — portrait by Connor James" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Portrait II</span><span class="world-item-info-artist">Connor James</span><span class="world-item-info-cue">View</span></div>
         </div>
-        <div class="world-item" data-type="collage" data-title="Child with Crown" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Akinyemi_022024_6_flat.webp" alt="Collage — child with crown" loading="lazy" />
-          <div class="world-item-info"><span class="world-item-info-title">Child with Crown</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
+        -->
+        <div class="world-item" data-type="collage" data-title="Granny" data-artist="øLu AnuAkin">
+          <img src="/src/assets/collage/Granny_collage.png" alt="Collage — Granny" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Granny</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
-        <div class="world-item" data-type="photo" data-title="Outdoor Portrait" data-artist="Photographer TBD">
-          <img src="/src/assets/modeling/DSC_0238.webp" alt="øLu AnuAkin — outdoor portrait" loading="lazy" />
-          <div class="world-item-info"><span class="world-item-info-title">Outdoor Portrait</span><span class="world-item-info-artist">Photographer TBD</span><span class="world-item-info-cue">View</span></div>
+        <div class="world-item" data-type="collage" data-title="Issal Luv Bruh" data-artist="øLu AnuAkin">
+          <img src="/src/assets/collage/Issal luv bruh_collage.png" alt="Collage — Issal Luv Bruh" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Issal Luv Bruh</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
-        <div class="world-item" data-type="collage" data-title="Yoruba Masks and Cosmos" data-artist="øLu AnuAkin">
-          <img src="/src/assets/collage/Akinyemi_022024_10_flat.webp" alt="Collage — Yoruba masks and cosmos" loading="lazy" />
-          <div class="world-item-info"><span class="world-item-info-title">Yoruba Masks and Cosmos</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
+        <!-- Portrait III (Connor James) — hold for Afterglow release
+        <div class="world-item" data-type="photo" data-title="Portrait III" data-artist="Connor James">
+          <img src="/src/assets/modeling/Connor James x Olu_photo (10).png" alt="øLu AnuAkin — portrait by Connor James" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Portrait III</span><span class="world-item-info-artist">Connor James</span><span class="world-item-info-cue">View</span></div>
+        </div>
+        -->
+        <div class="world-item" data-type="collage" data-title="Lucky Charm Prince" data-artist="øLu AnuAkin">
+          <img src="/src/assets/collage/Lucky charm prince_collage.png" alt="Collage — Lucky Charm Prince" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Lucky Charm Prince</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
+        </div>
+        <div class="world-item" data-type="collage" data-title="Triumph" data-artist="øLu AnuAkin">
+          <img src="/src/assets/collage/Triumph_collage.png" alt="Collage — Triumph" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Triumph</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
+        </div>
+        <div class="world-item" data-type="collage" data-title="Warriors of Love" data-artist="øLu AnuAkin">
+          <img src="/src/assets/collage/Warriors of love_collage.png" alt="Collage — Warriors of Love" loading="lazy" />
+          <div class="world-item-info"><span class="world-item-info-title">Warriors of Love</span><span class="world-item-info-artist">øLu AnuAkin</span><span class="world-item-info-cue">View</span></div>
         </div>
       </div>
     </div>
@@ -601,14 +646,38 @@
     </div>
   </section>
 
+  <!-- ============================================================ KINDRED -->
+  <section class="kindred-section" id="kindred">
+    <div class="section-inner">
+      <p class="sec-eyebrow kindred-eyebrow reveal">Artists on my radar</p>
+      <button type="button" class="kindred-toggle reveal reveal-d1" aria-expanded="false" aria-controls="kindredList">
+        <span class="kindred-toggle-text">Kindred</span>
+        <svg class="kindred-toggle-icon" width="12" height="12" viewBox="0 0 12 12" fill="none"><polyline points="3,4.5 6,7.5 9,4.5" stroke="currentColor" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <ul class="kindred-list" id="kindredList">
+        <li><a href="https://patiencelekien.com/" target="_blank" rel="noopener" class="kindred-link">Patience Lekien</a></li>
+        <li><a href="https://www.instagram.com/wallflowermccoy/" target="_blank" rel="noopener" class="kindred-link">Shaina McCoy</a></li>
+        <li><a href="https://www.even.biz/artists/righteous-emcee" target="_blank" rel="noopener" class="kindred-link">Righteous Emcee</a></li>
+        <li><a href="https://createdbyhonesty.com/" target="_blank" rel="noopener" class="kindred-link">Honesty</a></li>
+        <li><a href="https://www.harmoniarosales.art/" target="_blank" rel="noopener" class="kindred-link">Harmonia Rosales</a></li>
+        <li><a href="https://xinaverse.com/" target="_blank" rel="noopener" class="kindred-link">Xina</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- <div class="mark-divider">
+    <img src="/src/assets/Olu logo_Dark_no_bkrgd.png" alt="" class="mark-logo mark-logo-dark" width="37" height="37" />
+    <img src="/src/assets/Olu logo_Light_no_bkrgd.png" alt="" class="mark-logo mark-logo-light" width="37" height="37" />
+  </div> -->
+
   <!-- ============================================================ PRIVATE ACCESS -->
   <div class="private-strip reveal">
-    <a href="https://untitled.stream" target="_blank" rel="noopener" class="private-logo-cta" data-tooltip="Enter [untitled]">
+    <p class="private-eyebrow">Private Access</p>
+    <a href="https://untitled.stream" target="_blank" rel="noopener" class="private-logo-cta" >
       <img src="/src/assets/untitled-logo.webp" alt="[untitled]" class="private-logo-img private-logo-frame" />
       <img src="/src/assets/CD_untitled.webp" alt="" class="private-logo-cd" aria-hidden="true" />
     </a>
-    <span class="private-dot">·</span>
-    <p class="private-tagline">A sacred place for your work-in-progress music.</p>
+    <p class="private-tagline">A sacred place for unreleased music.</p>
   </div>
 
   <!-- EMAIL CAPTURE (commented out — uncomment when Afterglow launches and teaser email form is removed) -->

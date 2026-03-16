@@ -68,3 +68,16 @@ Rely on modern ES6 modules, CSS Custom Properties (Variables), and standard CSS 
 ## Testing Strategy
 - **Unit Tests**: Use Vitest (`*.test.js`) to test pure functions in the `core/` layer.
 - **Integration**: Keep UI logic thin so tests can focus heavily on core business logic and state orchestration.
+
+## Image Optimization
+
+Full spec: `image-optimization-spec.md`. Follow these rules when working with images:
+
+- **Tool**: `sharp` via `scripts/optimize-images.mjs`. Never use `cwebp` directly.
+- **Non-destructive**: Generate sized variants (`-400`, `-800`, `-1200`) alongside originals. Never overwrite source files.
+- **No generation loss**: Always compress from the original, never re-compress an already-compressed image.
+- **Responsive delivery**: Use `srcset` + `sizes` on `<img>` tags. Gallery overlay JS should swap to the `-1200` variant.
+- **Quality**: q75 for collages/art, q80 for professional photography.
+- **Lazy loading**: All below-fold images must have `loading="lazy"`.
+- **Formats**: WebP now; AVIF + `<picture>` fallback planned (Phase 2).
+- **Transparency**: When converting PNGs with alpha channels, verify output has `channels: 4`. Use `alphaQuality: 100` for WebP.

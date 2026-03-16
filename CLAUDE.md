@@ -58,20 +58,22 @@ Visuals: CSS Keyframes, 3D Gallery Canvas
 ### Project Structure 
 ```text
 /
-  index.html              # Main artist landing page (Vite entry)
-  package.json            # Vite & Vitest dependencies
-  CLAUDE.md               # Project overview
+  index.html                  # Main artist landing page (Vite entry)
+  package.json                # Vite & Vitest dependencies
+  CLAUDE.md                   # Project overview
+  image-optimization-spec.md  # Responsive image pipeline spec (srcset, AVIF, blur-up, CMS)
   .github/
-    copilot-instructions.md # Architecture & coding guidelines
-  public/                 # Static assets copied to build root (robots.txt, sitemap.xml, OG image)
+    copilot-instructions.md   # Architecture & coding guidelines
+  public/                     # Static assets copied to build root (robots.txt, sitemap.xml, OG image)
   scripts/
-    optimize-images.mjs   # sharp-based image optimizer — run after adding new assets
+    optimize-images.mjs       # sharp-based image optimizer — run after adding new assets
   src/
     css/
-      styles.css          # Global styles
+      styles.css              # Global styles
     js/
-      main.js             # Theme toggle, custom cursor, scroll reveals
-      gallery3d.js        # 3D card carousel for gallery section
+      main.js                 # Theme toggle, custom cursor, scroll reveals, hover audio
+      gallery3d.js            # 3D card carousel for gallery section
+      hoverAudio.js           # Web Audio API hover/tap audio controller
 ```
 
 ---
@@ -99,19 +101,31 @@ Visuals: CSS Keyframes, 3D Gallery Canvas
 
 - **Theming:** Use CSS variables heavily. All colors must be routed through the `:root` tokens so `[data-theme="light"]` overrides apply instantly across the UI.
 - **Interactions:** Use `IntersectionObserver` for the `.reveal` class animations rather than scroll event listeners to maintain performance.
-- **Media:** All images must be optimized with `sharp` before committing. Run `node scripts/optimize-images.mjs` after adding new assets. Gallery images resize to 800px (2x retina), logos to 80px. Never use `cwebp` directly — sharp produces 40-50% smaller files at the same visual quality. All below-fold images must have `loading="lazy"`.
+- **Media:** See [`image-optimization-spec.md`](image-optimization-spec.md) for the full pipeline. Key rules:
+  - Run `node scripts/optimize-images.mjs` after adding new assets. Never use `cwebp` — sharp produces 40-50% smaller files.
+  - **Never overwrite originals** — generate sized variants alongside (`-400`, `-800`, `-1200`).
+  - **Never re-compress compressed images** — always start from the original source file.
+  - Use `srcset` + `sizes` for responsive delivery; swap to largest variant in overlay JS.
+  - All below-fold images must have `loading="lazy"`.
+  - Modeling/professional photos: q80. Collages and general art: q75.
 
 ---
 
-## Future Roadmap
+## Roadmap
 
-**Phase 1: Architecture separation & URL Cleanup**
-- Refactor the single file (`index.html`) into modular `css/styles.css` and `js/main.js`. 
+### Completed
 
-**Phase 2: Asset Implementation**
-- Asset swapping: Replace placeholder comments (`<!-- ASSET SWAP: ... -->`) with final high-res but web-optimized artist imagery.
-- Finalize Canvas interactions (ensuring the Flow Field doesn't drain mobile batteries).
+- Architecture separation: modular `css/styles.css`, `js/main.js`, `js/gallery3d.js`, `js/hoverAudio.js`
+- Asset implementation: gallery images, cover art layers, hover audio wired up
+- 3D gallery canvas carousel with progressive enhancement
 
-**Phase 3: Deep World-Building**
-- Expand the "Notes" section potentially into a CMS-driven or dynamically populated feed without breaking the vanilla aesthetic.
-- Add audio preview snippets natively into the `.track-item` or `.catalog-card` so users can listen without leaving the page.
+### Active
+
+- Responsive image pipeline: multi-resolution `srcset` + AVIF (see [`image-optimization-spec.md`](image-optimization-spec.md))
+- Gallery content curation (collage + modeling photo selection)
+
+### Future
+
+- Blur-up image placeholders (Phase 3 of image spec)
+- Headless CMS for Notes, gallery, and catalog (Phase 4 of image spec)
+- Audio preview snippets in `.track-item` or `.catalog-card`

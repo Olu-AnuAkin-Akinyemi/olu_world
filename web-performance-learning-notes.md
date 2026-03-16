@@ -218,6 +218,44 @@ Whenever a YouTube video, Vimeo embed, Bandcamp player, Typeform, Calendly, or a
 
 This four-step escalation handles virtually every third-party embed performance problem you will encounter.
 
+### Applying the same principle to audio and JS modules
+
+The `data-src` + IntersectionObserver pattern is specific to iframes, but the underlying principle — *don't load it until the user needs it* — applies to any resource:
+
+**Dynamic `import()` for JS modules:**
+```javascript
+// WRONG — loads hoverAudio.js in the initial bundle
+import { createHoverAudio } from './hoverAudio.js';
+
+// RIGHT — loads hoverAudio.js only when the hero cover exists on the page
+import('./hoverAudio.js').then(({ createHoverAudio }) => {
+  // now it's available
+});
+```
+
+The browser downloads `hoverAudio.js` as a separate chunk (~0.5KB), only when the `import()` is reached. If the hero cover doesn't exist (e.g., a future page without it), the module is never fetched at all.
+
+**Deferring `AudioContext` and `fetch` to first interaction:**
+```javascript
+// AudioContext is NOT created on page load.
+// It is created on the first hover/tap — when the user actually wants audio.
+async function init() {
+  if (audioCtx) return true;  // already initialized — idempotent
+  audioCtx = new AudioContext();
+  const res = await fetch(audioUrl);
+  audioBuffer = await audioCtx.decodeAudioData(await res.arrayBuffer());
+}
+
+// First hover triggers init, subsequent hovers skip it
+el.addEventListener('mouseenter', () => {
+  init().then(() => start());
+});
+```
+
+This means zero audio overhead on page load. The `AudioContext`, network fetch, and decode all happen on the first user interaction — and only once.
+
+**The transferable principle:** For any resource that is *conditional on user interaction* (audio, video, heavy visualizations), defer both the module load and the runtime initialization to the moment the user first triggers it.
+
 ---
 
 ## 5. The Network Waterfall

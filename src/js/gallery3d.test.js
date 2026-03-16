@@ -44,14 +44,13 @@ function buildDOM() {
           </div>
         </div>
         <div class="world-grid">
-          <div class="world-item" data-type="photo"><img src="/thumb/1.jpg" alt="Photo 1" /></div>
-          <div class="world-item" data-type="collage"><img src="/thumb/2.jpg" alt="Collage 1" /></div>
-          <div class="world-item" data-type="photo"><img src="/thumb/3.jpg" alt="Photo 2" /></div>
-          <div class="world-item" data-type="collage"><img src="/thumb/4.jpg" alt="Collage 2" /></div>
-          <div class="world-item" data-type="photo"><img src="/thumb/5.jpg" alt="Photo 3" /></div>
-          <div class="world-item" data-type="collage"><img src="/thumb/6.jpg" alt="Collage 3" /></div>
-          <div class="world-item" data-type="photo"><img src="/thumb/7.jpg" alt="Photo 4" /></div>
-          <div class="world-item" data-type="collage"><img src="/thumb/8.jpg" alt="Collage 4" /></div>
+          <div class="world-item" data-type="collage"><img src="/thumb/1.jpg" alt="Collage 1" /></div>
+          <div class="world-item" data-type="collage"><img src="/thumb/2.jpg" alt="Collage 2" /></div>
+          <div class="world-item" data-type="collage"><img src="/thumb/3.jpg" alt="Collage 3" /></div>
+          <div class="world-item" data-type="collage"><img src="/thumb/4.jpg" alt="Collage 4" /></div>
+          <div class="world-item" data-type="collage"><img src="/thumb/5.jpg" alt="Collage 5" /></div>
+          <div class="world-item" data-type="collage"><img src="/thumb/6.jpg" alt="Collage 6" /></div>
+          <div class="world-item" data-type="collage"><img src="/thumb/7.jpg" alt="Collage 7" /></div>
         </div>
       </div>
     </section>
@@ -89,7 +88,7 @@ describe('gallery3d', () => {
     })));
   });
 
-  it('initializes with 8 images and adds gallery-3d-active class', async () => {
+  it('initializes with 7 images and adds gallery-3d-active class', async () => {
     const { initGalleryCarousel } = await import('./gallery3d.js');
     const result = initGalleryCarousel();
     expect(result).not.toBeNull();

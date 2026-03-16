@@ -115,21 +115,48 @@ const iframeObs = new IntersectionObserver((entries, observer) => {
 }, { rootMargin: '200px' });
 document.querySelectorAll('.catalog-cover iframe[data-src]').forEach(iframe => iframeObs.observe(iframe));
 
-/* --- Hero cover tilt on mousemove --- */
+/* --- Hero cover tilt on mousemove + hover audio --- */
 const heroCoverLayers = document.querySelector('.hero-cover-layers');
 const heroCover = document.querySelector('.hero-cover');
 if (heroCoverLayers && heroCover) {
-  heroCover.addEventListener('mousemove', e => {
-    const rect = heroCoverLayers.getBoundingClientRect();
-    const x = (e.clientX - rect.left) / rect.width - 0.5;
-    const y = (e.clientY - rect.top) / rect.height - 0.5;
-    heroCoverLayers.style.transform = `scale(1.03) rotateY(${x * 8}deg) rotateX(${y * -8}deg)`;
-    heroCoverLayers.classList.add('tilt-active');
+  const audioUrl = new URL('../assets/PWR_audio snip.mp3', import.meta.url).href;
+  let hoverAudio = null;
+
+  import('./hoverAudio.js').then(({ createHoverAudio }) => {
+    hoverAudio = createHoverAudio(audioUrl, {
+      onEnded() {
+        heroCoverLayers.style.transform = '';
+        heroCoverLayers.classList.remove('tilt-active');
+      }
+    });
   });
-  heroCover.addEventListener('mouseleave', () => {
-    heroCoverLayers.style.transform = '';
-    heroCoverLayers.classList.remove('tilt-active');
-  });
+
+  const isTouchDevice = matchMedia('(pointer: coarse)').matches;
+
+  if (!isTouchDevice) {
+    /* Desktop: tilt on mousemove, audio on hover */
+    heroCover.addEventListener('mousemove', e => {
+      const rect = heroCoverLayers.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - 0.5;
+      const y = (e.clientY - rect.top) / rect.height - 0.5;
+      heroCoverLayers.style.transform = `scale(1.03) rotateY(${x * 8}deg) rotateX(${y * -8}deg)`;
+      heroCoverLayers.classList.add('tilt-active');
+    });
+    heroCover.addEventListener('mouseenter', () => {
+      hoverAudio?.init().then(ok => { if (ok) hoverAudio.start(); });
+    });
+    heroCover.addEventListener('mouseleave', () => {
+      heroCoverLayers.style.transform = '';
+      heroCoverLayers.classList.remove('tilt-active');
+      hoverAudio?.stop();
+    });
+  } else {
+    /* Mobile: tap to play once, glow resets when audio ends */
+    heroCoverLayers.addEventListener('click', () => {
+      heroCoverLayers.classList.add('tilt-active');
+      hoverAudio?.init().then(ok => { if (ok) hoverAudio.start(); });
+    });
+  }
 }
 
 /* --- Parallax on atmo breaks --- */
@@ -388,6 +415,29 @@ if (scrollTopBtn) {
   }, { passive: true });
   scrollTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+/* --- Private tagline hover/tap reveal --- */
+const privateLogoCta = document.querySelector('.private-logo-cta');
+const privateStrip = document.querySelector('.private-strip');
+if (privateLogoCta && privateStrip) {
+  privateLogoCta.addEventListener('mouseenter', () => privateStrip.classList.add('tagline-open'));
+  privateLogoCta.addEventListener('mouseleave', () => privateStrip.classList.remove('tagline-open'));
+  privateLogoCta.addEventListener('click', e => {
+    if (privateStrip.classList.contains('tagline-open')) return;
+    e.preventDefault();
+    privateStrip.classList.toggle('tagline-open');
+  });
+}
+
+/* --- Kindred accordion --- */
+const kindredToggle = document.querySelector('.kindred-toggle');
+const kindredList = document.querySelector('.kindred-list');
+if (kindredToggle && kindredList) {
+  kindredToggle.addEventListener('click', () => {
+    const open = kindredList.classList.toggle('kindred-list--open');
+    kindredToggle.setAttribute('aria-expanded', open);
   });
 }
 

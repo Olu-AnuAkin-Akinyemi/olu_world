@@ -176,12 +176,12 @@
 <!-- Open Graph -->
 <meta property="og:title" content="øLu AnuAkin — Afterglow EP • 2026" />
 <meta property="og:description" content="Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. Afterglow EP out now." />
-<meta property="og:image" content="https://olu.world/src/assets/AFTERGLOW_cover-art.webp" />
+<meta property="og:image" content="https://olu.world/AFTERGLOW_cover-art.webp" />
 
 <!-- Twitter Card -->
 <meta name="twitter:title" content="øLu AnuAkin — Afterglow EP • 2026" />
 <meta name="twitter:description" content="Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Afterglow EP out now." />
-<meta name="twitter:image" content="https://olu.world/src/assets/AFTERGLOW_cover-art.webp" />
+<meta name="twitter:image" content="https://olu.world/AFTERGLOW_cover-art.webp" />
 ```
 
 ---
@@ -214,10 +214,11 @@ When swapping featured project (e.g., PWR → Afterglow):
 
 1. **`<meta description>`** — swap release name and status
 2. **OG + Twitter tags** — swap title, description, and image URL
-3. **JSON-LD** — update `"image"`, add URL to new album, update descriptions
-4. **Hero section** — uncomment Afterglow hero, comment PWR hero (see comment blocks in `index.html`)
-5. **`sitemap.xml`** — update `<lastmod>` to deploy date
-6. **Archive section** — uncomment PWR archive card (May 15 wide release)
+3. **OG image in `public/`** — optimize Afterglow cover art with sharp (1200px, q85) and save as `public/AFTERGLOW_cover-art.webp` so the OG URL resolves in production
+4. **JSON-LD** — update `"image"`, add URL to new album, update descriptions
+5. **Hero section** — uncomment Afterglow hero, comment PWR hero (see comment blocks in `index.html`)
+6. **`sitemap.xml`** — update `<lastmod>` to deploy date
+7. **Archive section** — uncomment PWR archive card (May 15 wide release)
 
 ---
 
