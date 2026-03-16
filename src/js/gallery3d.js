@@ -183,6 +183,7 @@ export function initGalleryCarousel() {
 
   canvas.addEventListener('pointermove', e => {
     if (!isDragging) return;
+    e.preventDefault();
     const dx = e.clientX - dragStartX;
     dragStartX = e.clientX;
     totalDragDist += Math.abs(dx);
