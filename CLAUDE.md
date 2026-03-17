@@ -100,6 +100,7 @@ Visuals: CSS Keyframes, 3D Gallery Canvas
 ### Code Standards
 
 - **Theming:** Use CSS variables heavily. All colors must be routed through the `:root` tokens so `[data-theme="light"]` overrides apply instantly across the UI.
+- **Layout:** Horizontal page gutters use `--page-gutter` (48px desktop, 28px at ≤980px). Always use `var(--page-gutter)` for section/container horizontal padding — never hardcode `48px`/`28px` for gutters.
 - **Interactions:** Use `IntersectionObserver` for the `.reveal` class animations rather than scroll event listeners to maintain performance.
 - **Media:** See [`image-optimization-spec.md`](image-optimization-spec.md) for the full pipeline. Key rules:
   - Run `node scripts/optimize-images.mjs` after adding new assets. Never use `cwebp` — sharp produces 40-50% smaller files.

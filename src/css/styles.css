@@ -20,6 +20,7 @@
   --mono: "DM Mono", "Courier New", monospace;
   --ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   --ease-out: cubic-bezier(0, 0, 0.2, 1);
+  --page-gutter: 48px;
 }
 [data-theme="light"] {
   --bg: #f5f0e8;
@@ -185,7 +186,7 @@ body.cursor-hidden .cursor-ring {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 48px;
+  padding: 20px var(--page-gutter);
   transition:
     padding 0.4s var(--ease),
     border-color 0.3s,
@@ -193,7 +194,7 @@ body.cursor-hidden .cursor-ring {
   border-bottom: 0.5px solid transparent;
 }
 .nav.scrolled {
-  padding: 14px 48px;
+  padding: 14px var(--page-gutter);
   border-color: var(--border);
   background: rgba(7, 7, 13, 0.82);
   backdrop-filter: blur(20px);
@@ -468,7 +469,7 @@ body.cursor-hidden .cursor-ring {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 48px;
+  padding: 0 var(--page-gutter);
 }
 .hero-content {
   position: relative;
@@ -600,7 +601,7 @@ body.cursor-hidden .cursor-ring {
   text-align: center;
   justify-content: flex-end;
   min-height: 100vh;
-  padding: 0 48px 100px;
+  padding: 0 var(--page-gutter) 100px;
   width: 100%;
   max-width: 100%;
 }
@@ -891,7 +892,7 @@ body.cursor-hidden .cursor-ring {
 .scroll-hint {
   position: absolute;
   bottom: 36px;
-  left: 48px;
+  left: var(--page-gutter);
   font-size: 8px;
   letter-spacing: 0.16em;
   color: var(--text-faint);
@@ -918,7 +919,7 @@ body.cursor-hidden .cursor-ring {
 .section-inner {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 0 48px;
+  padding: 0 var(--page-gutter);
 }
 .sec-eyebrow {
   font-size: 8px;
@@ -1228,7 +1229,7 @@ body.cursor-hidden .cursor-ring {
   z-index: 1;
 }
 .world-header {
-  padding: 0 48px;
+  padding: 0 var(--page-gutter);
   margin-bottom: 48px;
   display: flex;
   align-items: flex-end;
@@ -1263,7 +1264,7 @@ body.cursor-hidden .cursor-ring {
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: 60px;
   gap: 3px;
-  padding: 0 48px;
+  padding: 0 var(--page-gutter);
 }
 .world-item {
   overflow: hidden;
@@ -2564,7 +2565,7 @@ body.cursor-hidden .cursor-ring {
 .private-strip {
   max-width: 1140px;
   margin: 0 auto;
-  padding: 28px 48px;
+  padding: 28px var(--page-gutter);
   border-top: 0.5px solid var(--border);
   border-bottom: 0.5px solid var(--border);
   display: flex;
@@ -2655,7 +2656,7 @@ body.cursor-hidden .cursor-ring {
     ============================================================ */
 .email-capture {
   position: relative;
-  padding: 120px 48px;
+  padding: 120px var(--page-gutter);
   text-align: center;
   border-top: 0.5px solid var(--border);
   overflow: hidden;
@@ -2743,7 +2744,7 @@ body.cursor-hidden .cursor-ring {
     ============================================================ */
 footer {
   border-top: 0.5px solid var(--border);
-  padding: 40px 48px;
+  padding: 40px var(--page-gutter);
 }
 .footer-inner {
   max-width: 1140px;
@@ -3012,15 +3013,15 @@ footer {
        RESPONSIVE
     ============================================================ */
 @media (max-width: 980px) {
+  :root {
+    --page-gutter: 28px;
+  }
   .nav,
   .nav.scrolled {
-    padding: 16px 28px;
+    padding: 16px var(--page-gutter);
   }
   .hero-content {
-    padding: 0 28px;
-  }
-  .section-inner {
-    padding: 0 28px;
+    padding: 0 var(--page-gutter);
   }
   .afterglow-layout {
     grid-template-columns: 1fr;
@@ -3031,11 +3032,7 @@ footer {
   .afterglow-tracks {
     border-left: none;
     border-top: 0.5px solid var(--border);
-    padding: 36px 28px;
-  }
-  .world-header,
-  .world-grid {
-    padding: 0 28px;
+    padding: 36px var(--page-gutter);
   }
   .sync-layout {
     grid-template-columns: 1fr;
@@ -3048,20 +3045,14 @@ footer {
     aspect-ratio: 16/9;
   }
   .private-strip {
-    padding: 24px 28px;
+    padding: 24px var(--page-gutter);
     gap: 10px;
   }
   .email-capture {
-    padding: 90px 28px;
+    padding: 90px var(--page-gutter);
   }
   footer {
-    padding: 32px 28px;
-  }
-  .scroll-hint {
-    left: 28px;
-  }
-  .hero-content--bottom {
-    padding: 0 28px 100px;
+    padding: 32px var(--page-gutter);
   }
   .note-item {
     grid-template-columns: 60px 20px 1fr auto;
@@ -3118,7 +3109,7 @@ footer {
     justify-content: center;
   }
   .hero-content--bottom {
-    padding: 0 28px 90px;
+    padding: 0 var(--page-gutter) 90px;
   }
   .note-media-pill {
     display: none;
