@@ -1899,7 +1899,7 @@ body.cursor-hidden .cursor-ring {
   .catalog-card {
     flex: 0 0 100%;
     min-width: 0;
-    padding: 16px;
+    padding: 10px;
   }
   .catalog-carousel {
     gap: 8px;
@@ -3132,7 +3132,7 @@ footer {
     display: block;
   }
   .catalog-cover--video {
-    min-height: 200px;
+    min-height: 240px;
   }
   .catalog-cover--video-vertical {
     max-height: none;
