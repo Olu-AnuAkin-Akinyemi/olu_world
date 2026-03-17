@@ -117,6 +117,7 @@ const iframeObs = new IntersectionObserver((entries, observer) => {
 }, { rootMargin: '200px' });
 document.querySelectorAll('.catalog-cover iframe[data-src]').forEach(iframe => iframeObs.observe(iframe));
 
+
 /* --- Hero cover tilt on mousemove + hover audio --- */
 const heroCoverLayers = document.querySelector('.hero-cover-layers');
 const heroCover = document.querySelector('.hero-cover');

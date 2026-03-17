@@ -4,41 +4,48 @@
 > **Project:** øLu AnuAkin — https://oluanuakin.me/
 > **Stack:** Vite 5.x · Vanilla JS/CSS · Custom Audio/Video · Bandcamp/Spotify/Apple/Tidal
 > **Why:** Improve visibility, citation, and conversion for a multidisciplinary artist, griot, and founder. Optimize for both traditional SEO and GEO (AI search engines).
-> **Last updated:** 2026-03-15
+> **Last updated:** 2026-03-16
 
 ---
 
 ## Current State Snapshot
 
 | Element | Status | Notes |
-|---|---|---|
-| `<meta description>` | ✅ Done | Updated with Griot, Founder, Minnesota, Yoruba roots, PWR |
-| `<title>` | ✅ Good | "øLu AnuAkin — Multidisciplinary Artist" |
-| Open Graph | ✅ Done | `og:title`, `og:description`, `og:image` (PWR cover), `og:type`, `og:url` |
-| Twitter Card | ✅ Done | `summary_large_image` with PWR art |
-| JSON-LD structured data | ✅ Done | `MusicGroup` + 3 albums (PWR, Afterglow, Mama's Boy) |
+| --- | --- | --- |
+| `<title>` | ✅ Done | "øLu AnuAkin — Multidisciplinary · Griot" |
+| `<meta description>` | ✅ Done | Griot, Founder, Minnesota, Yoruba roots (no release name — swap per era) |
+| `<h1>` | ✅ Done | Visually-hidden: "øLu AnuAkin — Alternative Soul · Indie R&B" (eyebrow demoted to `<p>`) |
+| Open Graph | ✅ Done | `og:title`, `og:description`, `og:image` (`about_FB_OG_photo.jpg`), `og:type`, `og:url` |
+| Twitter Card | ✅ Done | `summary_large_image` with `about_FB_OG_photo.jpg` |
+| JSON-LD structured data | ✅ Done | `MusicGroup` + 3 albums + `foundingDate: 2019` + Spotify in `sameAs` |
 | Canonical URL | ✅ Done | `https://oluanuakin.me/` |
 | `sitemap.xml` | ✅ Done | In `public/` — single URL entry |
 | `robots.txt` | ✅ Done | In `public/` — allows all crawlers |
 | Favicon | ✅ Done | SVG + PNG + ICO + Apple Touch + Web Manifest |
+| Sync copy | ✅ Done | "available upon request" — stems/TV mix tags removed (Phase 2 deliverables) |
+| Footer | ✅ Done | Instagram · Bandcamp · Stream (Odesli smart link) — SoundCloud removed |
+| Archive | ✅ Done | Divine One (Cloudflare Stream) + Nirvana (YouTube). Sacred card preserved in comments |
 
 ---
 
 ## 1. Meta Description — Current / Swap Templates
 
-**Current (PWR era):**
+**Current (pre-release — no release name):**
+
 ```html
-<meta name="description" content="øLu AnuAkin — Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. PWR out now.">
+<meta name="description" content="øLu AnuAkin — Multidisciplinary · Griot · Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots." />
 ```
 
 **Afterglow pre-release (swap when ready):**
+
 ```html
-<meta name="description" content="øLu AnuAkin — Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. Afterglow EP coming soon.">
+<meta name="description" content="øLu AnuAkin — Multidisciplinary · Griot · Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. Afterglow EP coming soon." />
 ```
 
 **Afterglow post-release:**
+
 ```html
-<meta name="description" content="øLu AnuAkin — Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. Afterglow EP out now.">
+<meta name="description" content="øLu AnuAkin — Multidisciplinary · Griot · Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. Afterglow EP out now." />
 ```
 
 **Why:** Specific, citable, and concise. "Griot" and "Founder" add depth. Swap the release name and status as projects launch.
@@ -48,15 +55,16 @@
 ## 2. JSON-LD Structured Data — MusicGroup + Albums + Tracks
 
 **Currently in `<head>` of `index.html`:**
+
 ```json
 {
   "@context": "https://schema.org",
   "@type": "MusicGroup",
   "name": "øLu AnuAkin",
   "url": "https://oluanuakin.me/",
-  "genre": ["Alternative Soul", "Indie R&B", "Conscious Hip Hop"],
-  "description": "Multidisciplinary Artist, Griot, and Founder. Yoruba and American roots. Based in Minnesota.",
-  "image": "https://oluanuakin.me/PWR_Cover-Art.webp",
+  "genre": ["Alternative Soul", "Indie R&B"],
+  "description": "Multidisciplinary · Griot · Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots.",
+  "image": "https://oluanuakin.me/about_FB_OG_photo.jpg",
   "foundingLocation": {
     "@type": "Place",
     "name": "Minnesota",
@@ -66,10 +74,12 @@
       "addressCountry": "US"
     }
   },
+  "foundingDate": "2019",
   "knowsAbout": [
-    "Alternative Soul", "Indie R&B", "Conscious Hip Hop",
-    "Music Production", "Visual Art", "Cinematic World-Building",
-    "Sync Licensing", "Yoruba Culture", "Griot Storytelling Tradition"
+    "Alternative Soul", "Indie R&B",
+    "Music Production", "Visual Art", "Modeling", "Handmade Collage",
+    "Cinematic World-Building", "Audio Engineering", "Performance Art",
+    "Yoruba Culture", "Griot Storytelling Tradition"
   ],
   "member": [{"@type": "Person", "name": "øLu AnuAkin"}],
   "memberOf": {
@@ -80,7 +90,8 @@
   "sameAs": [
     "https://www.instagram.com/olu_anuakin/",
     "https://oluanuakin.bandcamp.com",
-    "https://soundcloud.com/oluanuakin"
+    "https://soundcloud.com/oluanuakin",
+    "https://open.spotify.com/artist/6HlPxqjDQ8lM8iJiHqegxm"
   ],
   "track": [
     {
@@ -132,56 +143,60 @@
 ### Schema.org MusicGroup — Properties Reference
 
 | Property | Status | GEO Value | Notes |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `name`, `url`, `description` | ✅ | Baseline | Core identity |
-| `genre` | ✅ | High | Alt Soul, Indie R&B, Conscious Hip Hop |
-| `image` | ✅ | Medium | Rich snippets in search |
+| `genre` | ✅ | High | Alternative Soul, Indie R&B |
+| `image` | ✅ | Medium | `about_FB_OG_photo.jpg` — rich snippets in search |
 | `foundingLocation` | ✅ | High | Location-based queries ("artists from Minnesota") |
-| `knowsAbout` | ✅ | **Highest** | Topical authority — AI engines use this to determine relevance |
+| `foundingDate` | ✅ | Medium | `"2019"` |
+| `knowsAbout` | ✅ | **Highest** | Topical authority — includes Modeling, Handmade Collage, Audio Engineering, Performance Art |
 | `memberOf` | ✅ | Medium | Cross-references Galorious Expression® entity |
-| `sameAs` | ✅ | High | Links social profiles as same entity |
-| `track` | ✅ | High | Individual song-level citations |
-| `album` | ✅ | High | Album/EP/single-level citations |
-| `foundingDate` | ❌ TODO | Medium | Add when user provides year |
+| `sameAs` | ✅ | High | Instagram, Bandcamp, SoundCloud, Spotify |
+| `track` | ✅ | High | PWR, Nirvana, CLMB MTNS |
+| `album` | ✅ | High | PWR (single), Afterglow (EP), Mama's Boy (album) |
 | `award` | ❌ TODO | High | Add any recognitions for rich snippets |
 
 **Update checklist when Afterglow launches:**
+
 - Add `"url"` to the Afterglow album entry (Bandcamp link)
 - Update `"description"` from "coming soon" to release description
-- Swap `"image"` from PWR to Afterglow cover art
-- Add Spotify/Apple/Tidal to `"sameAs"` when DSP links are live
+- Swap `"image"` from `about_FB_OG_photo.jpg` to Afterglow cover art
+- Add Apple Music and Tidal to `"sameAs"` (Spotify already present)
 
 ---
 
 ## 3. Open Graph & Twitter Card Meta Tags
 
 **Currently in `<head>` of `index.html`:**
+
 ```html
 <!-- Open Graph -->
-<meta property="og:title" content="øLu AnuAkin — PWR • 2026" />
-<meta property="og:description" content="Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. PWR out now." />
-<meta property="og:image" content="https://oluanuakin.me/PWR_Cover-Art.webp" />
+<meta property="og:title" content="øLu AnuAkin — Multidisciplinary · Griot" />
+<meta property="og:description" content="Multidisciplinary · Griot · Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots." />
+<meta property="og:image" content="https://oluanuakin.me/about_FB_OG_photo.jpg" />
 <meta property="og:type" content="music.musician" />
 <meta property="og:url" content="https://oluanuakin.me/" />
+<meta property="og:locale" content="en_US" />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="øLu AnuAkin — PWR • 2026" />
-<meta name="twitter:description" content="Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. PWR out now." />
-<meta name="twitter:image" content="https://oluanuakin.me/PWR_Cover-Art.webp" />
+<meta name="twitter:title" content="øLu AnuAkin — Multidisciplinary · Griot" />
+<meta name="twitter:description" content="Multidisciplinary · Griot · Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots." />
+<meta name="twitter:image" content="https://oluanuakin.me/about_FB_OG_photo.jpg" />
 ```
 
-**Swap template for Afterglow:**
+**Swap template for Afterglow (use `.jpg` for OG — Facebook/LinkedIn reject `.webp`):**
+
 ```html
 <!-- Open Graph -->
 <meta property="og:title" content="øLu AnuAkin — Afterglow EP • 2026" />
-<meta property="og:description" content="Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. Afterglow EP out now." />
-<meta property="og:image" content="https://oluanuakin.me/AFTERGLOW_cover-art.webp" />
+<meta property="og:description" content="Multidisciplinary · Griot · Founder. Alternative Soul / Indie R&B from Minnesota. Yoruba and American roots. Afterglow EP out now." />
+<meta property="og:image" content="https://oluanuakin.me/AFTERGLOW_cover-art.jpg" />
 
 <!-- Twitter Card -->
 <meta name="twitter:title" content="øLu AnuAkin — Afterglow EP • 2026" />
-<meta name="twitter:description" content="Multidisciplinary Artist, Griot, and Founder. Alternative Soul / Indie R&B from Minnesota. Afterglow EP out now." />
-<meta name="twitter:image" content="https://oluanuakin.me/AFTERGLOW_cover-art.webp" />
+<meta name="twitter:description" content="Multidisciplinary · Griot · Founder. Alternative Soul / Indie R&B from Minnesota. Afterglow EP out now." />
+<meta name="twitter:image" content="https://oluanuakin.me/AFTERGLOW_cover-art.jpg" />
 ```
 
 ---
@@ -212,13 +227,17 @@ Disallow: /
 
 When swapping featured project (e.g., PWR → Afterglow):
 
-1. **`<meta description>`** — swap release name and status
+1. **`<meta description>`** — append release name and status (e.g., "Afterglow EP out now.")
 2. **OG + Twitter tags** — swap title, description, and image URL
-3. **OG image in `public/`** — optimize Afterglow cover art with sharp (1200px, q85) and save as `public/AFTERGLOW_cover-art.webp` so the OG URL resolves in production
-4. **JSON-LD** — update `"image"`, add URL to new album, update descriptions
-5. **Hero section** — uncomment Afterglow hero, comment PWR hero (see comment blocks in `index.html`)
-6. **`sitemap.xml`** — update `<lastmod>` to deploy date
-7. **Archive section** — uncomment PWR archive card (May 15 wide release)
+3. **OG image in `public/`** — optimize Afterglow cover art with sharp (1200px, q85) and save as `public/AFTERGLOW_cover-art.jpg` (`.jpg` not `.webp` — Facebook/LinkedIn reject webp)
+4. **JSON-LD** — update `"image"`, add URL to Afterglow album entry, update descriptions
+5. **Hero section** — uncomment Afterglow hero, comment pre-release hero (see comment blocks in `index.html`)
+6. **`<h1>`** — remove visually-hidden h1, promote hero headline to `<h1>` (see PRE-RELEASE-HERO.md)
+7. **`sitemap.xml`** — update `<lastmod>` to deploy date
+8. **Archive section** — uncomment PWR archive card (May 15 wide release)
+9. **Email capture** — uncomment "Stay in the afterglow a little longer" CTA
+10. **Sync section** — uncomment Afterglow scene cards, update body copy
+11. **Cloudflare** — purge cache, then scrape Facebook/LinkedIn/Twitter debuggers
 
 ---
 
