@@ -2751,6 +2751,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  /* justify-content: center;
+  flex-direction: column; */
   gap: 32px;
   flex-wrap: wrap;
 }
@@ -2769,7 +2771,12 @@ footer {
   letter-spacing: 0.2em;
   color: var(--text-faint);
   text-transform: uppercase;
+  /* justify-content: center;
+  width: 100%; */
 }
+/* ============================================================
+       Footer Icons
+    ============================================================ */
 .footer-links {
   display: flex;
   gap: 14px;
@@ -3080,7 +3087,7 @@ footer {
   }
   .footer-inner {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
   }
   .hero-split {
     grid-template-columns: 1fr;
