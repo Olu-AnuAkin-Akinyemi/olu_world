@@ -357,6 +357,12 @@ const carouselTrack = document.querySelector('.catalog-track');
 const prevBtn = document.querySelector('.carousel-btn--prev');
 const nextBtn = document.querySelector('.carousel-btn--next');
 
+/* Single-card centered state */
+if (carouselTrack && carouselTrack.querySelectorAll('.catalog-card').length === 1) {
+  carouselTrack.classList.add('catalog-track--single');
+  carouselTrack.closest('.catalog-carousel')?.classList.add('catalog-carousel--single');
+}
+
 if (carouselTrack && prevBtn && nextBtn) {
   const scrollAmount = () => {
     const card = carouselTrack.querySelector('.catalog-card');

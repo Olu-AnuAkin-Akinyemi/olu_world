@@ -1846,6 +1846,23 @@ body.cursor-hidden .cursor-ring {
 .catalog-track::-webkit-scrollbar {
   display: none;
 }
+/* Single-card centered state */
+.catalog-carousel--single {
+  justify-content: center;
+}
+.catalog-carousel--single .carousel-btn {
+  display: none;
+}
+.catalog-track--single {
+  justify-content: center;
+  overflow-x: visible;
+  scroll-snap-type: none;
+}
+.catalog-track--single .catalog-card {
+  flex: 0 1 600px;
+  min-width: 0;
+  max-width: 100%;
+}
 .carousel-btn {
   flex-shrink: 0;
   width: 40px;
