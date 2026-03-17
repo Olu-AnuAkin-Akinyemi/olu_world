@@ -434,6 +434,7 @@ if (privateLogoCta && privateStrip) {
   privateLogoCta.addEventListener('mouseleave', () => privateStrip.classList.remove('tagline-open'));
   privateLogoCta.addEventListener('click', e => {
     if (privateStrip.classList.contains('tagline-open')) return;
+    if (window.matchMedia('(hover: none)').matches) return;
     e.preventDefault();
     privateStrip.classList.toggle('tagline-open');
   });

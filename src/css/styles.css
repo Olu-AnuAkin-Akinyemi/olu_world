@@ -3186,4 +3186,13 @@ footer {
   .note-media-pill {
     opacity: 1;
   }
+  .private-tagline {
+    max-height: 40px;
+    opacity: 1;
+    color: var(--text-faint);
+  }
+  .private-logo-frame,
+  .private-logo-cd {
+    opacity: 0.8;
+  }
 }
