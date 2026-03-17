@@ -117,19 +117,6 @@ const iframeObs = new IntersectionObserver((entries, observer) => {
 }, { rootMargin: '200px' });
 document.querySelectorAll('.catalog-cover iframe[data-src]').forEach(iframe => iframeObs.observe(iframe));
 
-/* --- Expand button (Cloudflare Stream mobile fullscreen) --- */
-document.querySelectorAll('.expand-btn').forEach(btn => {
-  btn.addEventListener('click', () => {
-    const fsEl = document.fullscreenElement || document.webkitFullscreenElement;
-    if (fsEl) {
-      (document.exitFullscreen || document.webkitExitFullscreen).call(document);
-    } else {
-      const cover = btn.closest('.catalog-cover');
-      if (cover) (cover.requestFullscreen || cover.webkitRequestFullscreen).call(cover);
-    }
-  });
-});
-
 /* --- Hero cover tilt on mousemove + hover audio --- */
 const heroCoverLayers = document.querySelector('.hero-cover-layers');
 const heroCover = document.querySelector('.hero-cover');
