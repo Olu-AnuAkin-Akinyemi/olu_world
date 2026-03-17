@@ -1897,7 +1897,7 @@ body.cursor-hidden .cursor-ring {
 }
 @media (max-width: 640px) {
   .catalog-card {
-    flex: 0 0 calc(100% - 16px);
+    flex: 0 0 100%;
     min-width: 0;
     padding: 16px;
   }
