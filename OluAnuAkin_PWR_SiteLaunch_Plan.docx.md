@@ -26,7 +26,7 @@ Two coordinated moments, three weeks apart, with six weeks of social momentum bu
 
 **PWR distribution:** Go wide. Spotify, Apple Music, Tidal, Amazon Music — plus keep the Bandcamp original. Use your existing distributor (DistroKid, TuneCore, or whatever you’re on). If you’re not on one yet, DistroKid at $22.99/year is the simplest path for unlimited releases.
 
-**Cover art:** Option B — same photo as the current Bandcamp cover, but scale up the “PWR” text 3-4x larger for thumbnail visibility. Keep the pixel/mono font. Consider shifting the green to a brighter, more saturated green or to your rust color. Test it at 60x60 pixels on your phone before finalizing — if you can’t read “PWR” at that size, the type isn’t big enough.
+**Cover art:** ✓ DONE. Option B finalized — text repositioned lower, thumbnail-readable at 60x60px. Bandcamp retains original artwork.
 
 **Artist profile photo:** Keep the blue motion-blur portrait through the entire PWR cycle. Do not change it until Afterglow drops. The profile change becomes part of the Afterglow release event.
 
@@ -44,7 +44,7 @@ The site is built. The visual world works. You’re not redesigning anything —
 
 * Change .hero-cover-label from “Afterglow — Coming Soon” to “PWR — Out Now” (or “New Single”)
 
-* Update the primary CTA from “Listen to Afterglow” to “Listen to PWR” — link to Songlink/Odesli that routes to all platforms
+* Primary CTA link strategy: Through May 14, the hero CTA links to the WTFYA Odesli smart link (strongest first-impression track, available on all platforms). On May 15, create a new Odesli link for PWR once it's on streaming platforms and swap the CTA to “Listen to PWR” pointing to that new link.
 
 * The headline (“If you could see yourself from my eyes”) — consider whether this still fits PWR’s energy. PWR is about power, not reflection. You could swap to a line from PWR, or keep it as a broader artist statement. Your call.
 
@@ -58,45 +58,49 @@ The site is built. The visual world works. You’re not redesigning anything —
 
 * This builds anticipation without removing content people can already browse
 
+* **⚠ IMPORTANT:** The commented-out Afterglow hero block in index.html has the wrong track order and is missing tracks. The correct EP arc is: Magnetic Electric → WTFYA → INDECISION → Interlude → ALWYS LØVE(D) → unreleased closer. Fix the track order in all commented Afterglow blocks before any future swap.
+
 ## **Archive Section**
 
-* PWR is already in the archive carousel with its Bandcamp embed. After the wide release, add Spotify/Apple links to the .catalog-links row for PWR
+* PWR archive card is currently commented out in index.html. On May 15: uncomment the PWR archive card AND add Spotify/Apple/Tidal streaming links to the .catalog-links row.
 
 * Everything else stays
 
 ## **Sync Section**
 
-* Leave it commented out for now. Activate when sync assets (stems, mixes) are ready in Phase 3 of the budget timeline.
+* The sync section is now live on the site with general copy ("Sound that lives inside the scene"), sync tags (Alternative Soul, Indie R\&B, Cinematic, One-Stop Cleared), and a direct mailto CTA (sync@oluanuakin.me). Afterglow-specific scene cards are commented out — uncomment those post-release when the full catalog is public and sync assets (stems, mixes) are ready.
 
 # **Week-by-Week Plan**
 
-13 weeks from today (March 14\) through the end of PWR’s release month. Every week has specific actions.
+13 weeks from March 14 through the end of PWR’s release month. Every week has specific actions.
+
+*Status markers: ✓ = done, ⟳ = in progress, ✗ = not started. Updated March 17, 2026.*
 
 ## **Weeks 1-2: March 14 – March 27 — Foundation**
 
 Get the free infrastructure done. No money spent. No excuses.
 
-* Register with SoundExchange (free, 15 min, soundexchange.com)
+* ✗ Register with SoundExchange (free, 15 min, soundexchange.com)
 
-* Call ASCAP (1-800-952-7227) or register with BMI to resolve signup issue
+* ✗ Call ASCAP (1-800-952-7227) or register with BMI to resolve signup issue
 
-* Claim Spotify for Artists \+ Apple Music for Artists if not done
+* ✗ Claim Spotify for Artists \+ Apple Music for Artists if not done
 
-* Set up Songlink/Odesli for PWR and all existing tracks (free)
+* ⟳ Set up Songlink/Odesli — WTFYA link active, PWR link created on May 15 when track goes wide
 
-* Update all social bios with genre language: Alternative Soul / Indie R\&B
+* ✓ Update all social bios with genre language: Alternative Soul / Indie R\&B
 
-* Start filming Scene series content. Shoot 5-8 clips this two-week window. You don’t post them all yet — you’re building a backlog.
+* ✗ Start filming Scene series content. Shoot 5-8 clips this two-week window. You don’t post them all yet — you’re building a backlog.
 
-* Build The Afterglow Palette playlist on Spotify (see detailed guide in Playbook v3.1, Part 3). Pin to profile.
+* ✗ Build The Afterglow Palette playlist on Spotify (see detailed guide in Playbook v3.1, Part 3). Pin to profile.
 
-* Begin modifying PWR cover art — scale up type, test at thumbnail size
+* ✓ PWR cover art — finalized
 
 ## **Weeks 3-4: March 28 – April 10 — Content Engine Starts**
 
 The Scene series goes live. You start showing up consistently.
 
-* Start posting Scene series: 3-4 posts per week across Instagram and TikTok
+* Start posting Scene series: 3-4 posts per week on Instagram. TikTok strategy is TBD — do not activate until approach is defined.
 
 * Format: 30-60 second cinematic clip, your music underneath, title card (“Scene 01 — The Arrival”), no caption explaining anything
 
@@ -154,9 +158,16 @@ The site is live. PWR is uploaded and waiting. This is the build-up window.
 
 * Instagram: Reel with a Scene-series-quality visual \+ PWR \+ the link sticker. Story with Songlink sticker. Feed post with the new cover art.
 
-* TikTok: PWR as original audio on a new post. Pin it to your profile.
+* TikTok (if strategy is defined by this date): PWR as original audio on a new post. Pin it to your profile.
 
-* Update your website: Add Spotify/Apple/Tidal links to the PWR streaming row in the Archive section. Update the hero CTA link.
+* Update your website — full May 15 swap checklist (see PRE-RELEASE-HERO.md for detailed steps):
+  1. Hero: remove `hero--fullbleed` class, delete pre-release `<img>` and `hero-content--bottom` block, uncomment PWR Cover Art Hero inside `.hero-split`
+  2. Hero CTA: swap to new PWR Odesli smart link
+  3. Archive: uncomment PWR archive card, add Spotify/Apple/Tidal streaming links to `.catalog-links`
+  4. OG image: update if needed (see SEO-COPY-IMPROVEMENTS.md)
+  5. Fix Afterglow track order in all commented blocks before any future Afterglow swap
+  6. Optionally remove PRE-RELEASE CSS rules (dead code after swap)
+  7. Delete PRE-RELEASE-HERO.md
 
 * DM your core supporters directly. Ask them to save the track (not just stream it). Saves are the strongest algorithm signal in 2026\.
 

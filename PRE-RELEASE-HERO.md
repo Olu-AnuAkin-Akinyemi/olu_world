@@ -126,15 +126,21 @@ The pre-release hero has no `.hero-cover-layers` or `#heroAudioBtn`, so this cod
 
 When PWR goes wide on mainstream platforms:
 
-1. **`index.html`:**
+1. **`index.html` — Hero swap:**
    - Remove `hero--fullbleed` from `<section class="hero">`
    - Delete `<img class="hero-bg">` element
    - Delete `<div class="hero-content hero-content--bottom">` block (entire pre-release content)
    - Uncomment `PWR COVER ART HERO` block inside `.hero-split`
-2. **`src/css/styles.css`:**
+   - Swap hero CTA link to new PWR Odesli smart link (create once PWR is on streaming platforms)
+2. **`index.html` — Archive:**
+   - Uncomment the PWR archive card (currently wrapped in `<!-- PWR ARCHIVE CARD -->`)
+   - Add Spotify/Apple/Tidal streaming links to the `.catalog-links` row for PWR
+3. **`index.html` — Afterglow track order:**
+   - The commented-out Afterglow hero block has the wrong track order and is missing tracks. Fix before any future Afterglow swap. Correct arc: Magnetic Electric → WTFYA → INDECISION → Interlude → ALWYS LØVE(D) → unreleased closer.
+4. **`src/css/styles.css`:**
    - Optionally remove `/* PRE-RELEASE */` CSS rules (dead code after swap)
-3. **Delete this file** (`PRE-RELEASE-HERO.md`)
-4. **Update** `SEO-COPY-IMPROVEMENTS.md` OG image if needed
+5. **OG image:** Update if needed (see `SEO-COPY-IMPROVEMENTS.md`)
+6. **Delete this file** (`PRE-RELEASE-HERO.md`)
 
 ---
 

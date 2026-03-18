@@ -14,7 +14,7 @@ Confidential
 
 # **Who This Is For**
 
-You are ØLu AnuAkin. You make Alternative Soul / Indie R\&B — emotionally layered, cinematic, with conscious hip-hop influences. Your music is visually rich and built around a sonic world, not just individual songs. The project Afterglow is your first coherent statement of that world.
+You are ØLu AnuAkin. You make Alternative Soul / Indie R\&B — emotionally layered, cinematic, with hip-hop influences. Your music is visually rich and built around a sonic world, not just individual songs. The project Afterglow is your first coherent statement of that world.
 
 Your goal sits between two points: landing broad sync placements across TV, ads, and streaming content AND securing the kind of culturally defining moments that stick — the placements people remember years later.
 
@@ -24,7 +24,7 @@ This playbook covers two tracks at once: how to promote yourself and build the a
 
 # **Your Genre Positioning**
 
-*Alternative Soul / Indie R\&B — emotionally layered, cinematic, with conscious hip-hop influences.*
+*Alternative Soul / Indie R\&B — emotionally layered, cinematic, with hip-hop influences.*
 
 Use this exact language everywhere: website bio, EPK, sync pitches, Spotify for Artists profile, SubmitHub and Groover submissions.
 
@@ -32,13 +32,27 @@ Why not Alt Pop? Alt Pop implies polished, hook-forward, radio-accessible. Your 
 
 ## **What Your Catalog Does**
 
-* ALWYS LØVE(D) — dreamy, devotional Indie R\&B. Scene: quiet intimacy, two people, warm light
+### Afterglow EP (2026)
 
-* INDECISION — emotionally direct Alternative Soul. Scene: romantic uncertainty, urban slow-burn
+The tracks follow an emotional arc: attraction → arrival → uncertainty → \[breath\] → devotion → longing and farewell. The title *Afterglow* refers to what remains after — the whole project is a memory held up to the light.
+
+* Magnetic Electric — cinematic Indie R\&B, the pull of attraction. Scene: two people circling each other, golden-hour light *(unreleased — opens the project)*
 
 * WTFYA — conscious self-affirmation with R\&B melody and pop accessibility. Scene: character breakthrough, personal arrival
 
-* PWR — conscious hip-hop verses inside a soul framework. Scene: personal transformation, resilience, stepping into power
+* INDECISION — emotionally direct Alternative Soul. Scene: romantic uncertainty, urban slow-burn
+
+* Interlude — format TBD. The breath between uncertainty and devotion.
+
+* ALWYS LØVE(D) — dreamy, devotional Indie R\&B. Scene: quiet intimacy, two people, warm light
+
+* Unreleased closer — sung, high energy. Longing and farewell. *(Reframes the entire arc.)*
+
+Bandcamp exclusive: one bonus track (sits inside the Afterglow world). Interlude may also live here depending on final decision.
+
+### PWR — Standalone Single
+
+* PWR — conscious hip-hop verses inside a soul framework. Scene: personal transformation, resilience, stepping into power. Released December 2025 on Bandcamp; wide release on mainstream platforms May 15, 2026.
 
 ## **Artist Comparisons for Pitches**
 
@@ -49,6 +63,8 @@ Why not Alt Pop? Alt Pop implies polished, hook-forward, radio-accessible. Your 
 * serpentwithfeet — devotional, lush, R\&B with depth and mysticism
 
 * Blood Orange — cinematic indie R\&B, visually rich, layered identity
+
+* Bon Iver mixed with Frank Ocean — layered, atmospheric, genre-defying emotionality
 
 Bandcamp’s own algorithm placed Obongjayar as a recommended listen alongside your music — external confirmation of this lane.
 
@@ -132,7 +148,7 @@ Your most powerful single move. Instead of three separate music videos, combine 
 
 * Use your existing motion-blur and shadow photography as the visual language
 
-* Structure as three acts: Magnetic Electric (attraction / arrival) into WTFYA (power / presence) into ALWYS LØVE(D) (reflection / resolution)
+* Structure following the Afterglow emotional arc: Magnetic Electric (attraction / the pull) → WTFYA (arrival / presence) → INDECISION (uncertainty / the question) → ALWYS LØVE(D) (devotion / warmth). The full EP includes an interlude and a closing track — the micro-film distills the arc, it does not need to include every track.
 
 * No dialogue. Just music, movement, color, and texture
 
@@ -230,10 +246,10 @@ Music Ally’s research shows mystery-driven campaigns are outperforming standar
 
 Trying to be everywhere dilutes everything. Based on your aesthetic and sync ambitions:
 
-| Instagram | TikTok |
+| Instagram (Confirmed Primary) | TikTok (Strategy TBD) |
 | :---- | :---- |
-| Long-term brand building, reaching press \+ supervisors, visual storytelling. Post 3-4x/week. | Discovery and algorithm-driven reach. New ears fast. Post 4-5x/week minimum for traction. |
-| Reels using your scene series. Behind-the-scenes. Still images from photography. | Your tracks as audio source. Scene series in vertical format. Short process clips showing how tracks come together. |
+| Long-term brand building, reaching press \+ supervisors, visual storytelling. Post 3-4x/week. | Strong candidate for discovery and algorithm-driven reach. Posting cadence and content approach under development — do not activate until strategy is defined. |
+| Reels using your scene series. Behind-the-scenes. Still images from photography. | Likely: your tracks as audio source, scene series in vertical format, short process clips. Finalize before committing resources. |
 
 ## **Spotify Strategy**
 
@@ -354,8 +370,6 @@ Run all three simultaneously. Don’t put all effort into one path.
 | **Marmoset** | Portland-based. Curated indie catalog. Community-driven. Film, TV, brand campaigns. | Online submission on their site. Strong metadata required. Reference your visual reel. |
 | **Position Music** | Active pitching. Known for championing emerging cinematic/alternative artists. Exclusive and non-exclusive. | Research their roster first. Reference artists on their roster in your lane. Show you understand their aesthetic. |
 | **A\&G Sync (UK)** | Boutique UK agency. Netflix and BBC placement history. Cinematic artists fit well. | Email with EPK. UK agencies are less saturated with US indie pitches — strategic advantage. |
-| **Bodega Sync** | US agency connected to Symphonic Distribution. Good for North American placements. Growing reputation. | Submit through Symphonic’s network or direct email. Highlight one-stop cleared status. |
-| **Musicbed** | High-end curated library \+ agency hybrid. Known for cinematic and inspirational genres. Filmmakers and ad agencies. | Online submission. Focus on tracks with strong emotional arcs. They value quality over volume. |
 
 ## **Sync Libraries to Submit To**
 
@@ -373,9 +387,9 @@ These accept independent submissions, don’t require agency representation, and
 
 * Track Club — quality over quantity. Small-batch curated catalog. Good for artists who want their music treated as premium.
 
-## **Subscription-Based Sync Platforms (New)**
+## **Subscription-Based Sync Platforms (Evaluate Later)**
 
-A newer model worth considering alongside traditional agencies and libraries:
+A newer model worth evaluating once your core sync infrastructure (stems, mixes, EPK, agency pitches) is in place. Do not prioritize these over Lanes 1-3.
 
 * One Night Stand Music — monthly subscription, no commission, non-exclusive. They pitch directly to supervisors. You keep 100% of sync fees. Low risk to try.
 
@@ -395,7 +409,7 @@ The email body — short, structured, scene-oriented:
 
 Hello \[Name\],
 
-I create Alternative Soul / Indie R\&B — emotionally layered, cinematic music with conscious hip-hop influences. Sharing three tracks from Afterglow, a cohesive sound palette designed around stylized visual moments.
+I create Alternative Soul / Indie R\&B — emotionally layered, cinematic music with hip-hop influences. Sharing three tracks from Afterglow, a cohesive sound palette designed around stylized visual moments.
 
 WTFYA — Confident arrival energy. Scene: character stepping into the room and owning it.
 
@@ -447,7 +461,7 @@ Everything here is free. No excuses, no dependencies. This is the foundation tha
 
 6. Set up Songlink / Odesli for each track (free). Use these smart links in every social post and story instead of raw Spotify or Bandcamp URLs.
 
-7. Update your website bio and any social bios with the exact genre language: Alternative Soul / Indie R\&B — emotionally layered, cinematic, with conscious hip-hop influences.
+7. Update your website bio and any social bios with the exact genre language: Alternative Soul / Indie R\&B — emotionally layered, cinematic, with hip-hop influences.
 
 8. Begin reaching out to 5-10 independent filmmakers on Vimeo and Instagram whose visual style matches yours. Offer a track for their next project in exchange for credit and a clip for your reel.
 
@@ -471,7 +485,13 @@ This is where you spend money on things that protect your work and open doors th
 
 Now you start building the assets that make sync agencies say yes. This is where you save and allocate for stems and mixes.
 
-1. Budget and commission stems and sync mixes for your top 3-4 most sync-ready tracks. Prioritize the tracks with the strongest scenes: WTFYA (arrival/power), Magnetic Electric (romance/tension), ALWYS LØVE(D) (reflection/ending). You don’t need every track sync-ready on day one — start with the strongest three.
+1. Budget and commission mixing and sync assets. The actual costs are phased:
+
+   * Phase 1 mixing ($400): Two new Afterglow tracks mixed and finalized — do this first
+   * Phase 1.5 mastering ($250–500): Master all Afterglow tracks
+   * Phase 2 mixing ($1,157.16): Instrumentals, TV mixes, stems for all tracks — required before sync pitching begins, not before site launch or promotion
+
+   Prioritize the tracks with the strongest scenes: WTFYA (arrival/power), Magnetic Electric (romance/tension), ALWYS LØVE(D) (reflection/ending). You don’t need every track sync-ready on day one — start with the strongest three.
 
 2. For each track, produce: instrumental version, TV mix (vocals lowered, clean fade), and separated stems (drums, bass, vocal, synths/keys). If budget is tight, prioritize instrumentals first — they’re requested most often. Stems can follow.
 
@@ -487,7 +507,7 @@ Now you start building the assets that make sync agencies say yes. This is where
 
 By now you have: copyright registration, sync-ready assets for at least 3 tracks, an EPK, a visual reel (the micro-film), a growing social presence, and possibly a few indie filmmaker credits. You are ready to pitch agencies.
 
-1. Compile your boutique agency pitch list: Crucial Music, Secret Road, Marmoset, Position Music, A\&G Sync, Bodega Sync, Musicbed. Research each one’s current roster and recent placements before writing your pitch.
+1. Compile your boutique agency pitch list: Crucial Music, Secret Road, Marmoset, Position Music, A\&G Sync. Research each one’s current roster and recent placements before writing your pitch.
 
 2. Personalize and send your pitch package to each agency, spaced 3-5 days apart. Use the pitch formula from Part 5\. Every email gets a unique opening line that references something specific about that agency.
 
@@ -509,9 +529,10 @@ By now you have: copyright registration, sync-ready assets for at least 3 tracks
 | :---- | :---- | :---- |
 | **Phase 1 (Week 1\)** | $0 | Royalty collection active, Spotify optimized, social promo launched, filmmaker outreach started |
 | **Phase 2 (Weeks 2-4)** | $150–300 | Copyright protection, EPK, curator outreach, editorial submission, micro-film planned |
-| **Phase 3 (Weeks 5-8)** | $300–600 | Sync-ready assets (stems/mixes), library submissions, publishing entity, micro-film released |
-| **Phase 4 (Weeks 9-12)** | $50–200 | Agency pitches live, sync page active, subscription platform tested, physical drop (optional) |
-| **Total** | **$500–1,100** | Full promotional engine running \+ sync-ready catalog \+ active agency pipeline |
+| **Phase 3 (Weeks 5-8)** | $300–600 (promotion) | Library submissions, publishing entity, micro-film released |
+| **Mixing \& Mastering** | **$1,807–2,057** | Phase 1 mixing ($400) + mastering ($250–500) + Phase 2 stems/mixes ($1,157.16) — required before sync pitching |
+| **Phase 4 (Weeks 9-12)** | $50–200 | Agency pitches live, sync page active, physical drop (optional) |
+| **Total** | **$2,157–3,057** | Full promotional engine running \+ sync-ready catalog \+ active agency pipeline |
 
 *Phase 1 starts today. Not when the budget is ready. Not when the stems are done. Today. The promotion is the engine. The sync infrastructure is the fuel. The engine has to be running before the fuel matters.*
 
