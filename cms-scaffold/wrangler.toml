@@ -1,0 +1,39 @@
+# ============================================================
+# wrangler.toml — Cloudflare configuration for CMS
+# Merge these bindings into your existing wrangler.toml
+# (or create this file if you don't have one yet).
+#
+# After creating the D1 database and R2 bucket, fill in the
+# actual IDs from your Cloudflare dashboard.
+# ============================================================
+
+name = "oluanuakin-site"
+compatibility_date = "2024-11-01"
+
+# ---------- D1 Database ----------
+# Create: npx wrangler d1 create oluanuakin-cms
+# Then paste the database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "oluanuakin-cms"
+database_id = "REPLACE_WITH_YOUR_D1_DATABASE_ID"
+
+# ---------- R2 Media Bucket ----------
+# Create: npx wrangler r2 bucket create oluanuakin-media
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "oluanuakin-media"
+
+# ---------- Environment Variables ----------
+# Set these via: npx wrangler secret put CF_ACCESS_TEAM_DOMAIN
+# Or add them in the Cloudflare Pages dashboard under Settings → Environment variables.
+#
+# [vars]
+# CF_ACCESS_TEAM_DOMAIN = "your-team.cloudflareaccess.com"
+# CF_ACCESS_AUD         = "your-cf-access-policy-aud"
+# CF_DEPLOY_HOOK_URL    = "https://api.cloudflare.com/client/v4/pages/webhooks/deploy_hooks/..."
+# MEDIA_PUBLIC_URL      = "https://media.oluanuakin.me"
+#
+# Optional — only if using Cloudflare Images ($5/mo):
+# CF_IMAGES_ACCOUNT_ID  = "your-account-id"
+# CF_IMAGES_API_TOKEN   = "your-images-api-token"
