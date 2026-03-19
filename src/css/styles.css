@@ -232,7 +232,7 @@ body.cursor-hidden .cursor-ring {
   display: block;
 }
 .nav-wordmark {
-  font-size: 10px;
+  font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.22em;
   color: var(--text);
@@ -247,7 +247,7 @@ body.cursor-hidden .cursor-ring {
   animation: fadeDown 0.7s var(--ease) 0.2s forwards;
 }
 .nav-link {
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.14em;
   color: var(--text-muted);
   text-transform: uppercase;
@@ -2484,6 +2484,27 @@ body.cursor-hidden .cursor-ring {
   border-radius: 2px;
   pointer-events: none;
 }
+/* Cursor-follow portrait reveal (desktop only) */
+.about-hover-portrait {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 18vw;
+  height: 25vw;
+  object-fit: cover;
+  border-radius: 2px;
+  pointer-events: none;
+  opacity: 0;
+  scale: 0.95;
+  z-index: 20;
+  transition: opacity 0.3s ease, scale 0.3s ease;
+  will-change: transform, opacity;
+}
+.about-hover-portrait.visible {
+  opacity: 1;
+  scale: 1;
+}
+
 .about-statement {
   font-family: var(--serif);
   font-size: clamp(22px, 3vw, 36px);
@@ -3043,6 +3064,9 @@ footer {
   }
   .about-img {
     aspect-ratio: 16/9;
+  }
+  .about-hover-portrait {
+    display: none;
   }
   .private-strip {
     padding: 24px var(--page-gutter);

@@ -170,6 +170,16 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
+/* --- Cursor-follow portrait reveal (disabled — future phase: Kindred artist photos)
+const navLogo = document.querySelector('.nav-logo');
+const hoverPortrait = document.querySelector('.about-hover-portrait');
+if (navLogo && hoverPortrait && !matchMedia('(pointer: coarse)').matches) {
+  import('./hoverReveal.js').then(({ initHoverReveal }) => {
+    initHoverReveal(navLogo, hoverPortrait);
+  });
+}
+--- END cursor-follow portrait reveal */
+
 /* --- World feed filter --- */
 document.querySelectorAll('.world-filter-btn').forEach(btn => {
   btn.addEventListener('click', () => {
