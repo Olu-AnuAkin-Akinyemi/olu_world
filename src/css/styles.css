@@ -2175,6 +2175,16 @@ body.cursor-hidden .cursor-ring {
 .sync-cta:active {
   scale: 0.95;
 }
+.sync-cta--secondary {
+  color: var(--text-muted);
+  box-shadow: 0 0 0 0.5px var(--border-mid);
+}
+@media (hover: hover) {
+  .sync-cta--secondary:hover {
+    color: var(--bg);
+    box-shadow: 0 0 0 1.5px var(--rust);
+  }
+}
 
 /* --- Contact Trigger Button (envelope icon) --- */
 .about-contact {
