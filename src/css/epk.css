@@ -1,0 +1,318 @@
+/* ============================================================
+       EPK — Electronic Press Kit
+       Layered on top of styles.css (tokens, resets, nav, footer)
+   ============================================================ */
+
+/* Override custom cursor — EPK is a professional scan page */
+body {
+  cursor: auto;
+}
+button, a {
+  cursor: pointer;
+}
+
+/* ============================================================
+       EPK HEADER
+   ============================================================ */
+.epk-header {
+  padding: 140px 0 64px;
+}
+.epk-header-inner {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.epk-headshot {
+  width: 200px;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+.epk-eyebrow {
+  font-size: 8px;
+  letter-spacing: 0.2em;
+  color: var(--rust);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.epk-eyebrow::before {
+  content: "";
+  display: block;
+  width: 16px;
+  height: 0.5px;
+  background: var(--rust);
+}
+.epk-name {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.epk-tagline {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+.epk-location {
+  font-size: 11px;
+  color: var(--text-faint);
+}
+
+/* ============================================================
+       EPK SECTIONS
+   ============================================================ */
+.epk-section {
+  padding: 64px 0;
+  border-top: 0.5px solid var(--border);
+}
+.epk-section-title {
+  font-family: var(--serif);
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 300;
+  margin-bottom: 24px;
+}
+.epk-section-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}
+
+/* ============================================================
+       BIO
+   ============================================================ */
+.epk-bio-text {
+  max-width: 680px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+}
+.epk-bio-text p + p {
+  margin-top: 16px;
+}
+
+/* ============================================================
+       MUSIC
+   ============================================================ */
+.epk-music-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.epk-release-card {
+  display: block;
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+.epk-release-card:hover {
+  border-color: var(--rust);
+}
+.epk-release-img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.epk-release-info {
+  padding: 14px 16px;
+}
+.epk-release-title {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  margin-bottom: 4px;
+}
+.epk-release-meta {
+  font-size: 10px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.epk-streaming-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.epk-streaming-links a {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.epk-streaming-links a:hover {
+  color: var(--rust);
+}
+
+/* ============================================================
+       PRESS PHOTOS
+   ============================================================ */
+.epk-photos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 24px;
+}
+.epk-photo-item {
+  position: relative;
+}
+.epk-photo-item img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.epk-photo-item figcaption {
+  margin-top: 10px;
+}
+.epk-download-link {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.epk-download-link:hover {
+  color: var(--rust);
+}
+
+/* ============================================================
+       CREDITS
+   ============================================================ */
+.epk-credits-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 40px;
+  max-width: 680px;
+}
+.epk-credit dt {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.epk-credit dd {
+  font-family: var(--serif);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+/* ============================================================
+       SYNC / GENRE TAGS
+   ============================================================ */
+.epk-sync-text {
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+.epk-genre-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.epk-tag {
+  display: inline-block;
+  border: 0.5px solid var(--border-mid);
+  padding: 5px 14px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-radius: 2px;
+  color: var(--text-muted);
+}
+
+/* ============================================================
+       CONTACT
+   ============================================================ */
+.epk-email-link {
+  font-family: var(--serif);
+  font-size: clamp(18px, 2vw, 24px);
+  font-weight: 300;
+  color: var(--rust);
+  transition: opacity 0.2s;
+}
+.epk-email-link:hover {
+  opacity: 0.7;
+}
+.epk-social-links {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
+}
+.epk-social-links a {
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.epk-social-links a:hover {
+  color: var(--rust);
+}
+
+/* ============================================================
+       DOWNLOAD CTA
+   ============================================================ */
+.epk-section--cta {
+  text-align: center;
+  padding: 80px 0;
+}
+.epk-download-btn {
+  display: inline-block;
+  border: 1px solid var(--rust);
+  color: var(--rust);
+  padding: 14px 32px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+.epk-download-btn:hover {
+  background: var(--rust);
+  color: var(--bg);
+}
+
+/* ============================================================
+       RESPONSIVE
+   ============================================================ */
+@media (max-width: 980px) {
+  .epk-header-inner {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 28px;
+  }
+  .epk-headshot {
+    width: 160px;
+  }
+  .epk-credits-list {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 640px) {
+  .epk-header {
+    padding: 120px 0 48px;
+  }
+  .epk-section {
+    padding: 48px 0;
+  }
+  .epk-headshot {
+    width: 140px;
+  }
+  .epk-music-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+  .epk-photos-grid {
+    grid-template-columns: 1fr;
+  }
+}
