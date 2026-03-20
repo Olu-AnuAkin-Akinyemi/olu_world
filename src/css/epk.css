@@ -63,6 +63,14 @@ button, a {
 .epk-location {
   font-size: 11px;
   color: var(--text-faint);
+  margin-bottom: 8px;
+}
+.epk-comps {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  font-style: italic;
+  line-height: 1.5;
 }
 
 /* ============================================================
@@ -231,31 +239,70 @@ button, a {
 }
 
 /* ============================================================
+       SCENE CATALOG
+   ============================================================ */
+.epk-scene-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.epk-scene-card {
+  background: var(--bg-surface);
+  padding: 20px 22px;
+  border-radius: 2px;
+  border-left: 2px solid var(--rust);
+}
+.epk-scene-track {
+  font-family: var(--serif);
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+.epk-scene-mood {
+  font-size: 7.5px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 10px;
+}
+.epk-scene-desc {
+  font-family: var(--serif);
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  font-weight: 400;
+}
+
+/* ============================================================
        CONTACT
    ============================================================ */
-.epk-email-link {
-  font-family: var(--serif);
-  font-size: clamp(18px, 2vw, 24px);
-  font-weight: 300;
-  color: var(--rust);
-  transition: opacity 0.2s;
+.epk-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px 32px;
+  margin-top: 8px;
 }
-.epk-email-link:hover {
-  opacity: 0.7;
-}
-.epk-social-links {
+.epk-contact-item {
   display: flex;
-  gap: 24px;
-  margin-top: 16px;
+  flex-direction: column;
+  gap: 3px;
 }
-.epk-social-links a {
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  color: var(--text-muted);
+.epk-contact-label {
+  font-size: 7.5px;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
+  color: var(--rust);
+}
+.epk-contact-value {
+  font-size: 10px;
+  color: var(--text);
+  line-height: 1.4;
+  word-break: break-all;
   transition: color 0.2s;
 }
-.epk-social-links a:hover {
+.epk-contact-value:hover {
   color: var(--rust);
 }
 
@@ -298,6 +345,9 @@ button, a {
   .epk-credits-list {
     grid-template-columns: 1fr;
   }
+  .epk-contact-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 @media (max-width: 640px) {
   .epk-header {
@@ -313,6 +363,12 @@ button, a {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   }
   .epk-photos-grid {
+    grid-template-columns: 1fr;
+  }
+  .epk-scene-grid {
+    grid-template-columns: 1fr;
+  }
+  .epk-contact-grid {
     grid-template-columns: 1fr;
   }
 }
