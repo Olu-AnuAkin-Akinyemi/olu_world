@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "script": "node scripts/optimize-images.mjs"
   },
   "keywords": [],
   "author": "",

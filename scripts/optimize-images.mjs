@@ -16,6 +16,7 @@ const configs = [
 
   // Modeling photos (future) — professional photography, q80
   { glob: 'modeling/', quality: 80, sizes: SIZES },
+  {glob: 'epk/', quality: 80, sizes: SIZES },
 ];
 
 async function getSourceFiles(dir) {
