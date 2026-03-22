@@ -332,6 +332,12 @@ button, a {
   height: 34px;
   object-fit: contain;
 }
+.epk-social-text {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 34px;
+}
 
 /* ============================================================
        DOWNLOAD CTA
