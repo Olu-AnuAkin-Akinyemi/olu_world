@@ -122,7 +122,7 @@ Final site tweaks and the launch itself.
 
 * Test the site on mobile thoroughly. Your older demographic target means you cannot skip this.
 
-* Create the EPK as a one-page PDF. You have every asset from the site already.
+* ✓ EPK built as a live webpage at `oluanuakin.me/epk.html` — no PDF needed, the page is the EPK.
 
 * Upload PWR to your distributor. Set release date as May 15\. Most distributors need 2-4 weeks lead time — upload by April 20 at the latest.
 

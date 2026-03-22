@@ -145,6 +145,14 @@ button, a {
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
+.epk-bandcamp-embed {
+  border: 0;
+  width: 100%;
+  height: 42px;
+}
+.epk-listen-preview {
+  margin-bottom: 24px;
+}
 .epk-streaming-links {
   display: flex;
   gap: 24px;
@@ -304,6 +312,25 @@ button, a {
 }
 .epk-contact-value:hover {
   color: var(--rust);
+}
+.epk-contact-socials {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  grid-column: 1 / -1;
+  margin-top: 8px;
+}
+.epk-social-link {
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.epk-social-link:hover {
+  opacity: 1;
+}
+.epk-social-icon {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
 }
 
 /* ============================================================

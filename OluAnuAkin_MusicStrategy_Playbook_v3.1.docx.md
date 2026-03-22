@@ -98,7 +98,7 @@ This is the most overlooked step. Before you pitch a single agency, every releva
 
 ## **2\. Your Electronic Press Kit (EPK)**
 
-Your EPK is a one-page professional introduction. It should exist as both a PDF and a live webpage. It tells supervisors, journalists, and curators what they need in under 90 seconds.
+Your EPK is a one-page professional introduction. It exists as a live webpage at `oluanuakin.me/epk.html` (no PDF — the page itself is the EPK). It tells supervisors, journalists, and curators what they need in under 90 seconds.
 
 * Short bio — 3 sentences max. Who you are, what your sound is, why it matters now
 
@@ -110,7 +110,7 @@ Your EPK is a one-page professional introduction. It should exist as both a PDF 
 
 * Your logo — use the geometric triangle mark
 
-* Contact info — direct email only. No contact form.
+* Contact info — direct email only (sync@oluanuakin.me). No contact form.
 
 ## **3\. Your Website as a Sync Portfolio**
 
