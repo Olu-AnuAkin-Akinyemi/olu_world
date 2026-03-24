@@ -1513,6 +1513,10 @@ body.cursor-hidden .cursor-ring {
   border-color: var(--border);
 }
 
+/* --- Exhibition Overlay --- */
+.exhibition-section {
+  margin-top: 64px; /* adjust to taste — try 48px, 64px, or 80px */
+}
 /* --- Notes Overlay --- */
 .notes-overlay {
   position: fixed;
