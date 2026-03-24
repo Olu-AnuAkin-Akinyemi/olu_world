@@ -2,8 +2,9 @@
 /* --- Cursor --- */
 const dot = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
+if (dot && ring) document.body.classList.add('cursor-ready');
 let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { 
+document.addEventListener('mousemove', e => {
   mx = e.clientX; 
   my = e.clientY; 
   if (dot) {
@@ -124,14 +125,20 @@ if (heroCoverLayers && heroCover) {
   const audioUrl = new URL('../assets/PWR_audio-snip.mp3', import.meta.url).href;
   let hoverAudio = null;
 
-  import('./hoverAudio.js').then(({ createHoverAudio }) => {
+  const hoverAudioReady = import('./hoverAudio.js').then(({ createHoverAudio }) => {
     hoverAudio = createHoverAudio(audioUrl, {
       onEnded() {
         heroCoverLayers.style.transform = '';
         heroCoverLayers.classList.remove('tilt-active');
       }
     });
-  });
+  }).catch(() => { /* module failed to load — audio stays disabled */ });
+
+  async function startAudio() {
+    await hoverAudioReady;
+    const ok = await hoverAudio?.init();
+    if (ok) hoverAudio.start();
+  }
 
   const isTouchDevice = matchMedia('(pointer: coarse)').matches;
 
@@ -144,9 +151,7 @@ if (heroCoverLayers && heroCover) {
       heroCoverLayers.style.transform = `scale(1.03) rotateY(${x * 8}deg) rotateX(${y * -8}deg)`;
       heroCoverLayers.classList.add('tilt-active');
     });
-    heroCover.addEventListener('mouseenter', () => {
-      hoverAudio?.init().then(ok => { if (ok) hoverAudio.start(); });
-    });
+    heroCover.addEventListener('mouseenter', () => startAudio());
     heroCover.addEventListener('mouseleave', () => {
       heroCoverLayers.style.transform = '';
       heroCoverLayers.classList.remove('tilt-active');
@@ -156,7 +161,7 @@ if (heroCoverLayers && heroCover) {
     /* Mobile: tap to play once, glow resets when audio ends */
     heroCoverLayers.addEventListener('click', () => {
       heroCoverLayers.classList.add('tilt-active');
-      hoverAudio?.init().then(ok => { if (ok) hoverAudio.start(); });
+      startAudio();
     });
   }
 }
@@ -199,8 +204,10 @@ if (gallerySec) {
   const galleryObs = new IntersectionObserver(async (entries, observer) => {
     if (entries[0].isIntersecting) {
       observer.disconnect();
-      const { initGalleryCarousel } = await import('./gallery3d.js');
-      initGalleryCarousel();
+      try {
+        const { initGalleryCarousel } = await import('./gallery3d.js');
+        initGalleryCarousel();
+      } catch { /* 3D gallery failed — flat grid fallback remains functional */ }
     }
   }, { rootMargin: '200px' });
   galleryObs.observe(gallerySec);
@@ -237,7 +244,12 @@ function openNoteOverlay(noteItem) {
   pill.textContent = type.charAt(0).toUpperCase() + type.slice(1);
 
   const body = notesOverlay.querySelector('.notes-overlay-body');
-  body.innerHTML = fullContent ? fullContent.innerHTML : (noteItem.querySelector('.note-desc')?.textContent || '');
+  body.textContent = '';
+  if (fullContent) {
+    Array.from(fullContent.cloneNode(true).childNodes).forEach(n => body.appendChild(n));
+  } else {
+    body.textContent = noteItem.querySelector('.note-desc')?.textContent || '';
+  }
 
   body.querySelectorAll('iframe[data-src]').forEach(iframe => {
     iframe.src = iframe.dataset.src;
@@ -327,12 +339,12 @@ if (galleryOverlay) {
 /* --- Bottom close buttons for overlays (mobile) --- */
 document.querySelectorAll('.overlay-bottom-close').forEach(btn => {
   btn.addEventListener('click', () => {
-    const overlay = btn.closest('.gallery-overlay, .notes-overlay');
+    const overlay = btn.closest('.gallery-overlay, .notes-overlay, .contact-overlay');
     if (overlay?.id === 'notesOverlay') closeNoteOverlay();
     else if (overlay?.id === 'galleryOverlay') {
       overlay.hidden = true;
       overlay.querySelector('.gallery-overlay-img').src = '';
-    }
+    } else if (overlay?.id === 'contactOverlay') closeContactOverlay();
   });
 });
 
@@ -372,12 +384,16 @@ document.querySelectorAll('a[href="#contact"]').forEach(link => {
   });
 });
 
-/* --- Global Escape key for overlays --- */
+/* --- Global Escape key for overlays (mobile menu Escape is handled in toggleMobileMenu block above) --- */
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    if (notesOverlay && !notesOverlay.hidden) closeNoteOverlay();
-    if (contactOverlay && !contactOverlay.hidden) closeContactOverlay();
+  if (e.key !== 'Escape') return;
+  if (galleryOverlay && !galleryOverlay.hidden) {
+    galleryOverlay.hidden = true;
+    galleryOverlay.querySelector('.gallery-overlay-img').src = '';
+    return;
   }
+  if (notesOverlay && !notesOverlay.hidden) { closeNoteOverlay(); return; }
+  if (contactOverlay && !contactOverlay.hidden) { closeContactOverlay(); return; }
 });
 
 /* --- Catalog carousel --- */
@@ -405,6 +421,7 @@ if (carouselTrack && prevBtn && nextBtn) {
     nextBtn.disabled = carouselTrack.scrollLeft + carouselTrack.offsetWidth >= carouselTrack.scrollWidth - 1;
   };
   carouselTrack.addEventListener('scroll', updateBtnStates, { passive: true });
+  window.addEventListener('resize', updateBtnStates, { passive: true });
   updateBtnStates();
 }
 
@@ -518,7 +535,7 @@ document.querySelectorAll('form[data-form]').forEach(form => {
 
     // Stamp local time so Web3Forms receives the user's timezone
     const timeField = form.querySelector('.local-time');
-    if (timeField) timeField.value = new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' });
+    if (timeField) timeField.value = new Date().toLocaleString('en-US') + ' (' + Intl.DateTimeFormat().resolvedOptions().timeZone + ')';
 
     submitBtn.innerHTML = 'Sending...';
     submitBtn.disabled = true;
