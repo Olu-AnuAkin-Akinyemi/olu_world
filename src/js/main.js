@@ -275,7 +275,7 @@ if (notesOverlay) {
 }
 
 /* --- Gallery grid click-to-overlay (fallback when 3D not active) --- */
-document.querySelectorAll('.world-item').forEach(item => {
+document.querySelectorAll('#gallery .world-item').forEach(item => {
   item.addEventListener('click', () => {
     const section = document.getElementById('gallery');
     if (section?.classList.contains('gallery-3d-active')) return;
@@ -283,6 +283,24 @@ document.querySelectorAll('.world-item').forEach(item => {
     const overlay = document.getElementById('galleryOverlay');
     if (!img || !overlay) return;
     overlay.querySelector('.gallery-overlay-img').src = img.src.replace(/-\d+\.webp$/, '-1200.webp');
+    overlay.querySelector('.gallery-overlay-img').alt = img.alt;
+    const infoTitle = overlay.querySelector('.gallery-overlay-info-title');
+    const infoArtist = overlay.querySelector('.gallery-overlay-info-artist');
+    if (infoTitle) infoTitle.textContent = item.dataset.title || '';
+    if (infoArtist) infoArtist.textContent = item.dataset.artist || '';
+    overlay.hidden = false;
+    document.body.classList.add('cursor-hidden');
+    overlay.querySelector('.gallery-overlay-close')?.focus();
+  });
+});
+
+/* --- Exhibition grid tap-to-overlay (reuses gallery overlay) --- */
+document.querySelectorAll('.exhibition-section .world-item').forEach(item => {
+  item.addEventListener('click', () => {
+    const img = item.querySelector('img');
+    const overlay = document.getElementById('galleryOverlay');
+    if (!img || !overlay) return;
+    overlay.querySelector('.gallery-overlay-img').src = img.src;
     overlay.querySelector('.gallery-overlay-img').alt = img.alt;
     const infoTitle = overlay.querySelector('.gallery-overlay-info-title');
     const infoArtist = overlay.querySelector('.gallery-overlay-info-artist');
