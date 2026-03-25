@@ -304,7 +304,7 @@ export function initGalleryCarousel() {
     overlay.querySelector('.gallery-overlay-img').src = '';
     document.removeEventListener('keydown', overlayKeydown);
     overlay.removeEventListener('keydown', trapFocus);
-    if (previousFocus) previousFocus.focus();
+    if (previousFocus) previousFocus.focus({ preventScroll: true });
   }
 
   function overlayKeydown(e) {
