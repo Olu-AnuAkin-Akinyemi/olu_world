@@ -127,6 +127,17 @@ body.cursor-ready button {
   background: var(--rust);
 }
 
+/* Focus Styles for Keyboard Navigation */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--rust);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
 /* ============================================================
        CURSOR
     ============================================================ */
@@ -307,12 +318,12 @@ body.cursor-hidden .cursor-ring {
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   border: none;
   background: transparent;
   cursor: pointer;
-  padding: 6px;
+  padding: 10px;
 }
 .hamburger-line {
   display: block;

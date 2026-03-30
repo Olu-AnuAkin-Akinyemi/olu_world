@@ -4,23 +4,44 @@ const dot = document.getElementById('cursorDot');
 const ring = document.getElementById('cursorRing');
 if (dot && ring) document.body.classList.add('cursor-ready');
 let mx = 0, my = 0, rx = 0, ry = 0;
+let cursorRafId = null;
+
 document.addEventListener('mousemove', e => {
-  mx = e.clientX; 
-  my = e.clientY; 
+  mx = e.clientX;
+  my = e.clientY;
   if (dot) {
-    dot.style.left = mx + 'px'; 
-    dot.style.top = my + 'px'; 
+    dot.style.left = mx + 'px';
+    dot.style.top = my + 'px';
   }
 });
-(function animRing() { 
-  rx += (mx - rx) * 0.12; 
-  ry += (my - ry) * 0.12; 
+
+(function animRing() {
+  rx += (mx - rx) * 0.12;
+  ry += (my - ry) * 0.12;
   if (ring) {
-    ring.style.left = rx + 'px'; 
-    ring.style.top = ry + 'px'; 
+    ring.style.left = rx + 'px';
+    ring.style.top = ry + 'px';
   }
-  requestAnimationFrame(animRing); 
+  cursorRafId = requestAnimationFrame(animRing);
 })();
+
+// Cleanup on page visibility change (tab hidden) or before unload
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden && cursorRafId) {
+    cancelAnimationFrame(cursorRafId);
+    cursorRafId = null;
+  } else if (!document.hidden && !cursorRafId) {
+    (function animRing() {
+      rx += (mx - rx) * 0.12;
+      ry += (my - ry) * 0.12;
+      if (ring) {
+        ring.style.left = rx + 'px';
+        ring.style.top = ry + 'px';
+      }
+      cursorRafId = requestAnimationFrame(animRing);
+    })();
+  }
+});
 
 document.querySelectorAll('a, button, .track-item, .catalog-card, .sync-card, .note-item').forEach(el => {
   el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
