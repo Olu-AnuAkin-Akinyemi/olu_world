@@ -18,6 +18,7 @@ const configs = [
   { glob: 'modeling/', quality: 80, sizes: SIZES },
   {glob: 'epk/', quality: 80, sizes: SIZES },
   {glob: 'exhibition/', quality: 80, sizes: SIZES },
+  {glob: 'cover-art/', quality: 80, sizes: SIZES },
 ];
 
 async function getSourceFiles(dir) {
