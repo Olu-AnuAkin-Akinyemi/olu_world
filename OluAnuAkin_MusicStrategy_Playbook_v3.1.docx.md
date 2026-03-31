@@ -52,7 +52,7 @@ Bandcamp exclusive: one bonus track (sits inside the Afterglow world). Interlude
 
 ### PWR — Standalone Single
 
-* PWR — conscious hip-hop verses inside a soul framework. Scene: personal transformation, resilience, stepping into power. Released December 2025 on Bandcamp; wide release on mainstream platforms May 15, 2026.
+* PWR — conscious hip-hop verses inside a soul framework. Scene: personal transformation, resilience, stepping into power. Released December 2025 on Bandcamp; wide release on mainstream platforms May 14, 2026.
 
 ## **Artist Comparisons for Pitches**
 

@@ -41,7 +41,7 @@ Bandcamp has a built-in merch system. No additional platform, no fees beyond Ban
 
 ## Phase 1: Limited Physical Objects — $200-500
 
-**When:** Afterglow release cycle (post-May 15, when mixing/mastering budget is allocated)
+**When:** Afterglow release cycle (post-May 14, when mixing/mastering budget is allocated)
 **Quantity:** 50-100 units per item
 **Distribution:** Bandcamp + direct mail to sync contacts
 
@@ -252,7 +252,7 @@ Bandcamp has a built-in merch system. No additional platform, no fees beyond Ban
 
 | Milestone | Merch Action |
 |-----------|-------------|
-| PWR wide release (May 15) | No merch action. Focus on streaming + saves. |
+| PWR wide release (May 14) | No merch action. Focus on streaming + saves. |
 | Post-PWR (May-June) | Design USB card + zine layouts using Afterglow session assets. Get print quotes. |
 | Afterglow mixing complete | Finalize USB card content (lossless files, micro-film, lookbook PDF). |
 | Afterglow release | Activate Bandcamp merch tab. List USB card + zine. Mail 5-10 to sync contacts. |

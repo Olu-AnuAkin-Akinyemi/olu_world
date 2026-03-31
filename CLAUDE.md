@@ -122,7 +122,7 @@ Visuals: CSS Keyframes, 3D Gallery Canvas
 
 ### Active
 
-- **Pre-release hero (full-bleed photo layout):** See [`PRE-RELEASE-HERO.md`](PRE-RELEASE-HERO.md) for implementation plan, CSS/HTML structure, and May 15 swap checklist. **Delete that file after the May 15 PWR wide release swap.**
+- **Pre-release hero (full-bleed photo layout):** See [`PRE-RELEASE-HERO.md`](PRE-RELEASE-HERO.md) for implementation plan, CSS/HTML structure, and May 14 swap checklist. **Delete that file after the May 14 PWR wide release swap.**
 - Responsive image pipeline: multi-resolution `srcset` + AVIF (see [`image-optimization-spec.md`](image-optimization-spec.md))
 - Gallery content curation (collage + modeling photo selection)
 

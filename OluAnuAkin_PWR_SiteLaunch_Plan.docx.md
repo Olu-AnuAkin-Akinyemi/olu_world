@@ -18,7 +18,7 @@ Two coordinated moments, three weeks apart, with six weeks of social momentum bu
 | :---- | :---- | :---- |
 | **Site Launch** | Friday April 24 | Website goes live with PWR as featured project. Brand moment. Share with inner circle first, public announcement same day. |
 | **Spotify Editorial Submit** | Monday May 4 | Submit PWR via Spotify for Artists. 11 days before release. Genre: conscious hip-hop / hip-hop soul. Mood: empowerment, transformation, arrival. |
-| **PWR Wide Release** | Friday May 15 | PWR drops on Spotify, Apple Music, Tidal. New cover art (Option B). Bandcamp retains original. Discovery moment. |
+| **PWR Wide Release** | Friday May 14 | PWR drops on Spotify, Apple Music, Tidal. New cover art (Option B). Bandcamp retains original. Discovery moment. |
 
 *Why Friday? New Music Friday is the biggest editorial playlist on Spotify. All editorial submission windows are built around Friday releases. Release Radar populates on Fridays. Dropping any other day is leaving the biggest discovery mechanism on the table.*
 
@@ -44,7 +44,7 @@ The site is built. The visual world works. You’re not redesigning anything —
 
 * Change .hero-cover-label from “Afterglow — Coming Soon” to “PWR — Out Now” (or “New Single”)
 
-* Primary CTA link strategy: Through May 14, the hero CTA links to the WTFYA Odesli smart link (strongest first-impression track, available on all platforms). On May 15, create a new Odesli link for PWR once it's on streaming platforms and swap the CTA to “Listen to PWR” pointing to that new link.
+* Primary CTA link strategy: Through May 14, the hero CTA links to the WTFYA Odesli smart link (strongest first-impression track, available on all platforms). On May 14, create a new Odesli link for PWR once it's on streaming platforms and swap the CTA to “Listen to PWR” pointing to that new link.
 
 * The headline (“If you could see yourself from my eyes”) — consider whether this still fits PWR’s energy. PWR is about power, not reflection. You could swap to a line from PWR, or keep it as a broader artist statement. Your call.
 
@@ -62,7 +62,7 @@ The site is built. The visual world works. You’re not redesigning anything —
 
 ## **Archive Section**
 
-* PWR archive card is currently commented out in index.html. On May 15: uncomment the PWR archive card AND add Spotify/Apple/Tidal streaming links to the .catalog-links row.
+* PWR archive card is currently commented out in index.html. On May 14: uncomment the PWR archive card AND add Spotify/Apple/Tidal streaming links to the .catalog-links row.
 
 * Everything else stays
 
@@ -86,7 +86,7 @@ Get the free infrastructure done. No money spent. No excuses.
 
 * ✗ Claim Spotify for Artists \+ Apple Music for Artists if not done
 
-* ⟳ Set up Songlink/Odesli — WTFYA link active, PWR link created on May 15 when track goes wide
+* ⟳ Set up Songlink/Odesli — WTFYA link active, PWR link created on May 14 when track goes wide
 
 * ✓ Update all social bios with genre language: Alternative Soul / Indie R\&B
 
@@ -124,7 +124,7 @@ Final site tweaks and the launch itself.
 
 * ✓ EPK built as a live webpage at `oluanuakin.me/epk.html` — no PDF needed, the page is the EPK.
 
-* Upload PWR to your distributor. Set release date as May 15\. Most distributors need 2-4 weeks lead time — upload by April 20 at the latest.
+* Upload PWR to your distributor. Set release date as May 14\. Most distributors need 2-4 weeks lead time — upload by April 20 at the latest.
 
 * FRIDAY APRIL 24: Site goes live. Share with your inner circle first (DM 10-20 people who care). Then post publicly. One clean announcement — not “check out my new website,” but something that fits your world. A screenshot, a 10-second screen recording scrolling through, your music playing underneath.
 
@@ -138,7 +138,7 @@ The site is live. PWR is uploaded and waiting. This is the build-up window.
 
 * Launch a Groover campaign ($20-40): target 10-20 curators in hip-hop soul, conscious rap, alternative soul, cinematic playlists
 
-* Tease PWR’s streaming arrival on socials. Not a countdown — something subtler. A 15-second clip from PWR over a Scene-series-style visual with a date: “05.15”
+* Tease PWR’s streaming arrival on socials. Not a countdown — something subtler. A 15-second clip from PWR over a Scene-series-style visual with a date: “05.14”
 
 * Continue Scene series. Start using more PWR clips in posts to build familiarity with the track before it’s available to save.
 
@@ -146,7 +146,7 @@ The site is live. PWR is uploaded and waiting. This is the build-up window.
 
 * Set up a pre-save link through your distributor or a tool like DistroKid’s HyperFollow. Share on stories.
 
-## **Week 9: May 9 – May 15 — RELEASE WEEK**
+## **Week 9: May 9 – May 14 — RELEASE WEEK**
 
 *The first 72 hours after release are the most important window for Spotify’s algorithm. Every save, every playlist add, every repeat listen in this window counts disproportionately. Coordinate everything to land in these 72 hours.*
 
@@ -160,7 +160,7 @@ The site is live. PWR is uploaded and waiting. This is the build-up window.
 
 * TikTok (if strategy is defined by this date): PWR as original audio on a new post. Pin it to your profile.
 
-* Update your website — full May 15 swap checklist (see PRE-RELEASE-HERO.md for detailed steps):
+* Update your website — full May 14 swap checklist (see PRE-RELEASE-HERO.md for detailed steps):
   1. Hero: remove `hero--fullbleed` class, delete pre-release `<img>` and `hero-content--bottom` block, uncomment PWR Cover Art Hero inside `.hero-split`
   2. Hero CTA: swap to new PWR Odesli smart link
   3. Archive: uncomment PWR archive card, add Spotify/Apple/Tidal streaming links to `.catalog-links`

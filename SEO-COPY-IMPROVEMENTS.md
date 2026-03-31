@@ -234,7 +234,7 @@ When swapping featured project (e.g., PWR → Afterglow):
 5. **Hero section** — uncomment Afterglow hero, comment pre-release hero (see comment blocks in `index.html`)
 6. **`<h1>`** — remove visually-hidden h1, promote hero headline to `<h1>` (see PRE-RELEASE-HERO.md)
 7. **`sitemap.xml`** — update `<lastmod>` to deploy date
-8. **Archive section** — uncomment PWR archive card (May 15 wide release)
+8. **Archive section** — uncomment PWR archive card (May 14 wide release)
 9. **Email capture** — uncomment "Stay in the afterglow a little longer" CTA
 10. **Sync section** — uncomment Afterglow scene cards, update body copy
 11. **Cloudflare** — purge cache, then scrape Facebook/LinkedIn/Twitter debuggers

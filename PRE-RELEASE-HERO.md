@@ -1,7 +1,7 @@
 # Pre-Release Hero — Full-Bleed Photo Layout
 
 > **Status:** Active (site launch April 24 through May 14)
-> **Delete this file** once the May 15 PWR wide release swap is complete.
+> **Delete this file** once the May 14 PWR wide release swap is complete.
 
 ---
 
@@ -13,15 +13,15 @@ Convert the hero from a 2-column split layout (photo right, text left) to a full
 
 ## Why
 
-- **No cover art reveal:** The DSP cover art (tilt layers) is saved for May 15. This layout showcases the artist without exposing it.
+- **No cover art reveal:** The DSP cover art (tilt layers) is saved for May 14. This layout showcases the artist without exposing it.
 - **Immersive first impression:** Full-bleed photo is more cinematic than a split grid for a first-time visitor.
-- **Temporary:** This layout only lives for ~3 weeks (April 24 → May 14). The May 15 swap restores the 2-column grid with tilt cover art.
+- **Temporary:** This layout only lives for ~3 weeks (April 24 → May 14). The May 14 swap restores the 2-column grid with tilt cover art.
 
 ---
 
 ## Structure
 
-### May 15 layout (split grid — currently commented out)
+### May 14 layout (split grid — currently commented out)
 ```
 .hero
   .hero-split (2-col grid)
@@ -40,7 +40,7 @@ Convert the hero from a 2-column split layout (photo right, text left) to a full
     .hero-headline
     .hero-cover-label ("PWR — Single")
     .hero-actions (CTAs)
-  .hero-split (display:none — contains only commented-out May 15 + Afterglow blocks)
+  .hero-split (display:none — contains only commented-out May 14 + Afterglow blocks)
   .scroll-hint (z-index:2)
 ```
 
@@ -75,10 +75,10 @@ Convert the hero from a 2-column split layout (photo right, text left) to a full
 ```
 
 ### What NOT to touch
-- `.hero-split` base rules (grid, max-width, padding) — needed for May 15
-- `.hero-cover-layers`, `.hero-cover-base`, `.hero-cover-words`, `.tilt-active` — May 15 tilt effect
+- `.hero-split` base rules (grid, max-width, padding) — needed for May 14
+- `.hero-cover-layers`, `.hero-cover-base`, `.hero-cover-words`, `.tilt-active` — May 14 tilt effect
 - `.hero-cover-photo` — removed from pre-release HTML but CSS stays for reference
-- `.hero-audio-wrap`, `.hero-audio-btn` — May 15 audio player
+- `.hero-audio-wrap`, `.hero-audio-btn` — May 14 audio player
 - All hero animation keyframes
 
 ---
@@ -107,7 +107,7 @@ Convert the hero from a 2-column split layout (photo right, text left) to a full
 </section>
 ```
 
-### May 15 + Afterglow blocks
+### May 14 + Afterglow blocks
 **No changes.** They stay commented out inside `.hero-split` exactly as they are.
 
 ---
@@ -122,7 +122,7 @@ The pre-release hero has no `.hero-cover-layers` or `#heroAudioBtn`, so this cod
 
 ---
 
-## May 15 Swap Checklist
+## May 14 Swap Checklist
 
 When PWR goes wide on mainstream platforms:
 
@@ -152,6 +152,6 @@ After implementing:
 - [ ] Desktop light: scrim adjusts, text still legible
 - [ ] Mobile (640px): text centered at bottom, CTA in thumb zone
 - [ ] Scroll-hint visible and not overlapping CTAs
-- [ ] Comment out pre-release, uncomment May 15 → split grid layout works, tilt effect works
+- [ ] Comment out pre-release, uncomment May 14 → split grid layout works, tilt effect works
 - [ ] Revert back to pre-release → full-bleed works again
 - [ ] All 24 tests still pass

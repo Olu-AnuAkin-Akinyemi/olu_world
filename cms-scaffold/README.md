@@ -191,7 +191,7 @@ curl -X POST http://localhost:8788/api/notes \
 
 ## Next steps (Steps 3–4)
 
-When you open Claude Code post-May 15:
+When you open Claude Code post-May 14:
 
 1. **Step 3:** We add `<!-- CMS:notes -->` markers to your `index.html` and write `scripts/build-notes.mjs` — a pre-build script that queries D1 and outputs HTML matching your exact `.note-item` structure (date, icon, title, description, pill, full_content).
 

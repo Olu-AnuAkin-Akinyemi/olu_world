@@ -567,7 +567,7 @@ DEPLOY_HOOK_URL = "<your-pages-deploy-hook-url>"
 
 ## When to Build
 
-**After May 15 PWR swap.** The site needs to be stable before adding infrastructure. After May 15:
+**After May 14 PWR swap.** The site needs to be stable before adding infrastructure. After May 14:
 - Release pressure is off
 - You'll want to start posting Log entries regularly (process notes, voice memos, press features)
 - The Log becomes the primary content update channel
