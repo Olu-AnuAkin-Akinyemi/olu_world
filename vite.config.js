@@ -11,6 +11,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         epk: resolve(__dirname, 'epk.html'),
+        privacy: resolve(__dirname, 'privacy.html'),
       },
     },
   },
