@@ -360,12 +360,13 @@ if (galleryOverlay) {
 /* --- Bottom close buttons for overlays (mobile) --- */
 document.querySelectorAll('.overlay-bottom-close').forEach(btn => {
   btn.addEventListener('click', () => {
-    const overlay = btn.closest('.gallery-overlay, .notes-overlay, .contact-overlay');
+    const overlay = btn.closest('.gallery-overlay, .notes-overlay, .contact-overlay, .press-overlay');
     if (overlay?.id === 'notesOverlay') closeNoteOverlay();
     else if (overlay?.id === 'galleryOverlay') {
       overlay.hidden = true;
       overlay.querySelector('.gallery-overlay-img').src = '';
     } else if (overlay?.id === 'contactOverlay') closeContactOverlay();
+    else if (overlay?.id === 'pressOverlay') closePressOverlay();
   });
 });
 
@@ -397,6 +398,38 @@ if (contactOverlay) {
   });
 }
 
+/* --- One Pager overlay --- */
+const pressOverlay = document.getElementById('pressOverlay');
+const pressTrigger = document.getElementById('pressTrigger');
+
+function openPressOverlay() {
+  if (!pressOverlay) return;
+  const iframe = pressOverlay.querySelector('.press-overlay-iframe');
+  if (iframe && !iframe.src && iframe.dataset.src) {
+    iframe.src = iframe.dataset.src;
+  }
+  pressOverlay.hidden = false;
+  document.body.classList.add('cursor-hidden');
+  pressOverlay.querySelector('.press-overlay-close')?.focus();
+}
+
+function closePressOverlay() {
+  if (!pressOverlay) return;
+  pressOverlay.hidden = true;
+  document.body.classList.remove('cursor-hidden');
+}
+
+if (pressTrigger) {
+  pressTrigger.addEventListener('click', openPressOverlay);
+}
+
+if (pressOverlay) {
+  pressOverlay.querySelector('.press-overlay-close')?.addEventListener('click', closePressOverlay);
+  pressOverlay.addEventListener('click', e => {
+    if (e.target === pressOverlay) closePressOverlay();
+  });
+}
+
 // Footer contact link also opens the overlay
 document.querySelectorAll('a[href="#contact"]').forEach(link => {
   link.addEventListener('click', e => {
@@ -415,6 +448,7 @@ document.addEventListener('keydown', e => {
   }
   if (notesOverlay && !notesOverlay.hidden) { closeNoteOverlay(); return; }
   if (contactOverlay && !contactOverlay.hidden) { closeContactOverlay(); return; }
+  if (pressOverlay && !pressOverlay.hidden) { closePressOverlay(); return; }
 });
 
 /* --- Catalog carousel --- */

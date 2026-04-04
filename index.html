@@ -777,39 +777,7 @@
           <h3 class="catalog-title">Divine One</h3>
           <p class="catalog-scene">Still standing, with løve and power, upon truth within divinity</p>
         </div>
-        <!-- NIRVANA YT CARD (commented out — YouTube hides fullscreen on mobile at this card width)
-        <div class="catalog-card">
-          <div class="catalog-cover catalog-cover--video">
-            <iframe
-              data-src="https://www.youtube-nocookie.com/embed/wqOUkahoKmY?si=JoqkrFKqzvSEqPyU"
-              title="Nirvana by øLu AnuAkin"
-              lang="en"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share;"
-              allowfullscreen="true"
-              playsinline
-            ></iframe>
-          </div>
-          <h3 class="catalog-title">Nirvana</h3>
-          <p class="catalog-scene">Knowledge for your mind—love to feed your soul, pain to shape your body.</p>
-          <div class="catalog-links"><a href="https://oluanuakin.bandcamp.com/album/mamas-boy" class="catalog-link bc" target="_blank" rel="noopener">Bandcamp</a></div>
-        </div>
-        END NIRVANA YT CARD -->
-        <!-- CLMB MTNS ARCHIVE CARD (commented out — SoundCloud embed breaks mobile nav. Swap with Bandcamp embed or static art card when ready)
-        <div class="catalog-card">
-          <div class="catalog-cover catalog-cover--video-square">
-            <iframe
-              data-src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1237623322&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"
-              title="CLMB MTNS : v1 by øLu AnuAkin"
-              lang="en"
-              allow="autoplay"
-              scrolling="no"
-            ></iframe>
-          </div>
-          <h3 class="catalog-title">CLMB MTNS : v1</h3>
-          <p class="catalog-scene">Ascension, grit, forward motion — a raw climb toward something greater</p>
-          <div class="catalog-links"><a href="https://soundcloud.com/oluanuakin/clmb-mtns-v1" class="catalog-link sc" target="_blank" rel="noopener">SoundCloud</a></div>
-        </div>
-        END CLMB MTNS ARCHIVE CARD -->
+
         </div>
         <button class="carousel-btn carousel-btn--next" aria-label="Next">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><polyline points="6,3 11,8 6,13" stroke="currentColor" stroke-width="1.5" fill="none"/></svg>
@@ -886,7 +854,9 @@
             <button type="button" class="contact-trigger" id="contact" aria-label="Open contact form" data-tooltip="Get in touch">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4L12 13 2 4"/></svg>
             </button>
-            
+            <button type="button" class="press-trigger" id="pressTrigger" aria-label="Open one pager" data-tooltip="One Pager">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </button>
           </div>
         </div>
       </div>
@@ -1009,6 +979,23 @@
       </form>
       <p class="form-feedback" hidden aria-live="polite"></p>
     </div>
+  </div>
+
+  <!-- ============================================================ ONE PAGER OVERLAY -->
+  <div id="pressOverlay" class="press-overlay" role="dialog" aria-modal="true" aria-label="One pager" hidden>
+    <button type="button" class="press-overlay-close" aria-label="Close one pager">&times;</button>
+    <div class="press-overlay-content">
+      <p class="press-overlay-eyebrow">About</p>
+      <h2 class="press-overlay-title">One Pager</h2>
+      <div class="press-overlay-embed">
+        <iframe class="press-overlay-iframe" data-src="https://www.canva.com/design/DAHFvxQhbWs/view?embed" allowfullscreen loading="lazy" title="øLu AnuAkin One-Pager"></iframe>
+      </div>
+      <a href="/assets/oluanuakin-onepager.pdf" class="press-download-btn" download>
+        Download PDF
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none"><line x1="5" y1="1" x2="5" y2="8" stroke="currentColor" stroke-width="1"/><polyline points="2,5.5 5,8.5 8,5.5" stroke="currentColor" stroke-width="1" fill="none"/><line x1="1" y1="9.5" x2="9" y2="9.5" stroke="currentColor" stroke-width="1"/></svg>
+      </a>
+    </div>
+    <button type="button" class="overlay-bottom-close" aria-label="Close">Tap to close</button>
   </div>
 
   <!-- ============================================================ SCROLL TO TOP -->
