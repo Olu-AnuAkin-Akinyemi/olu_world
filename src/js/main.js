@@ -404,10 +404,6 @@ const pressTrigger = document.getElementById('pressTrigger');
 
 function openPressOverlay() {
   if (!pressOverlay) return;
-  const iframe = pressOverlay.querySelector('.press-overlay-iframe');
-  if (iframe && !iframe.src && iframe.dataset.src) {
-    iframe.src = iframe.dataset.src;
-  }
   pressOverlay.hidden = false;
   document.body.classList.add('cursor-hidden');
   pressOverlay.querySelector('.press-overlay-close')?.focus();

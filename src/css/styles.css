@@ -2617,19 +2617,16 @@ body.cursor-hidden .cursor-ring {
   margin-bottom: 28px;
 }
 .press-overlay-embed {
-  position: relative;
   width: 100%;
-  aspect-ratio: 8.5 / 11;
   margin-bottom: 24px;
   border-radius: 2px;
   overflow: hidden;
 }
-.press-overlay-iframe {
-  position: absolute;
-  inset: 0;
+.press-overlay-img {
   width: 100%;
-  height: 100%;
-  border: none;
+  height: auto;
+  display: block;
+  border-radius: 2px;
 }
 .press-download-btn {
   display: inline-flex;
