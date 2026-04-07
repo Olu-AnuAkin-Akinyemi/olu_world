@@ -1503,6 +1503,74 @@ body.cursor-hidden .cursor-ring {
 .world-item:nth-child(7) .world-item-bg {
   background: linear-gradient(135deg, #1a0a0a, #3a1010, #5a2a0a);
 }
+.gallery-collect-link {
+  position: relative;
+  display: flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 28px;
+  min-height: 44px;
+  margin: 32px auto 0;
+  font-size: 9px;
+  font-family: var(--mono);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--rust);
+  background: transparent;
+  border: none;
+  box-shadow: 0 0 0 1.5px var(--rust);
+  border-radius: 100px;
+  overflow: hidden;
+  transition:
+    color 0.35s ease,
+    box-shadow 0.35s ease,
+    border-radius 0.3s ease;
+}
+.gallery-collect-link-text {
+  position: relative;
+  z-index: 1;
+  transition: color 0.5s ease;
+}
+.gallery-collect-link-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  background: var(--rust);
+  border-radius: 50%;
+  opacity: 0;
+  transition:
+    width 0.6s ease,
+    height 0.6s ease,
+    opacity 0.4s ease;
+}
+.gallery-collect-link svg {
+  position: relative;
+  z-index: 1;
+  width: 10px;
+  height: 10px;
+  transition: stroke 0.5s ease;
+}
+@media (hover: hover) {
+  .gallery-collect-link:hover {
+    color: var(--bg);
+    box-shadow: 0 0 0 1.5px var(--rust);
+    border-radius: 12px;
+  }
+  .gallery-collect-link:hover .gallery-collect-link-circle {
+    width: 240px;
+    height: 240px;
+    opacity: 1;
+  }
+}
+.gallery-collect-link:active {
+  scale: 0.95;
+}
 
 /* --- Gallery 3D Canvas Carousel --- */
 #galleryCanvas {
@@ -3342,6 +3410,12 @@ footer {
   .world-item {
     grid-column: auto !important;
     grid-row: auto !important;
+  }
+  .gallery-collect-link {
+    margin: 20px auto 0;
+    padding: 10px 20px;
+    font-size: 8px;
+    min-height: 40px;
   }
   .catalog-grid {
     grid-template-columns: 1fr 1fr;
