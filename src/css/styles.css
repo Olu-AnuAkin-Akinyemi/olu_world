@@ -764,13 +764,14 @@ body.cursor-hidden .cursor-ring {
 }
 .hero-cta--primary {
   position: relative;
-  padding: 12px 24px;
+  padding: 16px 32px;
   border: none;
   box-shadow: 0 0 0 1.5px var(--rust);
   border-radius: 100px;
   color: var(--rust);
   background: transparent;
   overflow: hidden;
+  animation: collect-glow 4s ease-in-out infinite;
   transition:
     color 0.35s ease,
     box-shadow 0.35s ease,
@@ -1510,10 +1511,11 @@ body.cursor-hidden .cursor-ring {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px 28px;
+  padding: 16px 32px;
   min-height: 44px;
   margin: 32px auto 0;
-  font-size: 9px;
+  font-size: 12px;
+  animation: collect-glow 4s ease-in-out infinite;
   font-family: var(--mono);
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -3153,6 +3155,12 @@ footer {
   opacity: 0.6;
   transition: opacity 0.25s;
 }
+.footer-icon-img[alt="Feature.fm"] {
+  filter: invert(1);
+}
+[data-theme="light"] .footer-icon-img[alt="Feature.fm"] {
+  filter: none;
+}
 .footer-link--icon:hover .footer-icon-img {
   opacity: 1;
 }
@@ -3341,6 +3349,14 @@ footer {
   }
   50% {
     opacity: 0.25;
+  }
+}
+@keyframes collect-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 1.5px var(--rust);
+  }
+  50% {
+    box-shadow: 0 0 8px 2px rgba(168, 75, 42, 0.25), 0 0 0 1.5px var(--rust);
   }
 }
 
