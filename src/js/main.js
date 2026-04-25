@@ -627,3 +627,183 @@ document.querySelectorAll('form[data-form]').forEach(form => {
     }
   });
 });
+
+/* ═══════════════════════════════════════════════
+   CATALOG PLAYER
+   ─────────────────────────────────────────────── */
+
+function initCatalogPlayer() {
+
+  const SESSION_ID = (() => {
+    let id = sessionStorage.getItem('olu_sid');
+    if (!id) {
+      id = crypto.randomUUID();
+      sessionStorage.setItem('olu_sid', id);
+    }
+    return id;
+  })();
+
+  const DEVICE_TYPE = /Mobi|Android/i.test(navigator.userAgent) ? 'mobile' : 'desktop';
+  const DEBUG = document.cookie.includes('olu_debug=1');
+
+  function sendEvent(payload) {
+    if (DEBUG) return;
+    navigator.sendBeacon(
+      '/api/player-event',
+      JSON.stringify({ ...payload, session_id: SESSION_ID, device_type: DEVICE_TYPE })
+    );
+  }
+
+  let activeTrack  = null;
+  let activeAudio  = null;
+  let activeBtn    = null;
+  let playStart    = null;
+  let playFired    = false;
+  let seekDebounce = null;
+
+  function stopCurrent() {
+    if (activeAudio) {
+      activeAudio.pause();
+      activeAudio.currentTime = 0;
+    }
+    if (activeBtn) {
+      activeBtn.classList.remove('is-playing');
+      activeBtn.querySelector('.icon-play').style.display  = '';
+      activeBtn.querySelector('.icon-pause').style.display = 'none';
+      activeBtn.setAttribute('aria-label', activeBtn.getAttribute('aria-label').replace('Pause', 'Play'));
+    }
+    if (activeTrack) {
+      const bar = document.querySelector(`.player-progress-bar[data-track="${activeTrack}"] .player-progress-fill`);
+      const lbl = document.querySelector(`.player-elapsed[data-track="${activeTrack}"]`);
+      if (bar) bar.style.width = '0%';
+      if (lbl) lbl.textContent = '0:00';
+      const pbar = document.querySelector(`.player-progress-bar[data-track="${activeTrack}"]`);
+      if (pbar) pbar.setAttribute('aria-valuenow', '0');
+    }
+    activeTrack  = null;
+    activeAudio  = null;
+    activeBtn    = null;
+    playStart    = null;
+    playFired    = false;
+  }
+
+  function fmt(s) {
+    const m = Math.floor(s / 60);
+    const sec = Math.floor(s % 60);
+    return `${m}:${String(sec).padStart(2, '0')}`;
+  }
+
+  document.querySelectorAll('.player-play-btn').forEach(btn => {
+    const track    = btn.dataset.track;
+    const src      = btn.dataset.src;
+    const duration = parseInt(btn.dataset.duration, 10);
+    const bar      = document.querySelector(`.player-progress-bar[data-track="${track}"]`);
+    const fill     = bar?.querySelector('.player-progress-fill');
+    const elapsed  = document.querySelector(`.player-elapsed[data-track="${track}"]`);
+
+    let audio = null;
+
+    btn.addEventListener('click', () => {
+
+      if (activeTrack === track && activeAudio && !activeAudio.paused) {
+        const listenedSecs = playStart ? Math.round((Date.now() - playStart) / 1000) : null;
+        activeAudio.pause();
+        btn.classList.remove('is-playing');
+        btn.querySelector('.icon-play').style.display  = '';
+        btn.querySelector('.icon-pause').style.display = 'none';
+        sendEvent({ track_id: track, event_type: 'pause', play_duration_s: listenedSecs });
+        playStart = null;
+        playFired = false;
+        return;
+      }
+
+      if (activeTrack && activeTrack !== track) {
+        const listenedSecs = playStart ? Math.round((Date.now() - playStart) / 1000) : null;
+        sendEvent({ track_id: activeTrack, event_type: 'pause', play_duration_s: listenedSecs });
+        stopCurrent();
+      }
+
+      if (!audio) {
+        audio = new Audio();
+        audio.preload = 'none';
+        audio.src = src;
+
+        audio.addEventListener('timeupdate', () => {
+          if (!duration) return;
+          const pct = (audio.currentTime / duration) * 100;
+          if (fill)    fill.style.width = `${Math.min(pct, 100)}%`;
+          if (elapsed) elapsed.textContent = fmt(audio.currentTime);
+          if (bar)     bar.setAttribute('aria-valuenow', Math.round(audio.currentTime));
+        });
+
+        audio.addEventListener('ended', () => {
+          const listenedSecs = playStart ? Math.round((Date.now() - playStart) / 1000) : null;
+          sendEvent({ track_id: track, event_type: 'complete', play_duration_s: listenedSecs });
+          stopCurrent();
+        });
+
+        audio.addEventListener('seeked', () => {
+          clearTimeout(seekDebounce);
+          seekDebounce = setTimeout(() => {
+            sendEvent({ track_id: track, event_type: 'seek', seek_position_s: Math.round(audio.currentTime) });
+          }, 300);
+        });
+      }
+
+      activeTrack = track;
+      activeAudio = audio;
+      activeBtn   = btn;
+
+      audio.play().then(() => {
+        btn.classList.add('is-playing');
+        btn.querySelector('.icon-play').style.display  = 'none';
+        btn.querySelector('.icon-pause').style.display = '';
+
+        if (!playFired) {
+          playFired = true;
+          playStart = Date.now();
+          sendEvent({ track_id: track, event_type: 'play' });
+        } else {
+          playStart = Date.now();
+        }
+      }).catch(err => {
+        console.warn('Audio play blocked:', err);
+      });
+    });
+
+    if (bar) {
+      bar.addEventListener('click', e => {
+        if (!audio || !duration) return;
+        const rect = bar.getBoundingClientRect();
+        const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        audio.currentTime = pct * duration;
+        if (fill)    fill.style.width = `${pct * 100}%`;
+        if (elapsed) elapsed.textContent = fmt(audio.currentTime);
+      });
+    }
+  });
+
+  document.querySelectorAll('.dsp-link[data-track][data-dest]').forEach(link => {
+    link.addEventListener('click', () => {
+      sendEvent({
+        track_id: link.dataset.track,
+        event_type: 'link_click',
+        link_dest: link.dataset.dest
+      });
+    });
+  });
+
+  document.querySelectorAll('.dsp-more-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const sec    = document.getElementById(btn.dataset.sec);
+      const isOpen = sec.classList.contains('is-open');
+
+      sec.classList.toggle('is-open', !isOpen);
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      btn.childNodes[0].textContent = isOpen ? 'More' : 'Less';
+    });
+  });
+
+}
+
+initCatalogPlayer();
