@@ -1,5 +1,5 @@
 /*
-  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self'; connect-src 'self' https://api.web3forms.com; frame-src https://bandcamp.com https://customer-mrl30lrm2q4cfcg0.cloudflarestream.com https://www.youtube-nocookie.com https://iframe.videodelivery.net https://w.soundcloud.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; upgrade-insecure-requests;
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; media-src 'self' https://media.oluanuakin.me; connect-src 'self' https://api.web3forms.com; frame-src https://bandcamp.com https://customer-mrl30lrm2q4cfcg0.cloudflarestream.com https://www.youtube-nocookie.com https://iframe.videodelivery.net https://w.soundcloud.com; object-src 'none'; base-uri 'self'; form-action 'self' https://api.web3forms.com; frame-ancestors 'none'; upgrade-insecure-requests;
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: strict-origin-when-cross-origin
