@@ -777,6 +777,10 @@ body.cursor-hidden .cursor-ring {
     box-shadow 0.35s ease,
     border-radius 0.3s ease;
 }
+.hero-cta--explore .hero-cta-arrow {
+  display: inline-flex;
+  animation: arrowDrift 2.8s ease-in-out infinite;
+}
 .hero-cta-text {
   position: relative;
   z-index: 1;
@@ -3610,6 +3614,10 @@ footer {
     opacity: 0.25;
   }
 }
+@keyframes arrowDrift {
+  0%, 55%, 100% { transform: translateX(0); }
+  30% { transform: translateX(5px); }
+}
 @keyframes collect-glow {
   0%, 100% {
     box-shadow: 0 0 0 1.5px var(--rust);
@@ -3728,7 +3736,7 @@ footer {
     justify-content: center;
   }
   .hero-content--bottom {
-    padding: 0 var(--page-gutter) 90px;
+    padding: 0 var(--page-gutter) 140px;
   }
   .note-media-pill {
     display: none;
