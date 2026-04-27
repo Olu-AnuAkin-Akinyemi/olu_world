@@ -654,12 +654,13 @@ function initCatalogPlayer() {
     );
   }
 
-  let activeTrack  = null;
-  let activeAudio  = null;
-  let activeBtn    = null;
-  let playStart    = null;
-  let playFired    = false;
-  let seekDebounce = null;
+  let activeTrack    = null;
+  let activeAudio    = null;
+  let activeBtn      = null;
+  let activeDuration = null;
+  let playStart      = null;
+  let playFired      = false;
+  let seekDebounce   = null;
 
   function stopCurrent() {
     if (activeAudio) {
@@ -680,11 +681,12 @@ function initCatalogPlayer() {
       const pbar = document.querySelector(`.player-progress-bar[data-track="${activeTrack}"]`);
       if (pbar) pbar.setAttribute('aria-valuenow', '0');
     }
-    activeTrack  = null;
-    activeAudio  = null;
-    activeBtn    = null;
-    playStart    = null;
-    playFired    = false;
+    activeTrack    = null;
+    activeAudio    = null;
+    activeBtn      = null;
+    activeDuration = null;
+    playStart      = null;
+    playFired      = false;
   }
 
   function fmt(s) {
@@ -711,7 +713,7 @@ function initCatalogPlayer() {
         btn.classList.remove('is-playing');
         btn.querySelector('.icon-play').style.display  = '';
         btn.querySelector('.icon-pause').style.display = 'none';
-        sendEvent({ track_id: track, event_type: 'pause', play_duration_s: listenedSecs });
+        sendEvent({ track_id: track, event_type: 'pause', play_duration_s: listenedSecs, track_duration_s: duration });
         playStart = null;
         playFired = false;
         return;
@@ -719,7 +721,7 @@ function initCatalogPlayer() {
 
       if (activeTrack && activeTrack !== track) {
         const listenedSecs = playStart ? Math.round((Date.now() - playStart) / 1000) : null;
-        sendEvent({ track_id: activeTrack, event_type: 'pause', play_duration_s: listenedSecs });
+        sendEvent({ track_id: activeTrack, event_type: 'pause', play_duration_s: listenedSecs, track_duration_s: activeDuration });
         stopCurrent();
       }
 
@@ -738,7 +740,7 @@ function initCatalogPlayer() {
 
         audio.addEventListener('ended', () => {
           const listenedSecs = playStart ? Math.round((Date.now() - playStart) / 1000) : null;
-          sendEvent({ track_id: track, event_type: 'complete', play_duration_s: listenedSecs });
+          sendEvent({ track_id: track, event_type: 'complete', play_duration_s: listenedSecs, track_duration_s: duration });
           stopCurrent();
         });
 
@@ -750,9 +752,10 @@ function initCatalogPlayer() {
         });
       }
 
-      activeTrack = track;
-      activeAudio = audio;
-      activeBtn   = btn;
+      activeTrack    = track;
+      activeAudio    = audio;
+      activeBtn      = btn;
+      activeDuration = duration;
 
       audio.play().then(() => {
         btn.classList.add('is-playing');
