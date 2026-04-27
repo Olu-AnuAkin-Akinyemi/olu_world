@@ -704,6 +704,7 @@ function initCatalogPlayer() {
     const elapsed  = document.querySelector(`.player-elapsed[data-track="${track}"]`);
 
     let audio = null;
+    let realDuration = duration;
 
     btn.addEventListener('click', () => {
 
@@ -713,7 +714,7 @@ function initCatalogPlayer() {
         btn.classList.remove('is-playing');
         btn.querySelector('.icon-play').style.display  = '';
         btn.querySelector('.icon-pause').style.display = 'none';
-        sendEvent({ track_id: track, event_type: 'pause', play_duration_s: listenedSecs, track_duration_s: duration });
+        sendEvent({ track_id: track, event_type: 'pause', play_duration_s: listenedSecs, track_duration_s: realDuration });
         playStart = null;
         playFired = false;
         return;
@@ -730,9 +731,16 @@ function initCatalogPlayer() {
         audio.preload = 'none';
         audio.src = src;
 
+        audio.addEventListener('loadedmetadata', () => {
+          if (isFinite(audio.duration)) {
+            realDuration = audio.duration;
+            if (activeTrack === track) activeDuration = realDuration;
+          }
+        });
+
         audio.addEventListener('timeupdate', () => {
-          if (!duration) return;
-          const pct = (audio.currentTime / duration) * 100;
+          if (!realDuration) return;
+          const pct = (audio.currentTime / realDuration) * 100;
           if (fill)    fill.style.width = `${Math.min(pct, 100)}%`;
           if (elapsed) elapsed.textContent = fmt(audio.currentTime);
           if (bar)     bar.setAttribute('aria-valuenow', Math.round(audio.currentTime));
@@ -740,7 +748,7 @@ function initCatalogPlayer() {
 
         audio.addEventListener('ended', () => {
           const listenedSecs = playStart ? Math.round((Date.now() - playStart) / 1000) : null;
-          sendEvent({ track_id: track, event_type: 'complete', play_duration_s: listenedSecs, track_duration_s: duration });
+          sendEvent({ track_id: track, event_type: 'complete', play_duration_s: listenedSecs, track_duration_s: realDuration });
           stopCurrent();
         });
 
@@ -755,7 +763,7 @@ function initCatalogPlayer() {
       activeTrack    = track;
       activeAudio    = audio;
       activeBtn      = btn;
-      activeDuration = duration;
+      activeDuration = realDuration;
 
       audio.play().then(() => {
         btn.classList.add('is-playing');
@@ -776,10 +784,10 @@ function initCatalogPlayer() {
 
     if (bar) {
       bar.addEventListener('click', e => {
-        if (!audio || !duration) return;
+        if (!audio || !realDuration) return;
         const rect = bar.getBoundingClientRect();
         const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-        audio.currentTime = pct * duration;
+        audio.currentTime = pct * realDuration;
         if (fill)    fill.style.width = `${pct * 100}%`;
         if (elapsed) elapsed.textContent = fmt(audio.currentTime);
       });
