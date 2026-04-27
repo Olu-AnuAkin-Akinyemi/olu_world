@@ -71,18 +71,31 @@
     <a href="/" class="privacy-back">← Back to Home</a>
 
     <h1>Privacy Policy</h1>
-    <p class="updated">Last Updated: March 30, 2026</p>
+    <p class="updated">Last Updated: April 27, 2026</p>
 
     <h2>Overview</h2>
     <p>This privacy policy explains how øLu AnuAkin ("we," "us," or "our") collects, uses, and protects your personal information when you use our website at oluanuakin.me.</p>
 
     <h2>Information We Collect</h2>
     <p><strong>Email Addresses:</strong> When you sign up for our mailing list or submit the contact form, we collect your email address (and name, if provided in the contact form).</p>
-    <p><strong>Automatically Collected Data:</strong> We do not use cookies or analytics trackers. Your browser may send standard technical information (IP address, browser type) to our hosting provider, but we do not actively collect or store this data.</p>
+    <p><strong>Audio Player Data:</strong> When you use the audio player, we record information about how you interact with it. Specifically:</p>
+    <p>
+      • <strong>Listening activity</strong> — tracks played, how long you listen, whether you complete a track, and whether you seek within it.<br>
+      • <strong>Approximate location</strong> — country, region, and city, derived from your IP at the moment of the request. Your raw IP is never stored; a non-reversible daily hash is used solely to count unique listeners and resets every 24 hours.<br>
+      • <strong>Device type</strong> — mobile or desktop, derived from your browser's user agent.<br>
+      • <strong>Session identifier</strong> — a randomly generated ID created when you open the site and cleared when you close the tab. It is not linked to your identity in any way.<br>
+      • <strong>Platform link clicks</strong> — if you click a link to Spotify, Bandcamp, Apple Music, or another platform, the destination is recorded alongside the track you were listening to.<br>
+      • <strong>Referring source</strong> — the domain you came from (e.g. instagram.com), if any. No path or query string is stored.<br>
+      • <strong>Time of play</strong> — the UTC hour at which listening occurred.
+    </p>
+
+    <h2>What Is Not Collected</h2>
+    <p>We do not collect your name, email address, or any contact information unless you submit the mailing list signup or contact form. We do not store your full IP address. We do not use cookies or persistent identifiers from the audio player. We do not collect browser fingerprint data, and we do not collect any data from other tabs or sites.</p>
 
     <h2>How We Use Your Information</h2>
     <p><strong>Mailing List:</strong> Email addresses collected through the mailing list signup are used solely to send you updates about new music releases, projects, and related announcements. You can unsubscribe at any time via the link in any email.</p>
     <p><strong>Contact Form:</strong> Information submitted via the contact form is used only to respond to your inquiry.</p>
+    <p><strong>Audio Player Data:</strong> Listening data helps us understand which music resonates with listeners, where the audience is located, and which platforms they prefer. It informs release decisions and promotional strategy. It is never sold, shared with advertisers, or used for any purpose other than understanding how people engage with the music.</p>
 
     <h2>Third-Party Services</h2>
     <p>We use <a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a> to process form submissions (mailing list and contact form). Web3Forms forwards submissions to our email inbox. Their privacy policy is available at <a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a>.</p>
@@ -90,6 +103,7 @@
 
     <h2>Data Storage and Retention</h2>
     <p>Email addresses submitted through forms are stored in our email inbox and may be added to our mailing list platform (if we migrate to one in the future). We retain your information until you request deletion or unsubscribe from the mailing list.</p>
+    <p>Anonymous listening data collected through the audio player is stored in our analytics database and retained for up to 12 months, after which it is deleted.</p>
 
     <h2>Your Rights</h2>
     <p>You have the right to:</p>
@@ -100,6 +114,7 @@
       • <strong>Unsubscribe:</strong> Opt out of the mailing list at any time
     </p>
     <p>To exercise these rights, contact us at <a href="mailto:contact@oluanuakin.me">contact@oluanuakin.me</a>.</p>
+    <p>Because audio player data is anonymous and not linked to any identity, fulfilling deletion requests for listening data requires you to provide your session ID. While on the site, you can find it in your browser's sessionStorage under the key <code>olu_sid</code>.</p>
 
     <h2>Security</h2>
     <p>We take reasonable measures to protect your personal information from unauthorized access or disclosure. However, no method of transmission over the internet is 100% secure.</p>
