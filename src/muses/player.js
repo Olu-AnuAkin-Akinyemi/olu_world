@@ -84,18 +84,18 @@ function toggleGateMute() {
   setGateMuted(willMute);
   updateMuteUI();
 
-  if (willMute) {
-    if (!gateAudio) return;
-    fadeAudio(gateAudio, gateAudio.volume, 0, GATE_MUTE_FADE_MS, () => {
-      if (gateAudio) gateAudio.pause();
-    });
-  } else {
-    ensureGateAudio();
+  ensureGateAudio();
+
+  // If the click is the very first user gesture (e.g. user opened the page
+  // and tapped the mute icon directly), this counts as that gesture — kick
+  // playback off so subsequent unmutes are instant.
+  if (gateAudio.paused) {
     const p = gateAudio.play();
-    const ramp = () => fadeAudio(gateAudio, gateAudio.volume, GATE_VOLUME, GATE_MUTE_FADE_MS);
-    if (p && p.then) p.then(ramp).catch(() => {});
-    else ramp();
+    if (p && p.then) p.catch(() => {});
   }
+
+  const target = willMute ? 0 : GATE_VOLUME;
+  fadeAudio(gateAudio, gateAudio.volume, target, GATE_MUTE_FADE_MS);
 }
 
 // Smoothstep S-curve: gentle at both ends, perceptually smoother than linear
@@ -122,22 +122,22 @@ function initGateSnippet() {
   document.addEventListener('visibilitychange', () => {
     if (!gateAudio) return;
     if (document.hidden) gateAudio.pause();
-    else if (!isGateMuted() && gateAudio.currentTime > 0 && gateAudio.volume > 0) {
+    else if (gateAudio.currentTime > 0) {
       gateAudio.play().catch(() => {});
     }
   });
 
-  // Respect saved mute preference: don't preload audio at all if the visitor
-  // already opted out. Toggle button can lazily create it later.
-  if (isGateMuted()) return;
-
+  // Always preload + autoplay on first gesture. Mute state controls *volume*,
+  // not whether the audio runs — that way a returning muted visitor still
+  // gets instant audio when they unmute (no fresh buffer pause).
   ensureGateAudio();
 
   const startOnce = () => {
-    if (!gateAudio || isGateMuted()) return;
+    if (!gateAudio) return;
+    const target = isGateMuted() ? 0 : GATE_VOLUME;
     const p = gateAudio.play();
     if (p && p.then) {
-      p.then(() => fadeAudio(gateAudio, 0, GATE_VOLUME, GATE_FADE_IN_MS))
+      p.then(() => fadeAudio(gateAudio, 0, target, GATE_FADE_IN_MS))
        .catch(() => {}); // gesture not yet trusted; another listener will retry
     }
   };
