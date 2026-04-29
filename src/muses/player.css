@@ -340,7 +340,7 @@ body::after {
 .dedication-rule { width: 14px; height: 0.5px; background: var(--rust); opacity: 0.28; margin: 0 auto 26px; }
 .dedication-text {
   font-family: var(--serif); font-style: italic; font-weight: 300;
-  font-size: 13px; color: var(--parchment); opacity: 0.42; line-height: 2.1;
+  font-size: 13px; color: var(--parchment); opacity: 0.65; line-height: 2.1;
 }
 
 .dsp-link { text-align: center; padding: 12px 32px 36px; display: none; }

@@ -312,11 +312,16 @@ function closeSheet() {
 function updateSheetContent() {
   const t = TRACKS[currentTrack];
   if (!t) return;
-  document.getElementById('sheet-num').textContent     = t.num;
-  document.getElementById('sheet-title').textContent   = t.title;
-  document.getElementById('sheet-note').textContent    = t.note;
-  document.getElementById('sheet-credits').textContent = t.credits;
-  document.getElementById('sheet-lyrics').textContent  = t.lyrics;
+  // Resilient to commented-out sheet sections (e.g. lyrics)
+  const set = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  };
+  set('sheet-num',     t.num);
+  set('sheet-title',   t.title);
+  set('sheet-note',    t.note);
+  set('sheet-credits', t.credits);
+  set('sheet-lyrics',  t.lyrics);
 }
 
 // Swipe-down to close sheet with resistance
