@@ -40,6 +40,72 @@ async function loadManifest() {
   }));
 }
 
+// ── GATE SNIPPET (ambient preview audio) ──
+// Browsers block autoplay-with-sound until first user gesture, so we attach
+// once-only listeners that start the snippet on the first interaction with
+// the gate (mouse move, touch, key, focus). Fade in on start, fade out on
+// gate exit so the transition feels like a door, not a hard cut.
+const GATE_SNIPPET_URL = '/gate-snippet.mp3';
+const GATE_VOLUME = 0.18;
+const GATE_FADE_IN_MS = 1500;
+const GATE_FADE_OUT_MS = 800;
+
+let gateAudio = null;
+let gateFadeRaf = 0;
+
+function fadeAudio(audio, from, to, ms, onDone) {
+  cancelAnimationFrame(gateFadeRaf);
+  if (ms <= 0) { audio.volume = to; onDone?.(); return; }
+  const start = performance.now();
+  const tick = (now) => {
+    const t = Math.min((now - start) / ms, 1);
+    audio.volume = from + (to - from) * t;
+    if (t < 1) gateFadeRaf = requestAnimationFrame(tick);
+    else onDone?.();
+  };
+  gateFadeRaf = requestAnimationFrame(tick);
+}
+
+function initGateSnippet() {
+  gateAudio = new Audio(GATE_SNIPPET_URL);
+  gateAudio.loop = true;
+  gateAudio.volume = 0;
+  gateAudio.preload = 'metadata';
+
+  const startOnce = () => {
+    if (!gateAudio) return;
+    const p = gateAudio.play();
+    if (p && p.then) {
+      p.then(() => fadeAudio(gateAudio, 0, GATE_VOLUME, GATE_FADE_IN_MS))
+       .catch(() => {}); // gesture not yet trusted; another listener will retry
+    }
+  };
+
+  const events = ['pointerdown', 'pointermove', 'touchstart', 'keydown'];
+  events.forEach(evt =>
+    document.addEventListener(evt, startOnce, { once: true, passive: true, capture: true })
+  );
+
+  // Be polite if the visitor tabs away
+  document.addEventListener('visibilitychange', () => {
+    if (!gateAudio) return;
+    if (document.hidden) gateAudio.pause();
+    else if (gateAudio.currentTime > 0 && gateAudio.volume > 0) {
+      gateAudio.play().catch(() => {});
+    }
+  });
+}
+
+function fadeOutGateSnippet(ms = GATE_FADE_OUT_MS) {
+  if (!gateAudio) return;
+  const audio = gateAudio;
+  gateAudio = null;
+  fadeAudio(audio, audio.volume, 0, ms, () => {
+    audio.pause();
+    audio.src = '';
+  });
+}
+
 // ── GATE ──
 const isValidEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
@@ -113,6 +179,7 @@ function showError(msg = 'something went wrong. try again.') {
 }
 
 async function unlockPlayer() {
+  fadeOutGateSnippet();
   document.getElementById('gate').classList.add('exiting');
   setTimeout(async () => {
     document.getElementById('gate').style.display = 'none';
@@ -393,6 +460,7 @@ function initSheetSwipe() {
 
 // ── EVENT LISTENERS ──
 document.addEventListener('DOMContentLoaded', () => {
+  initGateSnippet();
   document.getElementById('enter-btn').addEventListener('click', handleEnter);
   document.getElementById('play-btn').addEventListener('click', togglePlay);
   document.getElementById('prev-btn').addEventListener('click', prevTrack);

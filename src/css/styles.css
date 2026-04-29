@@ -2996,6 +2996,15 @@ body.cursor-hidden .cursor-ring {
 }
 .email-form--teaser {
   margin-top: 16px;
+  flex-direction: column;
+}
+.email-form--teaser .email-input--name {
+  width: 100%;
+  border-bottom: 0.5px solid var(--border-mid);
+}
+.email-form--teaser .email-row {
+  display: flex;
+  width: 100%;
 }
 .sync-tracks {
   display: flex;

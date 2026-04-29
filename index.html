@@ -554,9 +554,11 @@
           <p class="afterglow-teaser-line">Join the mailing list for early access to new releases. No spam, unsubscribe anytime. <a href="/privacy" style="text-decoration:underline;color:var(--text-muted);">Privacy Policy</a></p>
           <form class="email-form email-form--teaser" data-form="crew">
             <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" aria-hidden="true" title="Do not fill this field" />
-            <input class="email-input" type="text" name="name" placeholder="your name (optional)" aria-label="Your name" autocomplete="name" />
-            <input class="email-input" type="email" name="email" placeholder="your@email.com" aria-label="Email address" autocomplete="email" required />
-            <button class="email-submit" type="submit">Join</button>
+            <input class="email-input email-input--name" type="text" name="name" placeholder="your name (optional)" aria-label="Your name (optional)" autocomplete="name" />
+            <div class="email-row">
+              <input class="email-input" type="email" name="email" placeholder="your@email.com" aria-label="Email address" autocomplete="email" required />
+              <button class="email-submit" type="submit">Join</button>
+            </div>
           </form>
           <p class="form-feedback" hidden aria-live="polite"></p>
         </div>
