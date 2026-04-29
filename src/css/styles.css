@@ -2998,13 +2998,17 @@ body.cursor-hidden .cursor-ring {
   margin-top: 16px;
   flex-direction: column;
 }
-.email-form--teaser .email-input--name {
+.email-form--teaser .email-input {
   width: 100%;
+}
+.email-form--teaser .email-input--name {
   border-bottom: 0.5px solid var(--border-mid);
 }
-.email-form--teaser .email-row {
-  display: flex;
+.email-form--teaser .email-submit {
   width: 100%;
+  border-left: none;
+  border-top: 0.5px solid var(--border-mid);
+  text-align: center;
 }
 .sync-tracks {
   display: flex;

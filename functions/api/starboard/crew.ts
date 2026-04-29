@@ -1,13 +1,29 @@
 // functions/api/starboard/crew.ts
 
-// Uses the Artist-project Starboard key, not the Muses key. The Muses key
-// (STARBOARD_API_KEY) authorizes manifest/assets/heartbeat for the Muses
-// release; this endpoint posts to the øLu AnuAkin (Artist) project's crew.
+// Routes crew signups to one of two Starboard projects based on body.source:
+//   - 'muses'    → Muses project (key: STARBOARD_API_KEY)
+//   - default    → øLu AnuAkin Artist project (key: STARBOARD_ARTIST_API_KEY)
+// Each project's Crew tab is the canonical segment for that audience source.
 interface Env {
+  STARBOARD_API_KEY: string;
   STARBOARD_ARTIST_API_KEY: string;
 }
 
-const PROJECT_ID = 'cef933d4-7f63-4f4c-ab96-8fc3902901b8';
+const PROJECTS = {
+  afterglow: {
+    id: 'cef933d4-7f63-4f4c-ab96-8fc3902901b8',
+    envKey: 'STARBOARD_ARTIST_API_KEY' as const,
+  },
+  muses: {
+    id: 'fdf755ab-80a7-40fb-b168-edef1e7ebd9a',
+    envKey: 'STARBOARD_API_KEY' as const,
+  },
+};
+type Source = keyof typeof PROJECTS;
+
+function resolveSource(value: unknown): Source {
+  return value === 'muses' ? 'muses' : 'afterglow';
+}
 const RATE_LIMIT_WINDOW_MS = 60_000;
 const RATE_LIMIT_MAX = 3;
 
@@ -59,6 +75,8 @@ export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
   }
 
   const cf = (request as unknown as { cf?: Record<string, unknown> }).cf ?? {};
+  const source = resolveSource(body.source);
+  const project = PROJECTS[source];
 
   const payload = {
     email: body.email.toLowerCase(),
@@ -69,11 +87,11 @@ export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
   };
 
   const response = await fetch(
-    `https://starboard.one-kind.co/api/public/projects/${PROJECT_ID}/crew`,
+    `https://starboard.one-kind.co/api/public/projects/${project.id}/crew`,
     {
       method: 'POST',
       headers: {
-        authorization: `Bearer ${env.STARBOARD_ARTIST_API_KEY}`,
+        authorization: `Bearer ${env[project.envKey]}`,
         'content-type': 'application/json',
       },
       body: JSON.stringify(payload),

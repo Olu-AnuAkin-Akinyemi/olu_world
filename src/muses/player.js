@@ -47,19 +47,22 @@ async function loadManifest() {
 // gate exit so the transition feels like a door, not a hard cut.
 const GATE_SNIPPET_URL = '/gate-snippet.mp3';
 const GATE_VOLUME = 0.18;
-const GATE_FADE_IN_MS = 1500;
-const GATE_FADE_OUT_MS = 800;
+const GATE_FADE_IN_MS = 4000;
+const GATE_FADE_OUT_MS = 1200;
 
 let gateAudio = null;
 let gateFadeRaf = 0;
 
+// Smoothstep S-curve: gentle at both ends, perceptually smoother than linear
+// for amplitude ramps because human hearing is roughly logarithmic.
 function fadeAudio(audio, from, to, ms, onDone) {
   cancelAnimationFrame(gateFadeRaf);
   if (ms <= 0) { audio.volume = to; onDone?.(); return; }
   const start = performance.now();
   const tick = (now) => {
     const t = Math.min((now - start) / ms, 1);
-    audio.volume = from + (to - from) * t;
+    const eased = t * t * (3 - 2 * t);
+    audio.volume = from + (to - from) * eased;
     if (t < 1) gateFadeRaf = requestAnimationFrame(tick);
     else onDone?.();
   };
@@ -114,7 +117,7 @@ async function submitCrewSignup(email, name) {
     const res = await fetch('/api/starboard/crew', {
       method: 'POST',
       headers: { 'content-type': 'application/json' },
-      body: JSON.stringify({ email, name: name || undefined }),
+      body: JSON.stringify({ email, name: name || undefined, source: 'muses' }),
     });
     if (!res.ok) return false;
     const data = await res.json().catch(() => ({}));
