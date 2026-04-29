@@ -88,7 +88,7 @@ body::after {
   outline-offset: 4px;
   border-radius: 2px;
 }
-.gate-mute svg { display: block; }
+.gate-mute svg:not([hidden]) { display: block; }
 
 .gate-bg {
   position: absolute; inset: -5%;
