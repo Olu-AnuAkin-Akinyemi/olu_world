@@ -76,7 +76,7 @@ body::after {
   background: transparent;
   border: none;
   color: var(--parchment);
-  opacity: 0.32;
+  opacity: 0.5;
   cursor: pointer;
   transition: opacity 0.4s ease;
   -webkit-tap-highlight-color: transparent;
@@ -88,7 +88,10 @@ body::after {
   outline-offset: 4px;
   border-radius: 2px;
 }
-.gate-mute svg:not([hidden]) { display: block; }
+.gate-mute-icon { display: block; }
+.gate-mute .gate-mute-off { display: none; }
+.gate-mute.is-muted .gate-mute-on { display: none; }
+.gate-mute.is-muted .gate-mute-off { display: block; }
 
 .gate-bg {
   position: absolute; inset: -5%;

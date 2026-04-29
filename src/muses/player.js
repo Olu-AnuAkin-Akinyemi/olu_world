@@ -67,10 +67,7 @@ function updateMuteUI() {
   const muted = isGateMuted();
   btn.setAttribute('aria-label', muted ? 'Unmute ambient audio' : 'Mute ambient audio');
   btn.setAttribute('aria-pressed', String(muted));
-  const on = btn.querySelector('.gate-mute-on');
-  const off = btn.querySelector('.gate-mute-off');
-  if (on) on.hidden = muted;
-  if (off) off.hidden = !muted;
+  btn.classList.toggle('is-muted', muted);
 }
 
 function ensureGateAudio() {
