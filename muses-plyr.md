@@ -8,12 +8,13 @@
 
 ### In Scope
 - Vite multi-page entry at `src/muses/index.html`
-- CF Pages Functions proxy for Starboard manifest + asset streaming
+- CF Pages Functions proxy for Starboard manifest + asset streaming + audience heartbeats
 - Dynamic tracklist from Starboard manifest
 - Gate: email (required) + name (required) + phone (optional) — cosmetic only, any valid input unlocks
 - Full audio playback: play/pause, prev/next, scrubber with range request support
 - Background video via Cloudflare Stream (silent, loops, synced to audio play/pause state)
 - Track info sheet per track (title, note, credits, lyrics from `track-meta.js`)
+- Audience metrics: 15s heartbeats to Starboard during playback, attributed per track (see §14)
 - Standalone page at `oluanuakin.me/muses` — no shared site nav
 
 ### Out of Scope for MVP
@@ -35,6 +36,7 @@ repo-root/
 │   └── api/
 │       └── starboard/
 │           ├── manifest.ts                 ← NEW: manifest proxy
+│           ├── heartbeat.ts                ← NEW: audience-metrics proxy (per-track attribution)
 │           └── assets/
 │               └── [assetId]/
 │                   └── object.ts           ← NEW: asset proxy with range support
@@ -109,6 +111,52 @@ export const onRequestGet: PagesFunction<{
     },
   })
 }
+```
+
+### `functions/api/starboard/heartbeat.ts`
+```typescript
+interface Env {
+  STARBOARD_API_KEY: string;
+}
+
+const RELEASE_PROJECT_ID = 'fdf755ab-80a7-40fb-b168-edef1e7ebd9a';
+const SOURCE_HOSTNAME = 'oluanuakin.me';
+
+export const onRequestPost: PagesFunction<Env> = async ({ env, request }) => {
+  const body = await request.json() as Record<string, unknown>;
+  const cf = (request as unknown as { cf?: Record<string, unknown> }).cf ?? {};
+
+  // EP/album players send the per-track projectId; fall back to the release
+  // ID for single-track players. Starboard aggregates track heartbeats up to
+  // the parent release automatically.
+  const targetProjectId = typeof body.projectId === 'string'
+    ? body.projectId
+    : RELEASE_PROJECT_ID;
+
+  // Starboard does not infer client IP/geo from the proxy connection — we
+  // must enrich from cf-connecting-ip and the Cloudflare request.cf object.
+  const enriched = {
+    ...body,
+    ua: request.headers.get('user-agent') ?? '',
+    source: SOURCE_HOSTNAME,
+    ip: request.headers.get('cf-connecting-ip') ?? 'unknown',
+    country: typeof cf.country === 'string' ? cf.country : '',
+    region: typeof cf.region === 'string' ? cf.region : '',
+    city: typeof cf.city === 'string' ? cf.city : '',
+  };
+
+  const starboardUrl = `https://starboard.one-kind.co/api/public/projects/${encodeURIComponent(targetProjectId)}/heartbeat`;
+  const response = await fetch(starboardUrl, {
+    method: 'POST',
+    headers: {
+      authorization: `Bearer ${env.STARBOARD_API_KEY}`,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify(enriched),
+  });
+
+  return new Response(response.body, { status: response.status });
+};
 ```
 
 ### `functions/api/starboard/assets/[assetId]/object.ts`
@@ -208,6 +256,7 @@ async function loadManifest() {
     num: String(track.position ?? '').padStart(2, '0'),
     title: track.title,
     id: track.id,
+    projectId: track.projectId,        // required for per-track heartbeat attribution
     src: rewriteAssetUrl(track.audio.url),
     artwork: track.artwork?.url
       ? rewriteAssetUrl(track.artwork.url)
@@ -559,6 +608,70 @@ function handlePurchase() {
   // fetch('/api/purchase', { method: 'POST', ... })
   console.log('Purchase stub — wire to collective API post-MVP')
 }
+
+// ── HEARTBEAT ──
+// See §14 for full architecture. Two helpers + native audio-event wiring.
+function getDeviceId() {
+  try {
+    let id = localStorage.getItem('sbDeviceId')
+    if (!id) {
+      id = crypto.randomUUID()
+      localStorage.setItem('sbDeviceId', id)
+    }
+    return id
+  } catch {
+    return crypto.randomUUID() // localStorage blocked (private mode / ITP)
+  }
+}
+
+function createHeartbeatTracker({ getProjectId, getUserId }) {
+  let elapsed = 0
+  let interval = null
+  // Captured at play-time so a final flush on pause/ended attributes to the
+  // outgoing track even if currentTrack has already advanced.
+  let activeProjectId = null
+
+  function send() {
+    if (elapsed <= 0 || !activeProjectId) return
+    const projectId = activeProjectId
+    const length = elapsed
+    elapsed = 0
+    fetch('/api/starboard/heartbeat', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({
+        projectId,
+        userId: getUserId(),
+        deviceId: getDeviceId(),
+        length,
+      }),
+    }).catch(() => {}) // fire-and-forget — never block playback
+  }
+
+  return {
+    onPlay() {
+      activeProjectId = getProjectId()
+      if (interval) return
+      interval = setInterval(() => {
+        elapsed = Math.min(elapsed + 1, 30)
+        if (elapsed >= 15) send()
+      }, 1000)
+    },
+    onPause() { clearInterval(interval); interval = null; send(); activeProjectId = null },
+    onEnded() { clearInterval(interval); interval = null; send(); activeProjectId = null },
+  }
+}
+
+const heartbeat = createHeartbeatTracker({
+  getProjectId: () => TRACKS[currentTrack]?.projectId ?? null,
+  getUserId: () => 'anonymous', // MVP: gate is cosmetic; revisit when auth ships
+})
+
+// Wire to native audio events inside DOMContentLoaded:
+// const audio = document.getElementById('audio')
+// audio.addEventListener('play',  () => heartbeat.onPlay())
+// audio.addEventListener('pause', () => heartbeat.onPause())
+// audio.addEventListener('ended', () => heartbeat.onEnded())
 ```
 
 ---
@@ -653,7 +766,86 @@ Credit:    ℗ & © 2026 colorshvdes / galorious expression llc · ascap
 
 ---
 
-## 14. MVP Go-Live Checklist
+## 14. Audience Heartbeats
+
+Starboard's audience metrics are populated by the player itself, not by Starboard scraping anything. The browser sends a "heartbeat" every 15 seconds while audio is playing; the proxy enriches it with IP / geo / user-agent and forwards to Starboard. Aggregation up to the EP is automatic — heartbeats attributed to a track's own `projectId` roll up under the parent release.
+
+### Architecture
+
+```
+┌──────────────┐  POST /api/starboard/heartbeat   ┌─────────────────────┐
+│   Browser    │ ───────────────────────────────► │  Pages Function     │
+│  (player.js) │   { projectId, userId,           │  heartbeat.ts       │
+│              │     deviceId, length }           │                     │
+└──────────────┘                                  │  + ua, source, ip,  │
+                                                  │    country, region, │
+                                                  │    city             │
+                                                  ▼                     │
+                                          POST starboard.one-kind.co/   │
+                                          api/public/projects/          │
+                                          {track.projectId}/heartbeat   │
+                                          Authorization: Bearer <key>   │
+```
+
+### Per-track attribution rule (critical)
+
+Heartbeats MUST use the **track's own** `projectId` (`track.projectId` from the manifest), **not** the release/EP `projectId`. The release ID is the Starboard fallback for single-track players. Sending heartbeats to the release ID directly bypasses Starboard's aggregation and miscounts plays.
+
+The browser-side helper captures `activeProjectId` at the `play` event, not at `send` time. This guards against the pause→play sequence on track change misattributing the final flush to the incoming track.
+
+### Heartbeat rules
+
+| Rule | Why |
+|---|---|
+| Tick only while audio is playing (not paused, buffering, ended) | Prevents inflated counts |
+| Cap `elapsed` at 30s per send | Defends against tab-throttle catch-up bursts |
+| Never send `length: 0` | Heartbeat helper short-circuits |
+| Send a final flush on pause and ended | Captures the trailing seconds before the interval stops |
+| Fire-and-forget — never block playback on a slow heartbeat | UX over telemetry |
+| `deviceId` = `crypto.randomUUID()` stored in `localStorage["sbDeviceId"]` | Stable per browser; ephemeral if storage blocked |
+| `userId` = `'anonymous'` for MVP | Replace when real auth ships |
+
+### What the proxy must enrich
+
+The browser sends only `{ projectId, userId, deviceId, length }`. The proxy MUST add:
+
+| Field | Source | Note |
+|---|---|---|
+| `ua` | `request.headers.get('user-agent')` | |
+| `source` | Hardcoded constant `'oluanuakin.me'` | One-line config per deployment |
+| `ip` | `request.headers.get('cf-connecting-ip')` | Cloudflare-only header; do not trust `x-forwarded-for` |
+| `country` / `region` / `city` | `request.cf.country` etc. | Empty in `wrangler pages dev` (geo only resolves in production) |
+
+Starboard does NOT infer IP/geo from the proxy connection — these fields are required from the proxy for accurate metrics.
+
+### CSP
+
+`/api/starboard/heartbeat` is same-origin → already covered by existing `connect-src 'self'` in `public/_headers`. No CSP change needed.
+
+### Privacy disclosure
+
+Heartbeats collect `deviceId` (UUID in localStorage), playback duration, and the proxy enriches with IP + country/region/city + user-agent. This is functionally similar to the existing D1 player-event analytics. Update `privacy.html` to add a "Muses player audience metrics" entry alongside the existing D1 disclosure.
+
+### Testing
+
+```bash
+# 1. Get a real track projectId from the manifest
+curl -s http://localhost:8788/api/starboard/manifest \
+  | python3 -c "import sys,json; print(json.load(sys.stdin)['manifest']['tracks'][0]['projectId'])"
+
+# 2. POST a heartbeat for that track
+curl -X POST http://localhost:8788/api/starboard/heartbeat \
+  -H "content-type: application/json" \
+  -d '{"projectId":"<paste-from-step-1>","userId":"anonymous","deviceId":"smoke-test","length":15}'
+
+# Expect: HTTP 200, body "ok"
+```
+
+In the browser, confirm heartbeats fire by watching the network tab while a track plays for 15+ seconds. Pause and verify the final flush. Click next track and confirm the outgoing track's flush attributes to its own projectId, not the incoming track's.
+
+---
+
+## 15. MVP Go-Live Checklist
 
 ### Cloudflare Setup
 - [ ] `wrangler pages secret put STARBOARD_API_KEY` (production)
@@ -661,6 +853,7 @@ Credit:    ℗ & © 2026 colorshvdes / galorious expression llc · ascap
 
 ### Files to Create
 - [ ] `functions/api/starboard/manifest.ts`
+- [ ] `functions/api/starboard/heartbeat.ts`
 - [ ] `functions/api/starboard/assets/[assetId]/object.ts`
 - [ ] `src/muses/index.html`
 - [ ] `src/muses/player.css` (extracted from `muses-player-v3.html` `<style>` block)
@@ -680,6 +873,9 @@ Credit:    ℗ & © 2026 colorshvdes / galorious expression llc · ascap
 - [ ] `GET /api/starboard/manifest` returns manifest JSON
 - [ ] `GET /api/starboard/assets/{id}/object` streams audio bytes
 - [ ] Range requests work — scrubbing does not jump to start
+- [ ] `POST /api/starboard/heartbeat` with a real `track.projectId` returns `200 ok`
+- [ ] Browser fires heartbeats every 15s during playback (network tab)
+- [ ] Pause sends a final flush; track change attributes the flush to the outgoing track
 - [ ] Gate: email + name required, phone optional, any input unlocks
 - [ ] Tracklist renders dynamically from manifest
 - [ ] Audio plays, pauses, prev/next works
@@ -688,6 +884,7 @@ Credit:    ℗ & © 2026 colorshvdes / galorious expression llc · ascap
 - [ ] Now playing title cross-fades on track change
 - [ ] `oluanuakin.me/muses` routes correctly
 - [ ] No API key visible in browser network tab or page source
+- [ ] `privacy.html` updated with Muses audience-metrics disclosure
 
 ### Post-MVP (Do Not Build Now)
 - [ ] Stripe purchase integration

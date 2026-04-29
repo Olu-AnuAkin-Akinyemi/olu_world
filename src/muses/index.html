@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Muses (Unmastered) — ø Lu AnuAkin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./player.css">
+</head>
+<body>
+
+  <!-- ══ GATE ══ -->
+  <div class="screen" id="gate">
+    <div class="gate-bg" id="gate-bg"></div>
+    <div class="gate-overlay"></div>
+    <div class="gate-content">
+      <p class="gate-label g1">— private —</p>
+      <h1 class="gate-title g2">Muses</h1>
+      <p class="gate-subtitle g3">(unmastered) · ø Lu AnuAkin</p>
+
+      <div class="field g4">
+        <label class="field-label" for="gate-email">email</label>
+        <input type="email" id="gate-email" placeholder="your email"
+          autocomplete="email" autocapitalize="none" spellcheck="false">
+      </div>
+      <div class="field g5">
+        <label class="field-label" for="gate-name">name</label>
+        <input type="text" id="gate-name" placeholder="your name"
+          autocomplete="given-name">
+      </div>
+      <div class="field g6">
+        <label class="field-label" for="gate-phone">
+          phone <span class="optional-label">(optional)</span>
+        </label>
+        <input type="tel" id="gate-phone" placeholder="your number"
+          autocomplete="tel">
+      </div>
+
+      <button class="enter-btn g7" id="enter-btn">enter</button>
+      <p class="gate-error" id="gate-error"></p>
+
+      <div class="purchase-toggle g8">
+        <span>don't have access? </span>
+        <button id="purchase-toggle-btn">purchase →</button>
+      </div>
+
+      <div class="purchase-panel" id="purchase-panel">
+        <div class="purchase-card">
+          <p class="purchase-card-title">Muses (Unmastered)</p>
+          <ul class="purchase-includes">
+            <li>lossless wav files — all tracks</li>
+            <li>exclusive visual artifact</li>
+            <li>lyric booklet · liner notes</li>
+            <li>lifetime access to this player</li>
+          </ul>
+          <button class="purchase-btn" id="purchase-btn">purchase · $__</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ PLAYER ══ -->
+  <div class="screen" id="player">
+    <div class="video-bg" id="video-bg">
+      <iframe
+        id="cf-video"
+        src="https://customer-mrl30lrm2q4cfcg0.cloudflarestream.com/66508d46a629e0814e87366fccd04830/iframe?autoplay=1&muted=1&loop=1&controls=0&preload=auto"
+        allow="autoplay"
+        allowfullscreen="false">
+      </iframe>
+    </div>
+    <div class="player-overlay"></div>
+
+    <div class="player-scroll">
+      <div class="player-hero">
+        <div class="sigil"></div>
+        <h1 class="player-ep-title">Muses</h1>
+        <p class="player-ep-sub">(unmastered)</p>
+        <p class="player-artist">ø Lu AnuAkin</p>
+      </div>
+      <div class="rust-rule"></div>
+      <div class="tracklist" id="tracklist"></div>
+      <div class="dedication">
+        <div class="dedication-rule"></div>
+        <p class="dedication-text">
+          dedicated to those that I've shared<br>
+          moments of life with,<br>
+          being art and experiencing love...
+        </p>
+      </div>
+      <div class="dsp-link" id="dsp-link">
+        <a href="#" target="_blank" rel="noopener">stream everywhere →</a>
+      </div>
+      <div style="height:28px;"></div>
+    </div>
+
+    <!-- Sticky Player Bar -->
+    <div class="sticky-player">
+      <div class="sticky-top">
+        <button class="track-info-btn" id="track-info-btn">track info</button>
+        <span class="now-playing-label">now playing</span>
+        <div style="width:66px;"></div>
+      </div>
+      <p class="now-playing-title" id="now-playing-title">—</p>
+      <div class="scrubber-row">
+        <span class="time-label" id="time-current">0:00</span>
+        <div class="scrubber" id="scrubber">
+          <div class="scrubber-track">
+            <div class="scrubber-fill" id="scrubber-fill"></div>
+            <div class="scrubber-thumb" id="scrubber-thumb" style="left:0%"></div>
+          </div>
+        </div>
+        <span class="time-label right" id="time-total">0:00</span>
+      </div>
+      <div class="controls">
+        <button class="ctrl-btn" id="prev-btn" aria-label="Previous">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/>
+          </svg>
+        </button>
+        <button class="play-btn" id="play-btn" aria-label="Play/Pause">
+          <svg id="play-icon" width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+          <svg id="pause-icon" width="15" height="15" viewBox="0 0 24 24"
+            fill="currentColor" style="display:none">
+            <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+          </svg>
+        </button>
+        <button class="ctrl-btn" id="next-btn" aria-label="Next">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M6 18l8.5-6L6 6v12zm2-8.14 5.5 2.14L8 11.86V9.86zM16 6h2v12h-2z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ TRACK INFO SHEET ══ -->
+  <div class="overlay-backdrop" id="overlay-backdrop"></div>
+  <div class="track-info-sheet" id="track-info-sheet">
+    <div class="sheet-handle"></div>
+    <button class="sheet-close" id="sheet-close">× close</button>
+    <p class="sheet-track-num" id="sheet-num">01</p>
+    <h2 class="sheet-track-title" id="sheet-title"></h2>
+    <div class="sheet-rule"></div>
+    <p class="sheet-section-label">note</p>
+    <p class="sheet-note" id="sheet-note"></p>
+    <p class="sheet-section-label">credits</p>
+    <p class="sheet-credits" id="sheet-credits"></p>
+    <p class="sheet-section-label">lyrics</p>
+    <p class="sheet-lyrics" id="sheet-lyrics"></p>
+  </div>
+
+  <audio id="audio" preload="metadata"></audio>
+
+  <script type="module" src="./player.js"></script>
+</body>
+</html>

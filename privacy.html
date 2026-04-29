@@ -71,7 +71,7 @@
     <a href="/" class="privacy-back">← Back to Home</a>
 
     <h1>Privacy Policy</h1>
-    <p class="updated">Last Updated: April 27, 2026</p>
+    <p class="updated">Last Updated: April 28, 2026</p>
 
     <h2>Overview</h2>
     <p>This privacy policy explains how øLu AnuAkin ("we," "us," or "our") collects, uses, and protects your personal information when you use our website at oluanuakin.me.</p>
@@ -89,8 +89,16 @@
       • <strong>Time of play</strong> — the UTC hour at which listening occurred.
     </p>
 
+    <p><strong>Muses Player (private listening):</strong> The Muses (Unmastered) preview player at oluanuakin.me/muses sends listening data to <a href="https://starboard.one-kind.co" target="_blank" rel="noopener">Starboard</a>, the music distribution and audience-metrics platform that hosts the audio. Specifically:</p>
+    <p>
+      • <strong>Listening duration</strong> — seconds of active playback per track, sent in 15-second intervals while audio is playing.<br>
+      • <strong>Approximate location</strong> — country, region, and city, derived from your IP at the moment of the request. Your IP is forwarded to Starboard for geographic aggregation; we do not retain it on our servers.<br>
+      • <strong>Browser user-agent</strong> — the device and browser identifier your browser sends with every web request.<br>
+      • <strong>Persistent device identifier</strong> — a randomly generated UUID created on your first visit and stored in your browser's localStorage under the key <code>sbDeviceId</code>. It contains no personal information and is used only to count unique listeners. You can clear it at any time by clearing site data for oluanuakin.me in your browser settings.
+    </p>
+
     <h2>What Is Not Collected</h2>
-    <p>We do not collect your name, email address, or any contact information unless you submit the mailing list signup or contact form. We do not store your full IP address. We do not use cookies or persistent identifiers from the audio player. We do not collect browser fingerprint data, and we do not collect any data from other tabs or sites.</p>
+    <p>We do not collect your name, email address, or any contact information unless you submit the mailing list signup or contact form. The main site audio player uses no cookies and only a session-scoped identifier that clears when you close the tab. The Muses preview player uses a persistent localStorage identifier (disclosed above) that you can clear from your browser at any time. We do not collect browser fingerprint data, and we do not collect any data from other tabs or sites.</p>
 
     <h2>How We Use Your Information</h2>
     <p><strong>Mailing List:</strong> Email addresses collected through the mailing list signup are used solely to send you updates about new music releases, projects, and related announcements. You can unsubscribe at any time via the link in any email.</p>
@@ -99,11 +107,13 @@
 
     <h2>Third-Party Services</h2>
     <p>We use <a href="https://web3forms.com" target="_blank" rel="noopener">Web3Forms</a> to process form submissions (mailing list and contact form). Web3Forms forwards submissions to our email inbox. Their privacy policy is available at <a href="https://web3forms.com/privacy" target="_blank" rel="noopener">web3forms.com/privacy</a>.</p>
+    <p>We use <a href="https://starboard.one-kind.co" target="_blank" rel="noopener">Starboard</a> to host audio for the Muses preview player and to aggregate listening metrics for that release. The data described in the "Muses Player" section above is forwarded to Starboard via our own backend proxy. Once received by Starboard, the data is governed by Starboard's data retention and privacy practices.</p>
     <p>We do not share your information with any other third parties for marketing or advertising purposes.</p>
 
     <h2>Data Storage and Retention</h2>
     <p>Email addresses submitted through forms are stored in our email inbox and may be added to our mailing list platform (if we migrate to one in the future). We retain your information until you request deletion or unsubscribe from the mailing list.</p>
-    <p>Anonymous listening data collected through the audio player is stored in our analytics database and retained for up to 12 months, after which it is deleted.</p>
+    <p>Anonymous listening data collected through the main site audio player is stored in our analytics database and retained for up to 12 months, after which it is deleted.</p>
+    <p>Listening data from the Muses preview player is sent to Starboard and retained according to Starboard's policies. Our own servers do not store this data.</p>
 
     <h2>Your Rights</h2>
     <p>You have the right to:</p>
