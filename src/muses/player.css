@@ -63,6 +63,33 @@ body::after {
 ══════════════════════════ */
 #gate { align-items: center; justify-content: flex-end; padding-bottom: env(safe-area-inset-bottom,0); }
 
+.gate-mute {
+  position: absolute;
+  top: max(18px, env(safe-area-inset-top, 0));
+  right: 18px;
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--parchment);
+  opacity: 0.32;
+  cursor: pointer;
+  transition: opacity 0.4s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.gate-mute:hover { opacity: 1; }
+.gate-mute:focus-visible {
+  opacity: 1;
+  outline: 1px solid var(--rust);
+  outline-offset: 4px;
+  border-radius: 2px;
+}
+.gate-mute svg { display: block; }
+
 .gate-bg {
   position: absolute; inset: -5%;
   background-size: cover; background-position: center;

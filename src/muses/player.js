@@ -49,9 +49,57 @@ const GATE_SNIPPET_URL = '/gate-snippet.mp3';
 const GATE_VOLUME = 0.18;
 const GATE_FADE_IN_MS = 4000;
 const GATE_FADE_OUT_MS = 1200;
+const GATE_MUTE_FADE_MS = 600;
+const GATE_MUTE_KEY = 'gateMuted';
 
 let gateAudio = null;
 let gateFadeRaf = 0;
+
+const isGateMuted = () => localStorage.getItem(GATE_MUTE_KEY) === '1';
+const setGateMuted = (muted) => {
+  if (muted) localStorage.setItem(GATE_MUTE_KEY, '1');
+  else localStorage.removeItem(GATE_MUTE_KEY);
+};
+
+function updateMuteUI() {
+  const btn = document.getElementById('gate-mute');
+  if (!btn) return;
+  const muted = isGateMuted();
+  btn.setAttribute('aria-label', muted ? 'Unmute ambient audio' : 'Mute ambient audio');
+  btn.setAttribute('aria-pressed', String(muted));
+  const on = btn.querySelector('.gate-mute-on');
+  const off = btn.querySelector('.gate-mute-off');
+  if (on) on.hidden = muted;
+  if (off) off.hidden = !muted;
+}
+
+function ensureGateAudio() {
+  if (gateAudio) return gateAudio;
+  gateAudio = new Audio(GATE_SNIPPET_URL);
+  gateAudio.loop = true;
+  gateAudio.volume = 0;
+  gateAudio.preload = 'metadata';
+  return gateAudio;
+}
+
+function toggleGateMute() {
+  const willMute = !isGateMuted();
+  setGateMuted(willMute);
+  updateMuteUI();
+
+  if (willMute) {
+    if (!gateAudio) return;
+    fadeAudio(gateAudio, gateAudio.volume, 0, GATE_MUTE_FADE_MS, () => {
+      if (gateAudio) gateAudio.pause();
+    });
+  } else {
+    ensureGateAudio();
+    const p = gateAudio.play();
+    const ramp = () => fadeAudio(gateAudio, gateAudio.volume, GATE_VOLUME, GATE_MUTE_FADE_MS);
+    if (p && p.then) p.then(ramp).catch(() => {});
+    else ramp();
+  }
+}
 
 // Smoothstep S-curve: gentle at both ends, perceptually smoother than linear
 // for amplitude ramps because human hearing is roughly logarithmic.
@@ -70,13 +118,26 @@ function fadeAudio(audio, from, to, ms, onDone) {
 }
 
 function initGateSnippet() {
-  gateAudio = new Audio(GATE_SNIPPET_URL);
-  gateAudio.loop = true;
-  gateAudio.volume = 0;
-  gateAudio.preload = 'metadata';
+  updateMuteUI();
+  document.getElementById('gate-mute')?.addEventListener('click', toggleGateMute);
+
+  // Be polite if the visitor tabs away
+  document.addEventListener('visibilitychange', () => {
+    if (!gateAudio) return;
+    if (document.hidden) gateAudio.pause();
+    else if (!isGateMuted() && gateAudio.currentTime > 0 && gateAudio.volume > 0) {
+      gateAudio.play().catch(() => {});
+    }
+  });
+
+  // Respect saved mute preference: don't preload audio at all if the visitor
+  // already opted out. Toggle button can lazily create it later.
+  if (isGateMuted()) return;
+
+  ensureGateAudio();
 
   const startOnce = () => {
-    if (!gateAudio) return;
+    if (!gateAudio || isGateMuted()) return;
     const p = gateAudio.play();
     if (p && p.then) {
       p.then(() => fadeAudio(gateAudio, 0, GATE_VOLUME, GATE_FADE_IN_MS))
@@ -88,15 +149,6 @@ function initGateSnippet() {
   events.forEach(evt =>
     document.addEventListener(evt, startOnce, { once: true, passive: true, capture: true })
   );
-
-  // Be polite if the visitor tabs away
-  document.addEventListener('visibilitychange', () => {
-    if (!gateAudio) return;
-    if (document.hidden) gateAudio.pause();
-    else if (gateAudio.currentTime > 0 && gateAudio.volume > 0) {
-      gateAudio.play().catch(() => {});
-    }
-  });
 }
 
 function fadeOutGateSnippet(ms = GATE_FADE_OUT_MS) {
