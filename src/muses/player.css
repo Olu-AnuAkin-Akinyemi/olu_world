@@ -222,9 +222,8 @@ body::after {
 ══════════════════════════ */
 .video-bg {
   position: absolute; inset: 0; z-index: 0;
-  opacity: 0; transition: opacity 2s ease; overflow: hidden;
+  opacity: 1; overflow: hidden;
 }
-.video-bg.playing { opacity: 1; }
 .video-bg iframe {
   position: absolute;
   width: 100vw; height: 177.78vw;
@@ -246,7 +245,8 @@ body::after {
 
 .player-scroll {
   position: relative; z-index: 2;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 165px - env(safe-area-inset-bottom, 0));
+  height: calc(100dvh - 165px - env(safe-area-inset-bottom, 0));
   overflow-y: auto; -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
   padding-top: env(safe-area-inset-top,0);
@@ -358,7 +358,7 @@ body::after {
   position: fixed; bottom: 0; left: 0; right: 0; z-index: 10;
   background: rgba(7,7,13,0.86);
   border-top: 0.5px solid rgba(168,75,42,0.13);
-  padding: 14px 28px calc(14px + env(safe-area-inset-bottom,0));
+  padding: 10px 28px calc(12px + env(safe-area-inset-bottom,0));
   backdrop-filter: blur(22px) saturate(160%);
   -webkit-backdrop-filter: blur(22px) saturate(160%);
   transform: translateY(100%);
@@ -368,7 +368,7 @@ body::after {
 
 .sticky-top {
   display: flex; align-items: center;
-  justify-content: space-between; margin-bottom: 13px;
+  justify-content: space-between; margin-bottom: 8px;
 }
 
 .track-info-btn {
@@ -386,14 +386,14 @@ body::after {
 
 .now-playing-title {
   font-family: var(--serif); font-style: italic; font-size: 19px;
-  color: var(--parchment); text-align: center; margin-bottom: 13px;
+  color: var(--parchment); text-align: center; margin-bottom: 8px;
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
   transition: opacity 0.22s ease, transform 0.22s var(--ease-out);
 }
 .now-playing-title.switching { opacity: 0; transform: translateY(5px); }
 
 /* Scrubber */
-.scrubber-row { display: flex; align-items: center; gap: 10px; margin-bottom: 15px; }
+.scrubber-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 .time-label {
   font-size: 10px; color: var(--muted); min-width: 32px;
   flex-shrink: 0; font-variant-numeric: tabular-nums; opacity: 0.75;

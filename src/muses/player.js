@@ -163,7 +163,6 @@ function playAudio() {
   document.getElementById('play-icon').style.display = 'none';
   document.getElementById('pause-icon').style.display = 'block';
   document.getElementById('play-btn').classList.add('playing');
-  document.getElementById('video-bg').classList.add('playing');
   const audio = document.getElementById('audio');
   if (audio.src) {
     audio.play().catch(err => console.warn('play blocked', err));
@@ -176,7 +175,6 @@ function pauseAudio() {
   document.getElementById('play-icon').style.display = 'block';
   document.getElementById('pause-icon').style.display = 'none';
   document.getElementById('play-btn').classList.remove('playing');
-  document.getElementById('video-bg').classList.remove('playing');
   document.getElementById('audio').pause();
   clearInterval(scrubInterval);
 }
