@@ -546,13 +546,93 @@ if (kindredToggle && kindredList) {
   });
 }
 
-/* --- Web3Forms handler --- */
+/* --- Form handlers (Starboard Crew + Web3Forms) --- */
 const RATE_LIMIT_MS = 60000;
 const isValidEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
 function isRateLimited(formType) {
   const last = localStorage.getItem('lastSubmit_' + formType);
   return last && (Date.now() - parseInt(last)) < RATE_LIMIT_MS;
+}
+
+function setFeedback(feedback, msg, kind) {
+  if (!feedback) return;
+  feedback.hidden = false;
+  feedback.textContent = msg;
+  feedback.className = 'form-feedback ' + kind;
+}
+
+async function submitCrewForm(form, feedback, submitBtn, originalText) {
+  const fd = new FormData(form);
+  const payload = {
+    email: String(fd.get('email') || '').trim().toLowerCase(),
+    name: String(fd.get('name') || '').trim() || undefined,
+    botcheck: fd.get('botcheck') ? true : undefined,
+  };
+
+  submitBtn.innerHTML = 'Joining…';
+  submitBtn.disabled = true;
+
+  try {
+    const response = await fetch('/api/starboard/crew', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify(payload),
+    });
+    const data = await response.json().catch(() => ({}));
+
+    if (response.ok) {
+      const id = data.heartbeatUserId || data.crewMember?.email;
+      if (id) localStorage.setItem('sbUserId', id);
+      setFeedback(feedback, "You're in. We'll be in touch.", 'success');
+      localStorage.setItem('lastSubmit_crew', Date.now().toString());
+      form.reset();
+    } else if (response.status === 429) {
+      setFeedback(feedback, 'Too many attempts. Please wait a minute and try again.', 'error');
+    } else if (data.error === 'invalid_email') {
+      setFeedback(feedback, 'Please enter a valid email address.', 'error');
+    } else {
+      setFeedback(feedback, 'Something went wrong. Try again.', 'error');
+    }
+  } catch {
+    setFeedback(feedback, 'Connection error. Please try again.', 'error');
+  } finally {
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
+  }
+}
+
+async function submitWeb3Form(form, feedback, submitBtn, originalText, formType) {
+  // Stamp local time so Web3Forms receives the user's timezone
+  const timeField = form.querySelector('.local-time');
+  if (timeField) timeField.value = new Date().toLocaleString('en-US') + ' (' + Intl.DateTimeFormat().resolvedOptions().timeZone + ')';
+
+  submitBtn.innerHTML = 'Sending…';
+  submitBtn.disabled = true;
+
+  try {
+    const response = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(form),
+    });
+    const data = await response.json();
+
+    if (response.ok) {
+      setFeedback(feedback, "Message sent. We'll get back to you.", 'success');
+      localStorage.setItem('lastSubmit_' + formType, Date.now().toString());
+      form.reset();
+      if (formType === 'inquiry') {
+        setTimeout(() => { if (contactOverlay) closeContactOverlay(); }, 2000);
+      }
+    } else {
+      setFeedback(feedback, data.message || 'Something went wrong. Try again.', 'error');
+    }
+  } catch {
+    setFeedback(feedback, 'Connection error. Please try again.', 'error');
+  } finally {
+    submitBtn.innerHTML = originalText;
+    submitBtn.disabled = false;
+  }
 }
 
 document.querySelectorAll('form[data-form]').forEach(form => {
@@ -563,67 +643,21 @@ document.querySelectorAll('form[data-form]').forEach(form => {
     const originalText = submitBtn.innerHTML;
     const formType = form.dataset.form;
 
-    // Rate limit check
     if (isRateLimited(formType)) {
-      if (feedback) {
-        feedback.hidden = false;
-        feedback.textContent = 'Please wait a moment before submitting again.';
-        feedback.className = 'form-feedback error';
-      }
+      setFeedback(feedback, 'Please wait a moment before submitting again.', 'error');
       return;
     }
 
-    // Email validation
     const emailInput = form.querySelector('input[type="email"]');
     if (emailInput && !isValidEmail(emailInput.value.trim())) {
-      if (feedback) {
-        feedback.hidden = false;
-        feedback.textContent = 'Please enter a valid email address.';
-        feedback.className = 'form-feedback error';
-      }
+      setFeedback(feedback, 'Please enter a valid email address.', 'error');
       return;
     }
 
-    // Stamp local time so Web3Forms receives the user's timezone
-    const timeField = form.querySelector('.local-time');
-    if (timeField) timeField.value = new Date().toLocaleString('en-US') + ' (' + Intl.DateTimeFormat().resolvedOptions().timeZone + ')';
-
-    submitBtn.innerHTML = 'Sending...';
-    submitBtn.disabled = true;
-
-    try {
-      const response = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: new FormData(form)
-      });
-      const data = await response.json();
-
-      if (feedback) {
-        feedback.hidden = false;
-        if (response.ok) {
-          feedback.textContent = formType === 'mailing-list'
-            ? "You're in. We'll be in touch."
-            : 'Message sent. We\'ll get back to you.';
-          feedback.className = 'form-feedback success';
-          localStorage.setItem('lastSubmit_' + formType, Date.now().toString());
-          form.reset();
-          if (formType === 'inquiry') {
-            setTimeout(() => { if (contactOverlay) closeContactOverlay(); }, 2000);
-          }
-        } else {
-          feedback.textContent = data.message || 'Something went wrong. Try again.';
-          feedback.className = 'form-feedback error';
-        }
-      }
-    } catch {
-      if (feedback) {
-        feedback.hidden = false;
-        feedback.textContent = 'Connection error. Please try again.';
-        feedback.className = 'form-feedback error';
-      }
-    } finally {
-      submitBtn.innerHTML = originalText;
-      submitBtn.disabled = false;
+    if (formType === 'crew') {
+      await submitCrewForm(form, feedback, submitBtn, originalText);
+    } else {
+      await submitWeb3Form(form, feedback, submitBtn, originalText, formType);
     }
   });
 });

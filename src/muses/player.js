@@ -41,18 +41,61 @@ async function loadManifest() {
 }
 
 // ── GATE ──
-function handleEnter() {
+const isValidEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
+
+async function submitCrewSignup(email, name) {
+  try {
+    const res = await fetch('/api/starboard/crew', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: JSON.stringify({ email, name: name || undefined }),
+    });
+    if (!res.ok) return false;
+    const data = await res.json().catch(() => ({}));
+    const id = data.heartbeatUserId || data.crewMember?.email || email;
+    localStorage.setItem('sbUserId', id);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function handleEnter() {
   const email = document.getElementById('gate-email').value.trim().toLowerCase();
   const name  = document.getElementById('gate-name').value.trim();
   const err   = document.getElementById('gate-error');
+  const btn   = document.getElementById('enter-btn');
 
   if (!email || !name) {
     err.textContent = 'please enter your email and name.';
     err.classList.add('visible');
-    shake(document.getElementById('enter-btn'));
+    shake(btn);
+    return;
+  }
+  if (!isValidEmail(email)) {
+    err.textContent = 'please enter a valid email.';
+    err.classList.add('visible');
+    shake(btn);
     return;
   }
   err.classList.remove('visible');
+
+  const originalLabel = btn.textContent;
+  btn.textContent = 'entering…';
+  btn.disabled = true;
+
+  // Fire-and-await crew signup. Network/server failure does not block entry —
+  // gate is cosmetic — but we persist sbUserId on success so heartbeats
+  // attribute back to this fan.
+  await submitCrewSignup(email, name);
+
+  // Fallback so heartbeats still have a stable id even if crew call failed.
+  if (!localStorage.getItem('sbUserId')) {
+    localStorage.setItem('sbUserId', email);
+  }
+
+  btn.textContent = originalLabel;
+  btn.disabled = false;
   unlockPlayer();
 }
 
@@ -248,7 +291,7 @@ function createHeartbeatTracker({ getProjectId, getUserId }) {
 
 const heartbeat = createHeartbeatTracker({
   getProjectId: () => TRACKS[currentTrack]?.projectId ?? null,
-  getUserId: () => 'anonymous', // MVP: gate is cosmetic; revisit when auth ships
+  getUserId: () => localStorage.getItem('sbUserId') || 'anonymous',
 });
 
 // ── SCRUBBER ──
